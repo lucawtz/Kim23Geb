@@ -625,7 +625,7 @@ body.parked .band-far{opacity:.18}
   background:#0B1815;border:1px solid rgba(201,212,200,.16);
   box-shadow:0 26px 50px -28px rgba(0,0,0,.85);
 }
-.plate svg{display:block;width:100%;height:auto}
+.plate svg,.plate img{display:block;width:100%;height:auto}
 .plate::after{
   content:"";position:absolute;inset:0;pointer-events:none;
   box-shadow:inset 0 0 70px rgba(8,18,15,.55);
@@ -852,7 +852,7 @@ body.parked .band-far{opacity:.18}
 }
 .mapwrap svg{display:block;width:100%;height:auto}
 .map-chip{
-  position:absolute;top:.75rem;left:.75rem;z-index:2;
+  position:absolute;bottom:.75rem;left:.75rem;z-index:2;
   display:flex;align-items:baseline;gap:.4rem;
   background:rgba(8,18,15,.9);border:1px solid rgba(201,212,200,.2);
   border-radius:2px;padding:.45rem .75rem;
@@ -1059,20 +1059,20 @@ body.parked .band-far{opacity:.18}
             <text class="map-alt" x="792" y="40" text-anchor="end">Nordroute · 125 km</text>
             <path d="M774.0,326.6 773.5,327.8 767.5,326.5 760.7,327.7 754.8,327.3 754.0,328.3 751.6,327.6 749.4,328.8 744.0,328.9 741.6,330.2 738.3,323.8 736.5,324.1 735.3,321.7 733.3,320.8 732.2,318.2 724.1,318.0 719.3,313.9 717.6,313.9 717.4,310.1 714.2,311.0 711.3,314.0 706.9,316.3 706.7,318.2 687.9,322.2 686.9,320.0 683.7,317.8 684.4,310.8 672.3,293.1 670.8,289.0 670.7,284.5 667.3,282.4 665.8,279.8 663.3,287.1 658.5,292.4 653.7,300.5 649.1,303.1 640.3,302.9 639.8,304.1 636.5,290.8 633.7,286.4 629.9,282.7 624.3,279.7 605.5,274.7 595.0,269.9 589.3,269.2 583.6,270.3 579.6,272.4 572.8,277.8 567.7,279.9 562.2,280.4 556.7,279.0 550.6,274.7 543.4,264.6 538.3,260.1 532.3,257.3 516.5,252.9 512.1,250.1 509.4,246.5 498.7,223.3 495.7,219.8 491.0,217.9 471.4,216.5 466.3,214.0 462.8,208.7 460.5,195.8 455.5,189.7 453.0,191.9 450.4,187.6 443.8,187.4 434.2,183.4 423.3,186.9 420.7,186.9 418.3,184.9 417.1,177.4 414.4,173.5 412.3,172.0 400.8,171.0 400.0,167.5 383.9,167.0 372.2,171.6 371.0,173.1 370.1,177.8 367.3,181.6 361.6,184.2 357.2,184.1 354.3,186.7 344.2,190.8 343.2,193.2 339.9,193.9 337.0,198.3 336.1,203.4 333.9,206.7 334.9,211.0 332.7,213.3 326.1,211.2 305.2,210.7 296.4,215.7 293.4,216.0 291.3,217.8 286.0,216.4 283.5,216.9 273.1,226.5 264.9,227.8 254.9,225.8 237.7,230.0 227.1,229.9 220.7,224.4 207.4,217.1 198.9,210.7 197.9,205.0 200.4,195.4 199.9,194.0 196.8,193.3 191.2,193.6 187.1,187.1 180.2,188.3 176.9,184.6 173.8,185.4 172.2,183.4 171.6,178.7 168.0,176.5 165.2,176.5 161.7,172.9 158.2,171.6 153.5,166.8 149.0,165.3 141.0,159.7 139.8,151.2 138.3,148.2 134.4,143.8 134.0,138.3 131.6,136.2 129.3,130.1 124.9,129.2 121.8,130.8 118.0,130.9 115.7,132.4 114.3,131.0 109.9,129.4 104.2,128.8 98.6,126.7 94.1,130.2 90.8,130.0 87.3,131.8 83.3,131.7 81.1,130.6 80.4,128.1 76.7,131.4 73.8,129.7 67.8,129.2 57.7,135.7 52.3,133.7 50.9,131.3 48.1,130.2 46.0,130.9 47.4,129.5 47.2,128.4 48.5,128.1" fill="none" stroke="#7A2E17" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" opacity=".45"/>
             <path id="mapRoute" d="M774.0,326.6 773.5,327.8 767.5,326.5 760.7,327.7 754.8,327.3 754.0,328.3 751.6,327.6 749.4,328.8 744.0,328.9 741.6,330.2 738.3,323.8 736.5,324.1 735.3,321.7 733.3,320.8 732.2,318.2 724.1,318.0 719.3,313.9 717.6,313.9 717.4,310.1 714.2,311.0 711.3,314.0 706.9,316.3 706.7,318.2 687.9,322.2 686.9,320.0 683.7,317.8 684.4,310.8 672.3,293.1 670.8,289.0 670.7,284.5 667.3,282.4 665.8,279.8 663.3,287.1 658.5,292.4 653.7,300.5 649.1,303.1 640.3,302.9 639.8,304.1 636.5,290.8 633.7,286.4 629.9,282.7 624.3,279.7 605.5,274.7 595.0,269.9 589.3,269.2 583.6,270.3 579.6,272.4 572.8,277.8 567.7,279.9 562.2,280.4 556.7,279.0 550.6,274.7 543.4,264.6 538.3,260.1 532.3,257.3 516.5,252.9 512.1,250.1 509.4,246.5 498.7,223.3 495.7,219.8 491.0,217.9 471.4,216.5 466.3,214.0 462.8,208.7 460.5,195.8 455.5,189.7 453.0,191.9 450.4,187.6 443.8,187.4 434.2,183.4 423.3,186.9 420.7,186.9 418.3,184.9 417.1,177.4 414.4,173.5 412.3,172.0 400.8,171.0 400.0,167.5 383.9,167.0 372.2,171.6 371.0,173.1 370.1,177.8 367.3,181.6 361.6,184.2 357.2,184.1 354.3,186.7 344.2,190.8 343.2,193.2 339.9,193.9 337.0,198.3 336.1,203.4 333.9,206.7 334.9,211.0 332.7,213.3 326.1,211.2 305.2,210.7 296.4,215.7 293.4,216.0 291.3,217.8 286.0,216.4 283.5,216.9 273.1,226.5 264.9,227.8 254.9,225.8 237.7,230.0 227.1,229.9 220.7,224.4 207.4,217.1 198.9,210.7 197.9,205.0 200.4,195.4 199.9,194.0 196.8,193.3 191.2,193.6 187.1,187.1 180.2,188.3 176.9,184.6 173.8,185.4 172.2,183.4 171.6,178.7 168.0,176.5 165.2,176.5 161.7,172.9 158.2,171.6 153.5,166.8 149.0,165.3 141.0,159.7 139.8,151.2 138.3,148.2 134.4,143.8 134.0,138.3 131.6,136.2 129.3,130.1 124.9,129.2 121.8,130.8 118.0,130.9 115.7,132.4 114.3,131.0 109.9,129.4 104.2,128.8 98.6,126.7 94.1,130.2 90.8,130.0 87.3,131.8 83.3,131.7 81.1,130.6 80.4,128.1 76.7,131.4 73.8,129.7 67.8,129.2 57.7,135.7 52.3,133.7 50.9,131.3 48.1,130.2 46.0,130.9 47.4,129.5 47.2,128.4 48.5,128.1" fill="none" stroke="#E2542E" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" filter="url(#mapGlow)"/>
-            <g><circle cx="774.0" cy="326.6" r="7" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/><circle class="map-minor" cx="653.7" cy="300.5" r="5" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/><circle class="map-minor" cx="492.0" cy="218.1" r="5" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/><circle class="map-minor" cx="461.0" cy="197.3" r="5" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/><circle class="map-minor" cx="334.2" cy="206.2" r="5" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/><circle cx="225.7" cy="228.7" r="7" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/></g>
+            <g><circle cx="774.0" cy="326.6" r="7" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/><circle class="map-minor" cx="653.7" cy="300.5" r="5" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/><g class="map-minor"><line x1="492.0" y1="205.1" x2="492.0" y2="231.1" stroke="#8DA093" stroke-width="2" stroke-dasharray="4 4"/></g><circle class="map-minor" cx="461.0" cy="197.3" r="5" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/><circle class="map-minor" cx="334.2" cy="206.2" r="5" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/><circle cx="225.7" cy="228.7" r="7" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/></g>
             <circle cx="774.0" cy="326.6" r="11" fill="#E2542E"/><circle cx="774.0" cy="326.6" r="4.5" fill="#0B1815"/>
             <g id="mapGoal" opacity="0">
               <path d="M48.5 132.1 c-13-17-19-24-19-33 a19 19 0 1 1 38 0 c0 9-6 16-19 33z" fill="#E2A32E"/>
               <circle cx="48.5" cy="98.1" r="7" fill="#0B1815"/></g>
-            <text class="map-label" id="mapGoalLabel" x="68.5" y="136.1" text-anchor="start">?</text>
-            <text class="map-sub" id="mapGoalSub" x="68.5" y="158.1" text-anchor="start"></text>
-            <g><text class="map-label" x="756.0" y="308.6" text-anchor="end">Mürlenbach</text><text class="map-label map-minor" x="653.7" y="334.5" text-anchor="middle">Prüm</text><text class="map-label map-minor" x="492.0" y="200.1" text-anchor="middle">Steinebrück</text><text class="map-label map-minor" x="461.0" y="231.3" text-anchor="middle">St. Vith</text><text class="map-label map-minor" x="334.2" y="188.2" text-anchor="middle">Vielsalm</text><text class="map-label" x="225.7" y="264.7" text-anchor="middle">Baraque de Fraiture</text><text class="map-sub" x="225.7" y="286.7" text-anchor="middle">653 m · höchster Punkt</text></g>
+            <text class="map-label" id="mapGoalLabel" x="68.5" y="134.1" text-anchor="start">?</text>
+            <text class="map-sub" id="mapGoalSub" x="68.5" y="156.1" text-anchor="start"></text>
+            <g><text class="map-label" x="754.0" y="310.6" text-anchor="end">Mürlenbach</text><text class="map-label map-minor" x="659.7" y="284.5" text-anchor="middle">Prüm</text><text class="map-label map-minor" x="461.0" y="229.3" text-anchor="middle">St. Vith</text><text class="map-label map-minor" x="334.2" y="190.2" text-anchor="middle">Vielsalm</text><text class="map-label" x="225.7" y="262.7" text-anchor="middle">Baraque de Fraiture</text><text class="map-sub" x="225.7" y="284.7" text-anchor="middle">653 m · höchster Punkt</text></g>
             <circle id="mapDot" cx="774.0" cy="326.6" r="9" fill="#F3EBDA" opacity="0"/>
             <g class="map-scale">
-              <line x1="28" y1="378" x2="128" y2="378" stroke="#7D8E82" stroke-width="2.5"/>
-              <line x1="28" y1="372" x2="28" y2="384" stroke="#7D8E82" stroke-width="2.5"/>
-              <line x1="128" y1="372" x2="128" y2="384" stroke="#7D8E82" stroke-width="2.5"/>
-              <text class="map-sub" x="78" y="366" text-anchor="middle">20 km</text></g>
+              <line x1="350" y1="378" x2="450" y2="378" stroke="#7D8E82" stroke-width="2.5"/>
+              <line x1="350" y1="372" x2="350" y2="384" stroke="#7D8E82" stroke-width="2.5"/>
+              <line x1="450" y1="372" x2="450" y2="384" stroke="#7D8E82" stroke-width="2.5"/>
+              <text class="map-sub" x="400" y="366" text-anchor="middle">20 km</text></g>
           </svg>
         </div>
         <div>
@@ -1123,86 +1123,31 @@ body.parked .band-far{opacity:.18}
       <p class="eyebrow reveal">Zwischenstopp — keine Zeichnung</p>
       <h2 class="reveal d1">So sieht es<br>da wirklich aus</h2>
       <p class="lead reveal d2" style="margin-top:1.1rem;max-width:38ch">
-        Echte Fotos aus Durbuy und vom Ourthe-Tal. Damit du dir vorstellen kannst,
-        wovon ich die ganze Zeit rede.</p>
+        Keine Zeichnungen mehr. So sieht die kleinste Stadt der Welt aus,
+        wenn man wirklich davorsteht.</p>
       <div class="gallery reveal d3">
           <figure>
-            <img src="img/kajak1-800.webp" srcset="img/kajak1-800.webp 800w, img/kajak1-1600.webp 1600w"
-                 sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067"
-                 loading="lazy" decoding="async" alt="Kajak auf der Ourthe, oberer Flusslauf">
-            <figcaption>Kajak auf der Ourthe, oberer Flusslauf</figcaption>
+            <img src="img/blick-800.webp" sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Durbuy im Abendlicht, vom Hang aus">
+            <figcaption>Durbuy im Abendlicht, vom Hang aus</figcaption>
           </figure>
           <figure>
-            <img src="img/kajak2-800.webp" srcset="img/kajak2-800.webp 800w, img/kajak2-1600.webp 1600w"
-                 sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067"
-                 loading="lazy" decoding="async" alt="Die Ourthe zwischen den Hängen">
-            <figcaption>Die Ourthe zwischen den Hängen</figcaption>
+            <img src="img/gasse-800.webp" srcset="img/gasse-800.webp 800w, img/gasse-1600.webp 1600w" sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Gassen mit Läden und Terrassen">
+            <figcaption>Gassen mit Läden und Terrassen</figcaption>
           </figure>
           <figure>
-            <img src="img/kajak3-800.webp" srcset="img/kajak3-800.webp 800w, img/kajak3-1600.webp 1600w"
-                 sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067"
-                 loading="lazy" decoding="async" alt="Boote auf dem Fluss">
-            <figcaption>Boote auf dem Fluss</figcaption>
+            <img src="img/platz-800.webp" srcset="img/platz-800.webp 800w, img/platz-1600.webp 1600w" sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Fachwerk am Platz">
+            <figcaption>Fachwerk am Platz</figcaption>
           </figure>
           <figure>
-            <img src="img/fels-800.webp" srcset="img/fels-800.webp 800w, img/fels-1600.webp 1600w"
-                 sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067"
-                 loading="lazy" decoding="async" alt="An der Ourthe, von den Felsen aus">
-            <figcaption>An der Ourthe, von den Felsen aus</figcaption>
+            <img src="img/pflaster-800.webp" sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Kopfsteinpflaster in der Altstadt">
+            <figcaption>Kopfsteinpflaster in der Altstadt</figcaption>
           </figure>
           <figure>
-            <img src="img/herbst-800.webp" srcset="img/herbst-800.webp 800w, img/herbst-1600.webp 1600w"
-                 sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067"
-                 loading="lazy" decoding="async" alt="Ourthe-Tal im Herbstlicht">
-            <figcaption>Ourthe-Tal im Herbstlicht</figcaption>
-          </figure>
-          <figure>
-            <img src="img/haus-800.webp" srcset="img/haus-800.webp 800w, img/haus-1600.webp 1600w"
-                 sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067"
-                 loading="lazy" decoding="async" alt="Ein Haus direkt am Wasser">
-            <figcaption>Ein Haus direkt am Wasser</figcaption>
-          </figure>
-          <figure>
-            <img src="img/bach-800.webp" srcset="img/bach-800.webp 800w, img/bach-1600.webp 1600w"
-                 sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067"
-                 loading="lazy" decoding="async" alt="Waldbach in den belgischen Ardennen">
-            <figcaption>Waldbach in den belgischen Ardennen</figcaption>
-          </figure>
-          <figure>
-            <img src="img/durbuy1-800.webp" srcset="img/durbuy1-800.webp 800w, img/durbuy1-1600.webp 1600w"
-                 sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067"
-                 loading="lazy" decoding="async" alt="Durbuy: Schloss über den Dächern">
-            <figcaption>Durbuy: Schloss über den Dächern</figcaption>
-          </figure>
-          <figure>
-            <img src="img/durbuy2-800.webp" srcset="img/durbuy2-800.webp 800w, img/durbuy2-1600.webp 1600w"
-                 sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067"
-                 loading="lazy" decoding="async" alt="Bruchsteinhäuser in der Altstadt">
-            <figcaption>Bruchsteinhäuser in der Altstadt</figcaption>
-          </figure>
-          <figure>
-            <img src="img/durbuy3-800.webp" srcset="img/durbuy3-800.webp 800w, img/durbuy3-1600.webp 1600w"
-                 sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067"
-                 loading="lazy" decoding="async" alt="Fachwerk und Naturstein">
-            <figcaption>Fachwerk und Naturstein</figcaption>
+            <img src="img/zipline-800.webp" sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Zipline über dem Wasser, Adventure Valley">
+            <figcaption>Zipline über dem Wasser, Adventure Valley</figcaption>
           </figure>
       </div>
       <p class="swipe-hint reveal d4">Wischen</p>
-      <details class="credits reveal d4">
-        <summary>Fotos und Lizenzen</summary>
-        <ul>
-            <li>Kajak auf der Ourthe, oberer Flusslauf — DimiTalen, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">CC0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AKayaking%20the%20Ourthe%20occidentale%20between%20Nisramont%20and%20La%20Roche-en-Ardenne%20%283%29.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-            <li>Die Ourthe zwischen den Hängen — DimiTalen, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">CC0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AKayaking%20the%20Ourthe%20occidentale%20between%20Nisramont%20and%20La%20Roche-en-Ardenne%20%281%29.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-            <li>Boote auf dem Fluss — DimiTalen, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener">CC0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AKayaking%20the%20Ourthe%20occidentale%20between%20Nisramont%20and%20La%20Roche-en-Ardenne%20%282%29.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-            <li>An der Ourthe, von den Felsen aus — Ainat00, <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3AAux%20pieds%20des%20roches.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-            <li>Ourthe-Tal im Herbstlicht — Iijjccoo, Public domain · <a href="https://commons.wikimedia.org/wiki/File%3AOurthe333.JPG" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-            <li>Ein Haus direkt am Wasser — Bert Kaufmann from Roermond, Netherlands, <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">CC BY-SA 2.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ALa%20Maison%20sur%20la%20Rivi%C3%A8re%20%288348133475%29.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-            <li>Waldbach in den belgischen Ardennen — Marco Delnoij, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ANinglinspo%2005.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-            <li>Durbuy: Schloss über den Dächern — Sandra gemath, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ADurbuy%20ao%C3%BBt%202017%2009.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-            <li>Bruchsteinhäuser in der Altstadt — Herman.vandenbroeck, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ADurbuy%2C%20Belgium.%2005.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-            <li>Fachwerk und Naturstein — Herman.vandenbroeck, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File%3ADurbuy%2C%20Belgium.%2002.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></li>
-        </ul>
-      </details>
     </div>
   </section>
 
@@ -1213,211 +1158,8 @@ body.parked .band-far{opacity:.18}
       <h2 class="reveal d1">Einmal die<br>Ourthe runter</h2>
       <div class="shot" style="margin-top:clamp(1.6rem,5vw,2.6rem)">
         <div class="plate reveal d2" id="plate-ourthe">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420">
-<defs>
-<linearGradient id="soSky" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="176"><stop offset="0" stop-color="#0A1714"/><stop offset="0.26" stop-color="#0F211D"/><stop offset="0.5" stop-color="#16302B"/><stop offset="0.72" stop-color="#2A4740"/><stop offset="0.87" stop-color="#C4643F"/><stop offset="0.95" stop-color="#E2A32E"/><stop offset="1" stop-color="#F0C97A"/></linearGradient>
-<linearGradient id="soVig" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="800" y2="0"><stop offset="0" stop-color="#0A1714" stop-opacity="0.82"/><stop offset="0.22" stop-color="#0A1714" stop-opacity="0.42"/><stop offset="0.45" stop-color="#0F211D" stop-opacity="0.12"/><stop offset="0.66" stop-color="#0F211D" stop-opacity="0"/><stop offset="0.86" stop-color="#0A1714" stop-opacity="0.22"/><stop offset="1" stop-color="#0A1714" stop-opacity="0.55"/></linearGradient>
-<radialGradient id="soGlow" gradientUnits="userSpaceOnUse" cx="545" cy="124" r="196"><stop offset="0" stop-color="#F0C97A" stop-opacity="0.7"/><stop offset="0.2" stop-color="#E2A32E" stop-opacity="0.4"/><stop offset="0.55" stop-color="#C4643F" stop-opacity="0.15"/><stop offset="1" stop-color="#C4643F" stop-opacity="0"/></radialGradient>
-<radialGradient id="soGlowCore" gradientUnits="userSpaceOnUse" cx="545" cy="120" r="54"><stop offset="0" stop-color="#F3EBDA" stop-opacity="0.85"/><stop offset="0.4" stop-color="#F0C97A" stop-opacity="0.42"/><stop offset="1" stop-color="#E2A32E" stop-opacity="0"/></radialGradient>
-<linearGradient id="soHaze" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9D4C8" stop-opacity="0"/><stop offset="0.55" stop-color="#C9D4C8" stop-opacity="0.5"/><stop offset="1" stop-color="#C9D4C8" stop-opacity="0"/></linearGradient>
-<linearGradient id="soHazeWarm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3EBDA" stop-opacity="0"/><stop offset="0.5" stop-color="#F3EBDA" stop-opacity="0.34"/><stop offset="1" stop-color="#C9D4C8" stop-opacity="0"/></linearGradient>
-<linearGradient id="soWater" gradientUnits="userSpaceOnUse" x1="0" y1="200" x2="0" y2="420"><stop offset="0" stop-color="#4E9E8E"/><stop offset="0.14" stop-color="#2E7D74"/><stop offset="0.46" stop-color="#1B5852"/><stop offset="1" stop-color="#164E49"/></linearGradient>
-<linearGradient id="soBeam" gradientUnits="userSpaceOnUse" x1="558" y1="232" x2="80" y2="404"><stop offset="0" stop-color="#F3EBDA" stop-opacity="0.78"/><stop offset="0.3" stop-color="#F0C97A" stop-opacity="0.32"/><stop offset="0.66" stop-color="#E2A32E" stop-opacity="0.13"/><stop offset="1" stop-color="#E2A32E" stop-opacity="0"/></linearGradient>
-<linearGradient id="soSlope" gradientUnits="userSpaceOnUse" x1="0" y1="196" x2="0" y2="372"><stop offset="0" stop-color="#25392C"/><stop offset="0.4" stop-color="#16261C"/><stop offset="1" stop-color="#101F1C"/></linearGradient>
-<linearGradient id="soDeep" gradientUnits="userSpaceOnUse" x1="0" y1="286" x2="0" y2="420"><stop offset="0" stop-color="#0A1714" stop-opacity="0"/><stop offset="0.55" stop-color="#0F211D" stop-opacity="0.34"/><stop offset="1" stop-color="#0A1714" stop-opacity="0.62"/></linearGradient>
-<linearGradient id="soEdge" gradientUnits="userSpaceOnUse" x1="-20" y1="0" x2="300" y2="0"><stop offset="0" stop-color="#0A1714" stop-opacity="0.45"/><stop offset="1" stop-color="#0A1714" stop-opacity="0"/></linearGradient>
-<linearGradient id="soNear" gradientUnits="userSpaceOnUse" x1="0" y1="200" x2="0" y2="420"><stop offset="0" stop-color="#101F1C"/><stop offset="0.5" stop-color="#0A1714"/><stop offset="1" stop-color="#0A1714"/></linearGradient>
-<clipPath id="soWaterClip"><path d="M -20 362 C -6.7 360.3 31.7 356 60 352 C 88.3 348 118.3 343.7 150 338 C 181.7 332.3 218.3 324.7 250 318 C 281.7 311.3 310 305 340 298 C 370 291 401.7 283 430 276 C 458.3 269 485 262.3 510 256 C 535 249.7 559.7 243 580 238 C 600.3 233 623.3 228 632 226 L 632 226 C 627 228 612.3 232.7 602 238 C 591.7 243.3 580.3 250 570 258 C 559.7 266 548.7 275.7 540 286 C 531.3 296.3 523.7 308 518 320 C 512.3 332 507.7 345.7 506 358 C 504.3 370.3 506.3 383.7 508 394 C 509.7 404.3 514.7 415.7 516 420 L -20 420 Z"/></clipPath>
-</defs>
-<rect x="0" y="0" width="800" height="420" fill="#0A1714"/>
-<rect x="0" y="0" width="800" height="268" fill="url(#soSky)"/>
-<circle cx="58" cy="36" r="1.2" fill="#EDEFE8" opacity="0.5"/>
-<circle cx="114" cy="22" r="1" fill="#EDEFE8" opacity="0.36"/>
-<circle cx="170" cy="48" r="1.35" fill="#EDEFE8" opacity="0.52"/>
-<circle cx="236" cy="28" r="1" fill="#EDEFE8" opacity="0.32"/>
-<circle cx="96" cy="68" r="0.9" fill="#EDEFE8" opacity="0.28"/>
-<circle cx="298" cy="40" r="1.1" fill="#EDEFE8" opacity="0.4"/>
-<circle cx="42" cy="92" r="1" fill="#EDEFE8" opacity="0.24"/>
-<circle cx="206" cy="64" r="0.85" fill="#EDEFE8" opacity="0.26"/>
-<circle cx="348" cy="24" r="1" fill="#EDEFE8" opacity="0.3"/>
-<circle cx="146" cy="86" r="0.8" fill="#EDEFE8" opacity="0.2"/>
-<circle cx="545" cy="124" r="196" fill="url(#soGlow)"/>
-<circle cx="545" cy="120" r="54" fill="url(#soGlowCore)"/>
-<circle cx="545" cy="120" r="14" fill="#F3EBDA" opacity="0.92"/>
-<rect x="0" y="0" width="800" height="212" fill="url(#soVig)"/>
-<path d="M 385 98 Q 388.5 94.2 392 97.2 Q 395.5 94.2 399 98" fill="none" stroke="#7D8E82" stroke-width="1.1" stroke-linecap="round" opacity="0.34"/>
-<path d="M 408.5 86 Q 411.2 83 414 85.3 Q 416.8 83 419.5 86" fill="none" stroke="#7D8E82" stroke-width="1.1" stroke-linecap="round" opacity="0.28"/>
-<path d="M 360 112 Q 363 108.7 366 111.3 Q 369 108.7 372 112" fill="none" stroke="#7D8E82" stroke-width="1.1" stroke-linecap="round" opacity="0.24"/>
-<path d="M -20 178 C -6.7 175.3 33.3 166 60 162 C 86.7 158 113.3 154.3 140 154 C 166.7 153.7 193.3 161.3 220 160 C 246.7 158.7 273.3 149.3 300 146 C 326.7 142.7 353.3 139.7 380 140 C 406.7 140.3 433.3 148 460 148 C 486.7 148 513.3 142.7 540 140 C 566.7 137.3 593.3 131.3 620 132 C 646.7 132.7 673.3 140.3 700 144 C 726.7 147.7 760 153 780 154 C 800 155 813.3 150.7 820 150 L 820 214 L -20 214 Z" fill="#7D8E82" opacity="0.72"/>
-<path d="M 300 146 C 313.3 145 353.3 139.7 380 140 C 406.7 140.3 433.3 148 460 148 C 486.7 148 513.3 142.7 540 140 C 566.7 137.3 593.3 131.3 620 132 C 646.7 132.7 673.3 140.3 700 144 C 726.7 147.7 760 153 780 154 C 800 155 813.3 150.7 820 150" fill="none" stroke="#F0C97A" stroke-width="1.6" stroke-linecap="round" opacity="0.35"/>
-<rect x="-20" y="130" width="840" height="62" fill="url(#soHazeWarm)" opacity="0.85"/>
-<path d="M -20 196 C -6.7 193.3 33.3 184 60 180 C 86.7 176 113.3 172 140 172 C 166.7 172 193.3 181 220 180 C 246.7 179 273.3 168 300 166 C 326.7 164 353.3 166.3 380 168 C 406.7 169.7 433.3 176 460 176 C 486.7 176 513.3 170.3 540 168 C 566.7 165.7 593.3 161.7 620 162 C 646.7 162.3 673.3 166.7 700 170 C 726.7 173.3 760 180.7 780 182 C 800 183.3 813.3 178.7 820 178 L 820 236 L -20 236 Z" fill="#3C5B45"/>
-<path d="M -20 232 L -20 195.0 L -20 191 L -7 192.1 L 6 185.9 L 19 188.1 L 32 181.5 L 45 182.4 L 58 176.4 L 71 178.7 L 84 174.5 L 97 175.7 L 110 171.8 L 123 173.1 L 136 169.7 L 149 172.8 L 162 169.8 L 175 174.9 L 188 172.9 L 201 177.1 L 214 175.9 L 227 178.7 L 240 171.9 L 253 173.4 L 266 167.6 L 279 168.8 L 292 162.3 L 305 165.6 L 318 161.9 L 331 166.3 L 344 163 L 357 166.5 L 370 164.3 L 383 168.2 L 396 165.8 L 409 169.9 L 422 168.1 L 435 172.9 L 448 170.5 L 461 175.6 L 474 171.5 L 487 172.8 L 500 167.3 L 513 170.4 L 526 166.5 L 539 168 L 552 164.4 L 565 165.7 L 578 161.1 L 591 163 L 604 159.7 L 617 161.7 L 630 159.6 L 643 163.9 L 656 161 L 669 166.1 L 682 164.9 L 695 169.4 L 708 166.6 L 721 172.2 L 734 170.3 L 747 176.7 L 760 175 L 773 179.7 L 786 177.3 L 799 178.8 L 812 175.8 L 820 232 Z" fill="#2A4740" opacity="0.9"/>
-<path d="M 460 176 C 473.3 174.7 513.3 170.3 540 168 C 566.7 165.7 593.3 161.7 620 162 C 646.7 162.3 686.7 168.7 700 170" fill="none" stroke="#F0C97A" stroke-width="1.2" stroke-linecap="round" opacity="0.22"/>
-<path d="M 612 190 L 626 166 L 638 152 L 656 143 L 674 150 L 688 168 L 698 192 Z" fill="#25392C"/>
-<path d="M 612 190 L 626 166 L 638 152 L 656 143" fill="none" stroke="#E2A32E" stroke-width="1.2" stroke-linecap="round" opacity="0.32"/>
-<rect x="642" y="128" width="27" height="16" fill="#16261C"/>
-<rect x="636" y="120" width="8" height="24" fill="#16261C"/>
-<rect x="666" y="113" width="9" height="31" fill="#16261C"/>
-<polygon points="663,114 670.5,102 678,114" fill="#16261C"/>
-<path d="M 636 144 L 636 120 L 644 120" fill="none" stroke="#E2A32E" stroke-width="1.1" stroke-linecap="round" opacity="0.5"/>
-<path d="M 666 144 L 666 113 L 670.5 102" fill="none" stroke="#F0C97A" stroke-width="1" stroke-linecap="round" opacity="0.45"/>
-<path d="M 642 128 L 669 128" fill="none" stroke="#E2A32E" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
-<rect x="-20" y="156" width="840" height="66" fill="url(#soHaze)" opacity="0.9"/>
-<path d="M -20 216 C -5 213.7 41.7 205 70 202 C 98.3 199 123.3 197.3 150 198 C 176.7 198.7 203.3 206.7 230 206 C 256.7 205.3 283.3 196.7 310 194 C 336.7 191.3 363.3 189.7 390 190 C 416.7 190.3 443.3 194.7 470 196 C 496.7 197.3 523.3 198.7 550 198 C 576.7 197.3 603.3 192 630 192 C 656.7 192 683.3 197.3 710 198 C 736.7 198.7 771.7 196.7 790 196 C 808.3 195.3 815 194.3 820 194 L 820 268 L -20 268 Z" fill="#2A4740"/>
-<path d="M -20 264 L -20 215.0 L -20 210.7 L -11 214.5 L -2 209.4 L 7 211.8 L 16 205.5 L 25 208 L 34 202.3 L 43 205.1 L 52 199.5 L 61 202.6 L 70 196.6 L 79 200.5 L 88 197.5 L 97 199.3 L 106 196.5 L 115 199.5 L 124 196.5 L 133 198.2 L 142 195.2 L 151 196.8 L 160 193.7 L 169 199.6 L 178 197.9 L 187 201 L 196 199.5 L 205 202.7 L 214 199.5 L 223 204.9 L 232 201.9 L 241 203.1 L 250 199.2 L 259 201.2 L 268 195.2 L 277 197.8 L 286 192.5 L 295 195.3 L 304 191.1 L 313 192.9 L 322 188.5 L 331 192.1 L 340 189.2 L 349 191.6 L 358 187.9 L 367 190.1 L 376 186.5 L 385 189.5 L 394 185.4 L 403 190.8 L 412 187.3 L 421 191.9 L 430 188.8 L 439 192.5 L 448 191.1 L 457 193.7 L 466 192.9 L 475 195.3 L 484 192.2 L 493 196.2 L 502 192.6 L 511 196.4 L 520 193.4 L 529 196.5 L 538 195.1 L 547 197.4 L 556 192.8 L 565 196.7 L 574 191.2 L 583 195.2 L 592 190.3 L 601 193.9 L 610 189.6 L 619 192.2 L 628 189.3 L 637 191.5 L 646 189.3 L 655 192.9 L 664 190.4 L 673 194.4 L 682 191.8 L 691 196.2 L 700 192.1 L 709 197.8 L 718 192.7 L 727 196.4 L 736 193.4 L 745 196 L 754 192.4 L 763 195.8 L 772 193 L 781 195.8 L 790 192.4 L 799 195 L 808 189.5 L 817 193.7 L 820 264 Z" fill="#25392C" opacity="0.85"/>
-<rect x="-20" y="186" width="840" height="70" fill="url(#soHaze)" opacity="0.8"/>
-<path d="M -20 278 C -6.7 275.3 33.3 262.7 60 262 C 86.7 261.3 113.3 269.3 140 274 C 166.7 278.7 193.3 287.7 220 290 C 246.7 292.3 273.3 292 300 288 C 326.7 284 353.3 272.7 380 266 C 406.7 259.3 433.3 253.7 460 248 C 486.7 242.3 513.3 237 540 232 C 566.7 227 593.3 222 620 218 C 646.7 214 673.3 210.3 700 208 C 726.7 205.7 760 205 780 204 C 800 203 813.3 202.3 820 202 L 820 380 L -20 380 Z" fill="url(#soSlope)"/>
-<path d="M 380 266 C 393.3 263 433.3 253.7 460 248 C 486.7 242.3 513.3 237 540 232 C 566.7 227 593.3 222 620 218 C 646.7 214 673.3 210.3 700 208 C 726.7 205.7 760 205 780 204 C 800 203 813.3 202.3 820 202" fill="none" stroke="#E2A32E" stroke-width="1.4" stroke-linecap="round" opacity="0.2"/>
-<polygon points="3.5,274.4 8,259.3 12.5,274.4" fill="#101F1C"/>
-<polygon points="54.8,264.1 59.6,248.4 64.3,264.1" fill="#101F1C"/>
-<polygon points="107.8,271.8 112.2,257.5 116.5,271.8" fill="#101F1C"/>
-<polygon points="156.8,280.2 160.8,267.1 164.7,280.2" fill="#101F1C"/>
-<polygon points="202.7,289.3 206.4,277 210,289.3" fill="#101F1C"/>
-<polygon points="251,291.1 255.1,277.6 259.2,291.1" fill="#101F1C"/>
-<polygon points="304.9,287.8 308.1,276.9 311.4,287.8" fill="#101F1C"/>
-<polygon points="357.4,273.4 360.5,263.1 363.6,273.4" fill="#101F1C"/>
-<polygon points="411.5,260.2 414.7,249.7 417.8,260.2" fill="#101F1C"/>
-<polygon points="471.3,247.2 474.1,237.8 476.9,247.2" fill="#101F1C"/>
-<polygon points="530.8,235.3 533.4,226.7 536,235.3" fill="#101F1C"/>
-<polygon points="592.4,224.4 595.1,215.4 597.8,224.4" fill="#101F1C"/>
-<polygon points="637.2,217.5 639.9,208.6 642.6,217.5" fill="#101F1C"/>
-<polygon points="686.7,211.4 688.8,204.3 691,211.4" fill="#101F1C"/>
-<polygon points="733.1,208.2 735.5,200.3 737.9,208.2" fill="#101F1C"/>
-<polygon points="779,205.9 781.1,198.8 783.2,205.9" fill="#101F1C"/>
-<polygon points="11.9,324.6 16,310.8 20.1,324.6" fill="#0A1714" opacity="0.85"/>
-<polygon points="75.5,317 79,305.4 82.5,317" fill="#0A1714" opacity="0.85"/>
-<polygon points="153.4,314.1 157,301.9 160.6,314.1" fill="#0A1714" opacity="0.85"/>
-<polygon points="213.4,311.2 217.1,299 220.8,311.2" fill="#0A1714" opacity="0.85"/>
-<polygon points="292.1,300.5 295,290.9 297.8,300.5" fill="#0A1714" opacity="0.85"/>
-<polygon points="348.4,287.1 351.4,277.2 354.4,287.1" fill="#0A1714" opacity="0.85"/>
-<polygon points="407.9,272.5 410.8,262.9 413.6,272.5" fill="#0A1714" opacity="0.85"/>
-<polygon points="475.4,256.6 478,247.8 480.6,256.6" fill="#0A1714" opacity="0.85"/>
-<polygon points="545.2,240.4 547.7,232.2 550.1,240.4" fill="#0A1714" opacity="0.85"/>
-<polygon points="621.3,224 623.4,217.1 625.5,224" fill="#0A1714" opacity="0.85"/>
-<rect x="-20" y="200" width="840" height="84" fill="url(#soHaze)" opacity="0.34"/>
-<path d="M -20 362 C -6.7 360.3 31.7 356 60 352 C 88.3 348 118.3 343.7 150 338 C 181.7 332.3 218.3 324.7 250 318 C 281.7 311.3 310 305 340 298 C 370 291 401.7 283 430 276 C 458.3 269 485 262.3 510 256 C 535 249.7 559.7 243 580 238 C 600.3 233 623.3 228 632 226 L 632 226 C 627 228 612.3 232.7 602 238 C 591.7 243.3 580.3 250 570 258 C 559.7 266 548.7 275.7 540 286 C 531.3 296.3 523.7 308 518 320 C 512.3 332 507.7 345.7 506 358 C 504.3 370.3 506.3 383.7 508 394 C 509.7 404.3 514.7 415.7 516 420 L -20 420 Z" fill="url(#soWater)"/>
-<g clip-path="url(#soWaterClip)">
-<path d="M 558 252 C 548.3 253.5 521.3 257.7 500 261 C 478.7 264.3 453.3 268.1 430 271.7 C 406.7 275.2 384.2 278.6 360 282.4 C 335.8 286.1 310 290.2 285 294.1 C 260 298 235.8 302.1 210 305.9 C 184.2 309.6 156.7 313.1 130 316.7 C 103.3 320.3 76.7 323.9 50 327.5 C 23.3 331.1 -16.7 336.5 -30 338.3 L -30 573.7 C -16.7 566.9 23.3 546.3 50 532.5 C 76.7 518.8 103.3 505.1 130 491.3 C 156.7 477.6 184.2 463.7 210 450.1 C 235.8 436.5 260 423.3 285 409.9 C 310 396.5 335.8 382.5 360 369.6 C 384.2 356.7 406.7 344.8 430 332.3 C 453.3 319.9 478.7 306.4 500 295 C 521.3 283.6 548.3 269.2 558 264 Z" fill="url(#soBeam)" opacity="0.45"/>
-<path d="M 558 254 C 548.3 256.4 521.3 263 500 268.2 C 478.7 273.4 453.3 279.5 430 285.2 C 406.7 290.9 384.2 296.3 360 302.2 C 335.8 308.1 310 314.5 285 320.7 C 260 326.9 235.8 333.1 210 339.2 C 184.2 345.3 156.7 351.2 130 357.2 C 103.3 363.2 76.7 369.2 50 375.2 C 23.3 381.2 -16.7 390.2 -30 393.2 L -30 518.8 C -16.7 513.1 23.3 496.1 50 484.8 C 76.7 473.5 103.3 462.1 130 450.8 C 156.7 439.5 184.2 428.1 210 416.8 C 235.8 405.6 260 394.5 285 383.3 C 310 372.1 335.8 360.6 360 349.8 C 384.2 339.1 406.7 329.1 430 318.8 C 453.3 308.5 478.7 297.3 500 287.8 C 521.3 278.3 548.3 266.3 558 262 Z" fill="url(#soBeam)"/>
-<path d="M 531.8 263.2 L 548.2 264.2" stroke="#F3EBDA" stroke-width="1.5" stroke-linecap="round" opacity="0.52" fill="none"/>
-<path d="M 489.2 275.8 L 510.8 278" stroke="#F0C97A" stroke-width="1.6" stroke-linecap="round" opacity="0.49" fill="none"/>
-<path d="M 446.6 289.3 L 473.4 291.7" stroke="#F3EBDA" stroke-width="1.6" stroke-linecap="round" opacity="0.46" fill="none"/>
-<path d="M 404 307.6 L 436 305.4" stroke="#F0C97A" stroke-width="1.7" stroke-linecap="round" opacity="0.44" fill="none"/>
-<path d="M 361.4 317.4 L 398.6 319.1" stroke="#F3EBDA" stroke-width="1.7" stroke-linecap="round" opacity="0.41" fill="none"/>
-<path d="M 318.8 332.5 L 361.2 332.9" stroke="#F0C97A" stroke-width="1.8" stroke-linecap="round" opacity="0.38" fill="none"/>
-<path d="M 276.2 345.7 L 323.8 346.8" stroke="#F3EBDA" stroke-width="1.9" stroke-linecap="round" opacity="0.35" fill="none"/>
-<path d="M 233.6 361.4 L 286.4 360.7" stroke="#F0C97A" stroke-width="1.9" stroke-linecap="round" opacity="0.32" fill="none"/>
-<path d="M 191 374.7 L 249 374.5" stroke="#F3EBDA" stroke-width="2.0" stroke-linecap="round" opacity="0.3" fill="none"/>
-<path d="M 148.4 389.9 L 211.6 387.8" stroke="#F0C97A" stroke-width="2.0" stroke-linecap="round" opacity="0.27" fill="none"/>
-<path d="M 105.8 400.4 L 174.2 400.8" stroke="#F3EBDA" stroke-width="2.1" stroke-linecap="round" opacity="0.24" fill="none"/>
-<path d="M 63.2 412.9 L 136.8 413.8" stroke="#F0C97A" stroke-width="2.2" stroke-linecap="round" opacity="0.21" fill="none"/>
-<path d="M 20.6 427.7 L 99.4 426.8" stroke="#F3EBDA" stroke-width="2.2" stroke-linecap="round" opacity="0.18" fill="none"/>
-<path d="M -22 441.2 L 62 439.8" stroke="#F0C97A" stroke-width="2.3" stroke-linecap="round" opacity="0.16" fill="none"/>
-<path d="M 587 268 L 613 268" stroke="#8FBFAE" stroke-width="1.8" stroke-linecap="round" opacity="0.26" fill="none"/>
-<path d="M 504 301.1 L 536 301.1" stroke="#8FBFAE" stroke-width="1.8" stroke-linecap="round" opacity="0.22" fill="none"/>
-<path d="M 423 342.6 L 457 342.6" stroke="#8FBFAE" stroke-width="1.8" stroke-linecap="round" opacity="0.2" fill="none"/>
-<path d="M 335 349.5 L 365 349.5" stroke="#8FBFAE" stroke-width="1.8" stroke-linecap="round" opacity="0.2" fill="none"/>
-<path d="M 238 418.7 L 282 418.7" stroke="#8FBFAE" stroke-width="1.8" stroke-linecap="round" opacity="0.17" fill="none"/>
-<path d="M 144 425 L 196 425" stroke="#8FBFAE" stroke-width="1.8" stroke-linecap="round" opacity="0.15" fill="none"/>
-<path d="M 51 486.2 L 109 486.2" stroke="#8FBFAE" stroke-width="1.8" stroke-linecap="round" opacity="0.13" fill="none"/>
-<path d="M 268 442.8 L 332 442.8" stroke="#8FBFAE" stroke-width="1.8" stroke-linecap="round" opacity="0.12" fill="none"/>
-<path d="M 140 378.2 L 180 378.2" stroke="#8FBFAE" stroke-width="1.8" stroke-linecap="round" opacity="0.16" fill="none"/>
-<path d="M -20 362 C -6.7 360.3 31.7 356 60 352 C 88.3 348 118.3 343.7 150 338 C 181.7 332.3 218.3 324.7 250 318 C 281.7 311.3 310 305 340 298 C 370 291 401.7 283 430 276 C 458.3 269 485 262.3 510 256 C 535 249.7 559.7 243 580 238 C 600.3 233 623.3 228 632 226 L 632 226  C 623.3 236.2 600.3 241.6 580 247 C 559.7 252.3 535 259.5 510 266.2 C 485 273 458.3 280.2 430 287.7 C 401.7 295.2 370 303.8 340 311.4 C 310 318.9 281.7 325.8 250 333 C 218.3 340.3 181.7 348.6 150 354.9 C 118.3 361.1 88.3 366 60 370.5 C 31.7 375 -6.7 380.1 -20 382 Z" fill="#0F211D" opacity="0.5"/>
-<path d="M -20 362 C -6.7 360.3 31.7 356 60 352 C 88.3 348 118.3 343.7 150 338 C 181.7 332.3 233.3 321.3 250 318" fill="none" stroke="#C9D4C8" stroke-width="1.5" stroke-linecap="round" opacity="0.2"/>
-<path d="M 340 298 C 355 294.3 401.7 283 430 276 C 458.3 269 485 262.3 510 256 C 535 249.7 568.3 241 580 238" fill="none" stroke="#C9D4C8" stroke-width="1.5" stroke-linecap="round" opacity="0.2"/>
-<path d="M 510 256 C 521.7 253 559.7 243 580 238 C 600.3 233 623.3 228 632 226" fill="none" stroke="#F0C97A" stroke-width="1.4" stroke-linecap="round" opacity="0.22"/>
-<path d="M 61 362.3 L 119 362.3" stroke="#8FBFAE" stroke-width="1.4" stroke-linecap="round" opacity="0.2" fill="none"/>
-<path d="M 164 342 L 216 342" stroke="#8FBFAE" stroke-width="1.4" stroke-linecap="round" opacity="0.19" fill="none"/>
-<path d="M 277 319.9 L 323 319.9" stroke="#8FBFAE" stroke-width="1.4" stroke-linecap="round" opacity="0.18" fill="none"/>
-<path d="M 380 293.3 L 420 293.3" stroke="#8FBFAE" stroke-width="1.4" stroke-linecap="round" opacity="0.16" fill="none"/>
-<path d="M 464 271.5 L 496 271.5" stroke="#8FBFAE" stroke-width="1.4" stroke-linecap="round" opacity="0.14" fill="none"/>
-<path d="M 632 226 C 600 242 566 264 536 292 C 516 322 506 358 508 396 L 566 420 C 572 368 584 320 612 280 C 626 258 646 238 664 228 Z" fill="#0F211D" opacity="0.42"/>
-<path d="M 27 392 L 113 392" stroke="#8FBFAE" stroke-width="1.6" stroke-linecap="round" opacity="0.16" fill="none"/>
-<path d="M 125 404 L 235 404" stroke="#8FBFAE" stroke-width="1.6" stroke-linecap="round" opacity="0.13" fill="none"/>
-<path d="M 240 414 L 360 414" stroke="#8FBFAE" stroke-width="1.6" stroke-linecap="round" opacity="0.11" fill="none"/>
-<path d="M 85 368 L 155 368" stroke="#4E9E8E" stroke-width="1.6" stroke-linecap="round" opacity="0.2" fill="none"/>
-<path d="M 205 392 L 295 392" stroke="#4E9E8E" stroke-width="1.6" stroke-linecap="round" opacity="0.15" fill="none"/>
-<path d="M 320 404 L 400 404" stroke="#4E9E8E" stroke-width="1.6" stroke-linecap="round" opacity="0.12" fill="none"/>
-<path d="M -5 414 L 85 414" stroke="#8FBFAE" stroke-width="1.6" stroke-linecap="round" opacity="0.1" fill="none"/>
-<path d="M 395 380 L 465 380" stroke="#4E9E8E" stroke-width="1.6" stroke-linecap="round" opacity="0.14" fill="none"/>
-<path d="M 170 352 L 230 352" stroke="#8FBFAE" stroke-width="1.6" stroke-linecap="round" opacity="0.18" fill="none"/>
-<rect x="-20" y="286" width="840" height="134" fill="url(#soDeep)"/>
-<rect x="-20" y="200" width="330" height="220" fill="url(#soEdge)"/>
-</g>
-<ellipse cx="614" cy="232" rx="90" ry="4" fill="#F3EBDA" opacity="0.3"/>
-<ellipse cx="572" cy="246" rx="124" ry="5" fill="#EDEFE8" opacity="0.22"/>
-<ellipse cx="520" cy="262" rx="124" ry="5" fill="#F3EBDA" opacity="0.18"/>
-<ellipse cx="462" cy="280" rx="150" ry="6" fill="#EDEFE8" opacity="0.16"/>
-<ellipse cx="396" cy="300" rx="150" ry="6" fill="#C9D4C8" opacity="0.15"/>
-<ellipse cx="322" cy="320" rx="180" ry="7" fill="#C9D4C8" opacity="0.14"/>
-<ellipse cx="262" cy="334" rx="120" ry="5" fill="#EDEFE8" opacity="0.12"/>
-<ellipse cx="190" cy="352" rx="190" ry="8" fill="#C9D4C8" opacity="0.12"/>
-<ellipse cx="104" cy="372" rx="200" ry="9" fill="#C9D4C8" opacity="0.11"/>
-<ellipse cx="30" cy="396" rx="180" ry="10" fill="#C9D4C8" opacity="0.09"/>
-<ellipse cx="700" cy="272" rx="110" ry="8" fill="#C9D4C8" opacity="0.11"/>
-<ellipse cx="748" cy="258" rx="70" ry="5" fill="#EDEFE8" opacity="0.09"/>
-<ellipse cx="420" cy="344" rx="150" ry="7" fill="#C9D4C8" opacity="0.1"/>
-<ellipse cx="224" cy="388" rx="170" ry="8" fill="#C9D4C8" opacity="0.08"/>
-<ellipse cx="494" cy="250" rx="110" ry="4" fill="#EDEFE8" opacity="0.13"/>
-<ellipse cx="150" cy="302" rx="190" ry="7" fill="#C9D4C8" opacity="0.1"/>
-<ellipse cx="336" cy="274" rx="150" ry="6" fill="#C9D4C8" opacity="0.085"/>
-<ellipse cx="60" cy="328" rx="150" ry="6" fill="#C9D4C8" opacity="0.08"/>
-<ellipse cx="296" cy="349" rx="30" ry="4.4" fill="#B23A1C" opacity="0.32"/>
-<g transform="translate(296,336) rotate(-15)">
-<path d="M -31 -1 C -21 9 21 9 31 -1 C 20 3.4 -20 3.4 -31 -1 Z" fill="#E2542E"/>
-<path d="M -28 0.8 C -18 6.6 18 6.6 28 0.8 C 17 3.6 -17 3.6 -28 0.8 Z" fill="#B23A1C" opacity="0.8"/>
-<path d="M -28 -1 C -17 2.2 17 2.2 28 -1" fill="none" stroke="#F0C97A" stroke-width="0.9" stroke-linecap="round" opacity="0.45"/>
-<path d="M -12 -8.5 L -5.5 1.5" stroke="#16261C" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-<path d="M -15 -7.5 L -9 -3" stroke="#101F1C" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-<path d="M -12.5 -1 L -12.5 -6.6 C -12.5 -10.6 -7 -10.6 -7 -6.6 L -7 -1 Z" fill="#101F1C"/>
-<circle cx="-9.8" cy="-12.4" r="3" fill="#101F1C"/>
-<path d="M 12 -8.5 L 17.5 1.5" stroke="#16261C" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-<path d="M 14.5 -7.5 L 9 -3" stroke="#101F1C" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-<path d="M 7 -1 L 7 -7 C 7 -11 12.5 -11 12.5 -7 L 12.5 -1 Z" fill="#101F1C"/>
-<circle cx="9.8" cy="-12.8" r="3" fill="#101F1C"/>
-</g>
-<ellipse cx="372" cy="316" rx="96" ry="5" fill="#EDEFE8" opacity="0.11"/>
-<ellipse cx="206" cy="366" rx="140" ry="7" fill="#C9D4C8" opacity="0.09"/>
-<ellipse cx="152" cy="392" rx="88" ry="7" fill="#16261C" opacity="0.55"/>
-<ellipse cx="152" cy="389" rx="80" ry="4.6" fill="#101F1C" opacity="0.7"/>
-<polygon points="120,371 122.5,377.6 121.5,377.6 125.1,383.9 122.1,383.9 122.1,386 117.9,386 117.9,383.9 114.9,383.9 118.5,377.6 117.5,377.6" fill="#0A1714"/>
-<polygon points="138,377 139.9,381.8 139.1,381.8 141.7,386.5 139.6,386.5 139.6,388 136.4,388 136.4,386.5 134.3,386.5 136.9,381.8 136.1,381.8" fill="#0A1714"/>
-<ellipse cx="176" cy="390" rx="7" ry="2.6" fill="#25392C" opacity="0.5"/>
-<ellipse cx="196" cy="388" rx="5.5" ry="2.2" fill="#7D8E82" opacity="0.2"/>
-<ellipse cx="108" cy="392" rx="6" ry="2.4" fill="#25392C" opacity="0.45"/>
-<path d="M 516 420 C 514.7 415.7 509.7 404.3 508 394 C 506.3 383.7 504.3 370.3 506 358 C 507.7 345.7 512.3 332 518 320 C 523.7 308 531.3 296.3 540 286 C 548.7 275.7 559.7 266 570 258 C 580.3 250 591.7 243.3 602 238 C 612.3 232.7 627 228 632 226 C 637.3 227 652.7 228 664 232 C 675.3 236 688.3 245 700 250 C 711.7 255 722 255.3 734 262 C 746 268.7 757.7 281 772 290 C 786.3 299 812 311.7 820 316 L 820 420 Z" fill="url(#soNear)"/>
-<path d="M 540 286 C 545 281.3 559.7 266 570 258 C 580.3 250 591.7 243.3 602 238 C 612.3 232.7 621.7 227 632 226 C 642.3 225 652.7 228 664 232 C 675.3 236 688.3 245 700 250 C 711.7 255 722 255.3 734 262 C 746 268.7 757.7 281 772 290 C 786.3 299 812 311.7 820 316  C 812 326.9 786.3 313.7 772 304.4 C 757.7 295.2 746 282.6 734 275.7 C 722 268.8 711.7 268.2 700 263 C 688.3 257.8 675.3 248.5 664 244.3 C 652.7 240.1 642.3 236.8 632 237.6 C 621.7 238.4 612.3 243.9 602 249 C 591.7 254.2 580.3 260.6 570 268.4 C 559.7 276.2 545 291.2 540 295.8 Z" fill="#101F1C" opacity="0.75"/>
-<path d="M 540 286 C 545 281.3 559.7 266 570 258 C 580.3 250 591.7 243.3 602 238 C 612.3 232.7 621.7 227 632 226 C 642.3 225 652.7 228 664 232 C 675.3 236 688.3 245 700 250 C 711.7 255 722 255.3 734 262 C 746 268.7 757.7 281 772 290 C 786.3 299 812 311.7 820 316" fill="none" stroke="#E2A32E" stroke-width="1.4" stroke-linecap="round" opacity="0.22"/>
-<path d="M -20 420 L -20 396 C 26 402 62 410 92 420 Z" fill="#0A1714"/>
-<polygon points="514,319.7 516.7,326.7 515.6,326.7 519.4,333.4 516.3,333.4 516.3,335.7 511.7,335.7 511.7,333.4 508.6,333.4 512.4,326.7 511.3,326.7" fill="#0A1714"/>
-<polygon points="534,279.3 537.2,287.6 535.9,287.6 540.5,295.6 536.7,295.6 536.7,298.3 531.3,298.3 531.3,295.6 527.5,295.6 532.1,287.6 530.8,287.6" fill="#0A1714"/>
-<polygon points="554,253.9 557.7,263.6 556.2,263.6 561.5,272.9 557.1,272.9 557.1,275.9 550.9,275.9 550.9,272.9 546.5,272.9 551.8,263.6 550.3,263.6" fill="#0A1714"/>
-<polygon points="576,231.2 580.4,242.7 578.7,242.7 584.8,253.6 579.7,253.6 579.7,257.2 572.3,257.2 572.3,253.6 567.2,253.6 573.3,242.7 571.6,242.7" fill="#0A1714"/>
-<polygon points="598,215.5 602.8,227.8 600.9,227.8 607.5,239.6 602,239.6 602,243.5 594,243.5 594,239.6 588.5,239.6 595.1,227.8 593.2,227.8" fill="#0A1714"/>
-<polygon points="620,200.8 625.6,215.3 623.4,215.3 631.2,229.2 624.7,229.2 624.7,233.8 615.3,233.8 615.3,229.2 608.8,229.2 616.6,215.3 614.4,215.3" fill="#0A1714"/>
-<polygon points="646,197.6 651.8,212.6 649.5,212.6 657.6,226.9 650.9,226.9 650.9,231.6 641.1,231.6 641.1,226.9 634.4,226.9 642.5,212.6 640.2,212.6" fill="#0A1714"/>
-<polygon points="672,199 678.8,216.6 676.1,216.6 685.6,233.4 677.7,233.4 677.7,239 666.3,239 666.3,233.4 658.4,233.4 667.9,216.6 665.2,216.6" fill="#0A1714"/>
-<polygon points="700,209 707.5,228.4 704.5,228.4 715,246.8 706.3,246.8 706.3,253 693.7,253 693.7,246.8 685,246.8 695.5,228.4 692.5,228.4" fill="#0A1714"/>
-<polygon points="730,211.6 738.8,234.5 735.3,234.5 747.7,256.3 737.4,256.3 737.4,263.6 722.6,263.6 722.6,256.3 712.3,256.3 724.7,234.5 721.2,234.5" fill="#0A1714"/>
-<polygon points="762,225.6 772.2,252 768.1,252 782.4,277.2 770.6,277.2 770.6,285.6 753.4,285.6 753.4,277.2 741.6,277.2 755.9,252 751.8,252" fill="#0A1714"/>
-<polygon points="796,236 807.9,266.8 803.1,266.8 819.8,296.2 806,296.2 806,306 786,306 786,296.2 772.2,296.2 788.9,266.8 784.1,266.8" fill="#0A1714"/>
-<path d="M 512 344 C 513.5 338 512.5 334 515.5 330" stroke="#0A1714" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-<path d="M 522 318.8 C 523.5 312.8 522.5 308.8 525.5 304.8" stroke="#0A1714" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-<path d="M 534 300.3 C 535.5 294.3 534.5 290.3 537.5 286.3" stroke="#0A1714" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-<path d="M 548 283.5 C 549.5 277.5 548.5 273.5 551.5 269.5" stroke="#0A1714" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-<path d="M 564 268.6 C 565.5 262.6 564.5 258.6 567.5 254.6" stroke="#0A1714" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-<path d="M 582 255.5 C 583.5 249.5 582.5 245.5 585.5 241.5" stroke="#0A1714" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-<path d="M 602 243 C 603.5 237 602.5 233 605.5 229" stroke="#0A1714" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-<path d="M 626 233.4 C 627.5 227.4 626.5 223.4 629.5 219.4" stroke="#0A1714" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-<ellipse cx="536" cy="404" rx="9" ry="3.4" fill="#25392C" opacity="0.42"/>
-<ellipse cx="560" cy="392" rx="7" ry="2.8" fill="#25392C" opacity="0.36"/>
-<ellipse cx="586" cy="382" rx="5.5" ry="2.4" fill="#7D8E82" opacity="0.18"/>
-<ellipse cx="520" cy="414" rx="10" ry="3.8" fill="#25392C" opacity="0.36"/>
-<ellipse cx="610" cy="372" rx="4.6" ry="2" fill="#25392C" opacity="0.32"/>
-<ellipse cx="556" cy="412" rx="7" ry="2.6" fill="#7D8E82" opacity="0.14"/>
-</svg>
-          <span class="plate-cap">Die Ourthe bei Durbuy · Morgennebel gegen sieben</span>
+          <img src="img/kanu-800.webp" srcset="img/kanu-800.webp 800w, img/kanu-1600.webp 1600w" sizes="(max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Kanus auf der Ourthe, direkt unter dem Burgfelsen von Durbuy">
+          <span class="plate-cap">Kanus auf der Ourthe, direkt unter dem Burgfelsen von Durbuy</span>
         </div>
         <div>
           <p class="lead reveal d2">Das Kanu liegt schon auf dem Dach. Es müsste nur noch jemand
@@ -1447,197 +1189,8 @@ body.parked .band-far{opacity:.18}
       <h2 class="reveal d1">Fünfunddreißig<br>Meter über<br>dem Boden</h2>
       <div class="shot" style="margin-top:clamp(1.6rem,5vw,2.6rem)">
         <div class="plate reveal d2" id="plate-wand">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420">
-<defs>
-<linearGradient id="swSky" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#E2A32E"/>
-<stop offset="0.24" stop-color="#F0C97A"/>
-<stop offset="0.56" stop-color="#F3EBDA"/>
-<stop offset="0.8" stop-color="#C9D4C8"/>
-<stop offset="1" stop-color="#8FBFAE"/>
-</linearGradient>
-<radialGradient id="swGlow" cx="0.5" cy="0.5" r="0.5">
-<stop offset="0" stop-color="#F0C97A" stop-opacity="0.8"/>
-<stop offset="0.4" stop-color="#F0C97A" stop-opacity="0.3"/>
-<stop offset="1" stop-color="#F0C97A" stop-opacity="0"/>
-</radialGradient>
-<linearGradient id="swWallFill" x1="0" y1="0" x2="0.45" y2="1">
-<stop offset="0" stop-color="#1E3E37"/>
-<stop offset="0.5" stop-color="#16302B"/>
-<stop offset="1" stop-color="#0F211D"/>
-</linearGradient>
-<linearGradient id="swTowerFill" x1="0" y1="0" x2="0.5" y2="1">
-<stop offset="0" stop-color="#16302B"/>
-<stop offset="1" stop-color="#0A1714"/>
-</linearGradient>
-<linearGradient id="swGorge" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="#16302B"/>
-<stop offset="1" stop-color="#0A1714"/>
-</linearGradient>
-<clipPath id="swClipWall">
-<path d="M 800 420 L 448 420 L 468 376 L 458 336 L 484 300 L 474 262 L 498 228 L 490 192 L 512 162 L 508 132 L 532 102 L 548 70 L 568 46 L 598 28 L 640 14 L 692 24 L 748 12 L 800 22 Z"/>
-</clipPath>
-<clipPath id="swClipTower">
-<path d="M 236 420 L 246 352 L 238 306 L 254 268 L 248 232 L 262 200 L 258 170 L 270 140 L 284 118 L 300 106 L 314 122 L 320 152 L 326 186 L 332 220 L 342 264 L 354 312 L 366 366 L 376 420 Z"/>
-</clipPath>
-</defs>
-<rect x="0" y="0" width="800" height="420" fill="url(#swSky)"/>
-<circle cx="150" cy="120" r="225" fill="url(#swGlow)"/>
-<circle cx="150" cy="120" r="48" fill="#F0C97A" opacity="0.3"/>
-<circle cx="150" cy="120" r="27" fill="#F3EBDA" opacity="0.32"/>
-<circle cx="150" cy="120" r="14" fill="#F3EBDA" opacity="0.8"/>
-<path d="M 258 60 q 5 -4 10 0" fill="none" stroke="#7D8E82" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
-<path d="M 272 72 q 4 -3 8 0" fill="none" stroke="#7D8E82" stroke-width="1.1" stroke-linecap="round" opacity="0.45"/>
-<path d="M 240 86 q 5 -4 10 0" fill="none" stroke="#7D8E82" stroke-width="1.1" stroke-linecap="round" opacity="0.4"/>
-<path d="M 304 46 q 4 -3 8 0" fill="none" stroke="#7D8E82" stroke-width="1" stroke-linecap="round" opacity="0.35"/>
-<path d="M 0 262 L 70 250 L 130 258 L 196 240 L 262 252 L 332 236 L 404 248 L 472 234 L 560 246 L 650 232 L 730 244 L 800 236 L 800 344 L 0 344 Z" fill="#8FBFAE" opacity="0.5"/>
-<path d="M 0 290 L 92 276 L 172 285 L 252 270 L 342 283 L 430 268 L 522 281 L 612 266 L 702 279 L 800 268 L 800 356 L 0 356 Z" fill="#7D8E82" opacity="0.55"/>
-<ellipse cx="150" cy="278" rx="172" ry="8" fill="#C9D4C8" opacity="0.3"/>
-<ellipse cx="430" cy="287" rx="205" ry="7" fill="#EDEFE8" opacity="0.2"/>
-<ellipse cx="262" cy="297" rx="152" ry="9" fill="#C9D4C8" opacity="0.22"/>
-<ellipse cx="624" cy="272" rx="132" ry="6" fill="#EDEFE8" opacity="0.16"/>
-<path d="M 0 313 L 72 300 L 152 309 L 232 296 L 322 307 L 412 294 L 502 305 L 602 292 L 702 303 L 800 294 L 800 366 L 0 366 Z" fill="#2A4740"/>
-<path d="M 20 305 L 16 316 L 24 316 Z" fill="#16261C" opacity="0.8"/>
-<path d="M 52 302 L 48 313 L 56 313 Z" fill="#16261C" opacity="0.8"/>
-<path d="M 84 303 L 80 314 L 88 314 Z" fill="#16261C" opacity="0.8"/>
-<path d="M 116 307 L 112 318 L 120 318 Z" fill="#16261C" opacity="0.8"/>
-<path d="M 148 308 L 144 319 L 152 319 Z" fill="#16261C" opacity="0.8"/>
-<path d="M 180 302 L 176 313 L 184 313 Z" fill="#16261C" opacity="0.8"/>
-<path d="M 212 298 L 208 309 L 216 309 Z" fill="#16261C" opacity="0.8"/>
-<path d="M 244 297 L 240 308 L 248 308 Z" fill="#16261C" opacity="0.8"/>
-<path d="M 276 302 L 272 313 L 280 313 Z" fill="#16261C" opacity="0.8"/>
-<path d="M 308 306 L 304 317 L 312 317 Z" fill="#16261C" opacity="0.8"/>
-<path d="M 396 296 L 392 307 L 400 307 Z" fill="#16261C" opacity="0.8"/>
-<path d="M 348 292 L 354 312 L 366 366 L 376 420 L 448 420 L 468 376 L 458 336 L 484 300 Z" fill="url(#swGorge)"/>
-<ellipse cx="404" cy="300" rx="56" ry="9" fill="#C9D4C8" opacity="0.2"/>
-<ellipse cx="392" cy="288" rx="44" ry="6" fill="#EDEFE8" opacity="0.14"/>
-<ellipse cx="416" cy="316" rx="40" ry="7" fill="#C9D4C8" opacity="0.12"/>
-<g clip-path="url(#swClipWall)">
-<path d="M 800 420 L 448 420 L 468 376 L 458 336 L 484 300 L 474 262 L 498 228 L 490 192 L 512 162 L 508 132 L 532 102 L 548 70 L 568 46 L 598 28 L 640 14 L 692 24 L 748 12 L 800 22 Z" fill="url(#swWallFill)"/>
-<path d="M 420 60 C 500 14 570 -38 660 -58 C 730 -74 775 -58 838 -26" fill="none" stroke="#0F211D" stroke-width="14" opacity="0.9"/>
-<path d="M 420 52 C 500 6 570 -46 660 -66 C 730 -82 775 -66 838 -34" fill="none" stroke="#7D8E82" stroke-width="1.6" opacity="0.32"/>
-<path d="M 420 104 C 500 58 570 6 660 -14 C 730 -30 775 -14 838 18" fill="none" stroke="#0F211D" stroke-width="8" opacity="0.9"/>
-<path d="M 420 99 C 500 53 570 1 660 -19 C 730 -35 775 -19 838 13" fill="none" stroke="#7D8E82" stroke-width="1.5" opacity="0.3"/>
-<path d="M 420 150 C 500 104 570 52 660 32 C 730 16 775 32 838 64" fill="none" stroke="#0F211D" stroke-width="20" opacity="0.9"/>
-<path d="M 420 139 C 500 93 570 41 660 21 C 730 5 775 21 838 53" fill="none" stroke="#7D8E82" stroke-width="1.7" opacity="0.3"/>
-<path d="M 420 196 C 500 150 570 98 660 78 C 730 62 775 78 838 110" fill="none" stroke="#0F211D" stroke-width="10" opacity="0.9"/>
-<path d="M 420 190 C 500 144 570 92 660 72 C 730 56 775 72 838 104" fill="none" stroke="#7D8E82" stroke-width="1.5" opacity="0.28"/>
-<path d="M 420 240 C 500 194 570 142 660 122 C 730 106 775 122 838 154" fill="none" stroke="#0F211D" stroke-width="16" opacity="0.9"/>
-<path d="M 420 231 C 500 185 570 133 660 113 C 730 97 775 113 838 145" fill="none" stroke="#7D8E82" stroke-width="1.6" opacity="0.26"/>
-<path d="M 420 292 C 500 246 570 194 660 174 C 730 158 775 174 838 206" fill="none" stroke="#0F211D" stroke-width="9" opacity="0.9"/>
-<path d="M 420 286.5 C 500 240.5 570 188.5 660 168.5 C 730 152.5 775 168.5 838 200.5" fill="none" stroke="#7D8E82" stroke-width="1.4" opacity="0.24"/>
-<path d="M 420 336 C 500 290 570 238 660 218 C 730 202 775 218 838 250" fill="none" stroke="#0F211D" stroke-width="22" opacity="0.9"/>
-<path d="M 420 324 C 500 278 570 226 660 206 C 730 190 775 206 838 238" fill="none" stroke="#7D8E82" stroke-width="1.7" opacity="0.22"/>
-<path d="M 420 390 C 500 344 570 292 660 272 C 730 256 775 272 838 304" fill="none" stroke="#0F211D" stroke-width="12" opacity="0.9"/>
-<path d="M 420 383 C 500 337 570 285 660 265 C 730 249 775 265 838 297" fill="none" stroke="#7D8E82" stroke-width="1.4" opacity="0.2"/>
-<path d="M 420 444 C 500 398 570 346 660 326 C 730 310 775 326 838 358" fill="none" stroke="#0F211D" stroke-width="16" opacity="0.9"/>
-<path d="M 420 435 C 500 389 570 337 660 317 C 730 301 775 317 838 349" fill="none" stroke="#7D8E82" stroke-width="1.4" opacity="0.18"/>
-<path d="M 600 20 L 584 90 L 604 150 L 588 224 L 600 300" fill="none" stroke="#0A1714" stroke-width="1.6" opacity="0.5"/>
-<path d="M 716 40 L 704 110 L 722 180 L 710 250" fill="none" stroke="#0A1714" stroke-width="1.4" opacity="0.45"/>
-<path d="M 520 224 L 504 268 L 522 312" fill="none" stroke="#0A1714" stroke-width="1.3" opacity="0.4"/>
-<ellipse cx="512" cy="252" rx="8" ry="3" fill="#25392C" opacity="0.6"/>
-<ellipse cx="628" cy="164" rx="10" ry="3.5" fill="#25392C" opacity="0.55"/>
-<ellipse cx="716" cy="96" rx="8" ry="3" fill="#25392C" opacity="0.5"/>
-<ellipse cx="586" cy="286" rx="11" ry="4" fill="#25392C" opacity="0.5"/>
-<ellipse cx="758" cy="196" rx="9" ry="3" fill="#25392C" opacity="0.45"/>
-<path d="M 448 420 L 468 376 L 458 336 L 484 300 L 474 262 L 498 228 L 490 192 L 512 162 L 508 132 L 532 102 L 548 70 L 568 46 L 598 28 L 640 14 L 692 24 L 748 12 L 800 22" fill="none" stroke="#E2A32E" stroke-width="42" opacity="0.07"/>
-<path d="M 448 420 L 468 376 L 458 336 L 484 300 L 474 262 L 498 228 L 490 192 L 512 162 L 508 132 L 532 102 L 548 70 L 568 46 L 598 28 L 640 14 L 692 24 L 748 12 L 800 22" fill="none" stroke="#C9D4C8" stroke-width="3" opacity="0.26"/>
-<path d="M 508 132 L 532 102 L 548 70 L 568 46 L 598 28 L 640 14 L 692 24" fill="none" stroke="#F0C97A" stroke-width="2.6" opacity="0.45"/>
-</g>
-<path d="M 511 198 C 528 170 540 140 552 112 C 562 88 574 62 589 42" fill="none" stroke="#C9D4C8" stroke-width="1.2" opacity="0.65"/>
-<circle cx="511" cy="198" r="1.7" fill="#C9D4C8" opacity="0.8"/>
-<circle cx="540" cy="140" r="1.7" fill="#C9D4C8" opacity="0.8"/>
-<circle cx="560" cy="96" r="1.7" fill="#C9D4C8" opacity="0.8"/>
-<circle cx="578" cy="60" r="1.7" fill="#C9D4C8" opacity="0.8"/>
-<g stroke="#7D8E82" stroke-width="2.1" stroke-linecap="round" opacity="0.85">
-<path d="M 499.0 198 L 509.0 198"/>
-<path d="M 504.6 186.9 L 514.6 186.9"/>
-<path d="M 510.1 175.7 L 520.1 175.7"/>
-<path d="M 515.7 164.6 L 525.7 164.6"/>
-<path d="M 521.3 153.4 L 531.3 153.4"/>
-<path d="M 526.9 142.3 L 536.9 142.3"/>
-<path d="M 532.4 131.1 L 542.4 131.1"/>
-<path d="M 538.0 120.0 L 548.0 120.0"/>
-<path d="M 543.6 108.9 L 553.6 108.9"/>
-<path d="M 549.1 97.7 L 559.1 97.7"/>
-<path d="M 554.7 86.6 L 564.7 86.6"/>
-<path d="M 560.3 75.4 L 570.3 75.4"/>
-<path d="M 565.9 64.3 L 575.9 64.3"/>
-<path d="M 571.4 53.1 L 581.4 53.1"/>
-<path d="M 577.0 42.0 L 587.0 42.0"/>
-</g>
-<path d="M 553.5 97 L 556 90" stroke="#B23A1C" stroke-width="2.4" stroke-linecap="round"/>
-<path d="M 558.5 96 L 556 90" stroke="#B23A1C" stroke-width="2.4" stroke-linecap="round"/>
-<path d="M 556 90 L 556 83" stroke="#E2542E" stroke-width="7.5" stroke-linecap="round"/>
-<path d="M 556 84 L 561 77.5" stroke="#B23A1C" stroke-width="2.3" stroke-linecap="round"/>
-<path d="M 554.5 85.5 L 551.5 91" stroke="#B23A1C" stroke-width="2.2" stroke-linecap="round"/>
-<circle cx="556" cy="76" r="3.9" fill="#C9D4C8" opacity="0.88"/>
-<path d="M 334 208 L 334 190" stroke="#7D8E82" stroke-width="2.3" stroke-linecap="round" opacity="0.8"/>
-<path d="M 492 196 L 492 178" stroke="#7D8E82" stroke-width="2.3" stroke-linecap="round" opacity="0.8"/>
-<path d="M 334 192 Q 413 222 492 180" fill="none" stroke="#7D8E82" stroke-width="1.4" opacity="0.75"/>
-<g stroke="#7D8E82" stroke-width="1" opacity="0.5">
-<path d="M 356 199 L 356 215.4"/>
-<path d="M 378 203.2 L 378 219.9"/>
-<path d="M 400 204.5 L 400 221.4"/>
-<path d="M 422 203.1 L 422 220.1"/>
-<path d="M 444 198.8 L 444 215.7"/>
-<path d="M 466 191.9 L 466 208.4"/>
-</g>
-<path d="M 334 208 Q 413 240 492 196" fill="none" stroke="#16302B" stroke-width="4"/>
-<path d="M 334 206 Q 413 238 492 194" fill="none" stroke="#C9D4C8" stroke-width="1.2" opacity="0.7"/>
-<g stroke="#16302B" stroke-width="1.2" opacity="0.55">
-<path d="M 345 209 L 345 215"/>
-<path d="M 367 215 L 367 221"/>
-<path d="M 389 218 L 389 224"/>
-<path d="M 411 218 L 411 224"/>
-<path d="M 433 215 L 433 221"/>
-<path d="M 455 209 L 455 215"/>
-<path d="M 477 201 L 477 207"/>
-</g>
-<path d="M 425 219 L 428 213" stroke="#0F211D" stroke-width="2.1" stroke-linecap="round"/>
-<path d="M 431 218 L 428 213" stroke="#0F211D" stroke-width="2.1" stroke-linecap="round"/>
-<path d="M 428 213 L 428 206" stroke="#16302B" stroke-width="6.2" stroke-linecap="round"/>
-<path d="M 429 206.5 L 434.5 202.5" stroke="#0F211D" stroke-width="2" stroke-linecap="round"/>
-<path d="M 426.5 207 L 425 213" stroke="#0F211D" stroke-width="2" stroke-linecap="round"/>
-<circle cx="428" cy="199.8" r="3.4" fill="#0F211D"/>
-<g clip-path="url(#swClipTower)">
-<path d="M 236 420 L 246 352 L 238 306 L 254 268 L 248 232 L 262 200 L 258 170 L 270 140 L 284 118 L 300 106 L 314 122 L 320 152 L 326 186 L 332 220 L 342 264 L 354 312 L 366 366 L 376 420 Z" fill="url(#swTowerFill)"/>
-<path d="M 180 172 C 240 148 300 114 380 86" fill="none" stroke="#0A1714" stroke-width="10" opacity="0.9"/>
-<path d="M 180 166 C 240 142 300 108 380 80" fill="none" stroke="#7D8E82" stroke-width="1.4" opacity="0.22"/>
-<path d="M 180 214 C 240 190 300 156 380 128" fill="none" stroke="#0A1714" stroke-width="16" opacity="0.9"/>
-<path d="M 180 205 C 240 181 300 147 380 119" fill="none" stroke="#7D8E82" stroke-width="1.5" opacity="0.2"/>
-<path d="M 180 258 C 240 234 300 200 380 172" fill="none" stroke="#0A1714" stroke-width="9" opacity="0.9"/>
-<path d="M 180 252.5 C 240 228.5 300 194.5 380 166.5" fill="none" stroke="#7D8E82" stroke-width="1.3" opacity="0.18"/>
-<path d="M 180 300 C 240 276 300 242 380 214" fill="none" stroke="#0A1714" stroke-width="18" opacity="0.9"/>
-<path d="M 180 290 C 240 266 300 232 380 204" fill="none" stroke="#7D8E82" stroke-width="1.4" opacity="0.16"/>
-<path d="M 180 344 C 240 320 300 286 380 258" fill="none" stroke="#0A1714" stroke-width="11" opacity="0.9"/>
-<path d="M 180 337.5 C 240 313.5 300 279.5 380 251.5" fill="none" stroke="#7D8E82" stroke-width="1.3" opacity="0.14"/>
-<path d="M 180 392 C 240 368 300 334 380 306" fill="none" stroke="#0A1714" stroke-width="14" opacity="0.9"/>
-<path d="M 236 420 L 246 352 L 238 306 L 254 268 L 248 232 L 262 200 L 258 170 L 270 140 L 284 118 L 300 106" fill="none" stroke="#E2A32E" stroke-width="24" opacity="0.07"/>
-<path d="M 236 420 L 246 352 L 238 306 L 254 268 L 248 232 L 262 200 L 258 170 L 270 140 L 284 118 L 300 106" fill="none" stroke="#7D8E82" stroke-width="2.4" opacity="0.28"/>
-<path d="M 270 140 L 284 118 L 300 106 L 314 122" fill="none" stroke="#E2A32E" stroke-width="2.2" opacity="0.4"/>
-</g>
-<path d="M 338 268 C 335 250 331 232 327 214" fill="none" stroke="#C9D4C8" stroke-width="1.1" opacity="0.5"/>
-<g stroke="#7D8E82" stroke-width="1.8" stroke-linecap="round" opacity="0.7">
-<path d="M 331 264 L 339 264"/>
-<path d="M 328 252 L 336 252"/>
-<path d="M 325.5 240 L 333.5 240"/>
-<path d="M 323 228 L 331 228"/>
-<path d="M 320 216 L 328 216"/>
-</g>
-<ellipse cx="250" cy="322" rx="270" ry="10" fill="#C9D4C8" opacity="0.09"/>
-<ellipse cx="620" cy="314" rx="240" ry="9" fill="#C9D4C8" opacity="0.07"/>
-<path d="M 0 344 L 62 330 L 132 341 L 202 327 L 282 339 L 362 325 L 442 337 L 522 323 L 612 335 L 702 321 L 800 333 L 800 420 L 0 420 Z" fill="#101F1C"/>
-<path d="M 44 296 L 56 339 L 50 339 L 64 377 L 57 377 L 70 420 L 18 420 L 31 377 L 24 377 L 38 339 L 32 339 Z" fill="#0A1714"/>
-<path d="M 128 324 L 137 358 L 133 358 L 143 386 L 138 386 L 148 420 L 108 420 L 118 386 L 113 386 L 123 358 L 119 358 Z" fill="#0A1714"/>
-<path d="M 214 302 L 224 343 L 220 343 L 231 379 L 226 379 L 237 420 L 191 420 L 202 379 L 197 379 L 208 343 L 204 343 Z" fill="#0A1714"/>
-<path d="M 336 318 L 345 354 L 341 354 L 350 384 L 346 384 L 355 420 L 317 420 L 326 384 L 322 384 L 331 354 L 327 354 Z" fill="#0A1714"/>
-<path d="M 478 306 L 488 346 L 484 346 L 495 380 L 489 380 L 500 420 L 456 420 L 467 380 L 461 380 L 472 346 L 468 346 Z" fill="#0A1714"/>
-<path d="M 612 328 L 620 360 L 617 360 L 626 388 L 621 388 L 630 420 L 594 420 L 603 388 L 598 388 L 607 360 L 604 360 Z" fill="#0A1714"/>
-<path d="M 736 300 L 747 342 L 742 342 L 755 378 L 749 378 L 761 420 L 711 420 L 723 378 L 717 378 L 730 342 L 725 342 Z" fill="#0A1714"/>
-<path d="M 0 420 L 0 374 L 44 388 L 100 374 L 154 392 L 210 376 L 266 394 L 324 378 L 388 396 L 452 380 L 516 398 L 580 382 L 650 400 L 716 384 L 800 402 L 800 420 Z" fill="#0A1714" opacity="0.7"/>
-</svg>
-          <span class="plate-cap">Kalksteinwand über der Ourthe · gefaltete Schichten, 300 Mio. Jahre</span>
+          <img src="img/ferrata-800.webp" sizes="(max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Der Klettersteig oberhalb von Durbuy · Eisenbügel im Kalkstein">
+          <span class="plate-cap">Der Klettersteig oberhalb von Durbuy · Eisenbügel im Kalkstein</span>
         </div>
         <div>
           <p class="lead reveal d2">Der Klettersteig oberhalb von Durbuy hängt an einer Felswand, die seit
