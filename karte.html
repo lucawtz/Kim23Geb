@@ -1,0 +1,306 @@
+<meta charset="utf-8">
+<title>Karte für Kim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Instrument+Serif:ital@0;1&family=Martian+Mono:wght@300;400;600&display=swap">
+<style>
+/* ══ Druckkarte A6, aus einem A5-Bogen gefaltet ══════════════
+   Bogen 210 × 148 mm, einseitig gedruckt, in der Mitte gefaltet.
+   Links = Rückseite (QR), rechts = Vorderseite. Innen bleibt
+   unbedruckt – da kannst du selbst reinschreiben.
+   ═════════════════════════════════════════════════════════ */
+:root{
+  --ink:#16302B;        /* Tiefes Ardennengrün, die Druckfarbe */
+  --ink-soft:#5C6B5F;
+  --paper:#FFFFFF;      /* Das Papier selbst – spart Tinte */
+  --panel:#12241F;      /* Der dunkle Bildkasten */
+  --accent:#E2542E;     /* Der Camper */
+  --sun:#E2A32E;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#5C6B5F;font-family:"Archivo","Helvetica Neue",Arial,sans-serif}
+
+.sheet{
+  width:210mm; height:148mm; background:var(--paper);
+  margin:14mm auto; position:relative; display:flex;
+  box-shadow:0 4mm 12mm rgba(0,0,0,.35);
+}
+.panel{width:105mm;height:148mm;position:relative;padding:9mm 8mm}
+.panel.front{border-left:0.3mm dashed #C8CEC6}
+
+/* Faltmarken */
+.foldmark{position:absolute;left:105mm;width:0;top:0;height:100%;pointer-events:none}
+.foldmark::before,.foldmark::after{
+  content:"";position:absolute;left:-2mm;width:4mm;height:0;
+  border-top:0.3mm solid var(--ink-soft);
+}
+.foldmark::before{top:0}.foldmark::after{bottom:0}
+.foldlabel{
+  position:absolute;left:105mm;bottom:2mm;transform:translateX(-50%);
+  font-family:"Martian Mono",monospace;font-size:5pt;letter-spacing:.2em;
+  text-transform:uppercase;color:#B9C0B7;white-space:nowrap;
+}
+
+/* ── Vorderseite ────────────────────────────────────────── */
+.plate{
+  height:76mm;background:var(--panel);border-radius:0.8mm;overflow:hidden;
+  position:relative;display:block;
+}
+.plate svg{display:block;width:100%;height:100%}
+.front-body{padding-top:7mm;display:flex;flex-direction:column;gap:2.5mm}
+.eyebrow{
+  font-family:"Martian Mono",monospace;font-size:5.5pt;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--ink-soft);
+}
+.name{
+  font-family:"Instrument Serif",Georgia,serif;font-style:italic;
+  font-size:42pt;line-height:.9;color:var(--ink);letter-spacing:-.01em;
+}
+.sub{
+  font-family:"Martian Mono",monospace;font-size:6pt;letter-spacing:.34em;
+  text-transform:uppercase;color:var(--accent);
+}
+.rule{height:0.3mm;background:var(--ink);opacity:.18;margin:1.5mm 0}
+.front-foot{
+  position:absolute;left:8mm;right:8mm;bottom:9mm;
+  font-family:"Martian Mono",monospace;font-size:5.5pt;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-soft);
+  display:flex;justify-content:space-between;
+}
+
+/* ── Rückseite ──────────────────────────────────────────── */
+.back{display:flex;flex-direction:column;align-items:center;text-align:center}
+.back-top{margin-top:6mm}
+.back .line{
+  font-family:"Instrument Serif",Georgia,serif;font-style:italic;
+  font-size:21pt;line-height:1.16;color:var(--ink);margin-bottom:1.5mm;
+}
+.back .hint{
+  font-family:"Archivo",sans-serif;font-size:8pt;line-height:1.45;
+  color:var(--ink-soft);max-width:70mm;margin:0 auto;
+}
+.qrbox{
+  margin:7mm auto 4mm;width:46mm;height:46mm;padding:3mm;
+  background:#fff;border:0.35mm solid var(--ink);border-radius:0.8mm;
+}
+.qrbox svg{display:block;width:100%;height:100%}
+.url{
+  font-family:"Martian Mono",monospace;font-size:6pt;letter-spacing:.04em;
+  color:var(--ink-soft);word-break:break-all;max-width:76mm;line-height:1.5;
+}
+.back-foot{
+  position:absolute;left:8mm;right:8mm;bottom:9mm;
+  display:flex;align-items:center;justify-content:center;gap:2.5mm;
+}
+.back-foot svg{width:16mm;height:auto;display:block}
+.back-foot span{
+  font-family:"Martian Mono",monospace;font-size:5.5pt;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink-soft);
+}
+
+/* ── Druck ──────────────────────────────────────────────── */
+.notice{
+  max-width:210mm;margin:0 auto 14mm;padding:6mm 8mm;background:#EFEFE9;
+  border-radius:1mm;font-size:9.5pt;line-height:1.6;color:#2A3A33;
+}
+.notice h2{font-size:11pt;margin-bottom:2mm;font-weight:700}
+.notice li{margin-left:5mm;margin-bottom:1mm}
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{background:#fff}
+  .notice{display:none}
+  .sheet{margin:31mm auto;box-shadow:none}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+
+<div class="notice">
+  <h2>So druckst du die Karte</h2>
+  <ul>
+    <li><b>Drucken:</b> Strg/Cmd + P, Papierformat <b>A4 quer</b>, Ränder <b>keine</b>, Skalierung <b>100 %</b> (nicht „an Seite anpassen"). Hintergrundgrafiken müssen an sein.</li>
+    <li><b>Papier:</b> alles ab 200 g/m² wirkt wie eine echte Karte. Normales Papier geht auch, wellt sich nur leicht.</li>
+    <li><b>Schneiden:</b> auf die Bogenkante schneiden (210 × 148 mm).</li>
+    <li><b>Falten:</b> an der gestrichelten Mittellinie, bedruckte Seite nach außen. Fertig ist eine A6-Karte mit Bild vorne, QR hinten – und innen leerem Papier für ein paar Zeilen von dir.</li>
+    <li><b>Vorher testen:</b> einmal auf Normalpapier drucken und den QR mit deinem Handy scannen, bevor du das gute Papier nimmst.</li>
+  </ul>
+</div>
+
+<div class="sheet">
+
+  <!-- ── LINKS: Rückseite mit QR ── -->
+  <div class="panel back">
+    <div class="back-top">
+      <p class="line">Halt mal kurz<br>dein Handy drauf.</p>
+      <p class="hint">Dahinter liegt kein Bild und kein Text,<br>sondern eine ganze Reise.</p>
+    </div>
+    <div class="qrbox"><svg viewBox="0 0 33 33" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><path stroke="#16302b" d="M0 0.5h7m1 0h3m3 0h2m1 0h4m2 0h2m1 0h7m-33 1h1m5 0h1m1 0h1m1 0h2m2 0h1m1 0h1m1 0h1m5 0h1m1 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m1 0h5m1 0h1m1 0h3m2 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m3 0h1m5 0h2m2 0h1m2 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m2 0h2m2 0h4m2 0h1m3 0h2m1 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h1m2 0h1m1 0h2m1 0h2m2 0h2m2 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h1m2 0h3m2 0h2m3 0h4m-23 1h3m1 0h1m1 0h2m1 0h2m1 0h4m2 0h1m1 0h1m1 0h4m2 0h3m-33 1h4m3 0h2m3 0h4m1 0h5m1 0h1m1 0h2m4 0h2m-33 1h2m1 0h2m1 0h2m1 0h1m4 0h3m1 0h1m1 0h1m3 0h1m2 0h1m1 0h3m-30 1h1m2 0h1m1 0h3m2 0h1m1 0h2m3 0h5m1 0h1m3 0h2m-31 1h4m1 0h2m2 0h1m1 0h2m1 0h3m3 0h1m2 0h1m1 0h1m2 0h2m1 0h2m-33 1h3m1 0h1m2 0h1m2 0h1m1 0h1m3 0h1m2 0h2m2 0h1m1 0h2m3 0h1m1 0h1m-32 1h4m1 0h1m3 0h1m1 0h1m2 0h1m6 0h1m1 0h2m5 0h1m-32 1h5m2 0h1m2 0h2m1 0h1m1 0h2m1 0h2m1 0h2m2 0h1m3 0h2m1 0h1m-32 1h1m4 0h1m2 0h2m1 0h2m2 0h4m5 0h1m2 0h1m-29 1h2m3 0h1m1 0h3m1 0h1m1 0h1m4 0h2m3 0h2m1 0h1m4 0h2m-33 1h1m4 0h4m1 0h2m4 0h1m2 0h2m1 0h1m2 0h1m1 0h1m2 0h2m-32 1h2m3 0h1m1 0h3m2 0h1m2 0h1m2 0h1m2 0h1m1 0h2m2 0h6m-33 1h2m1 0h1m1 0h3m5 0h2m1 0h1m2 0h1m2 0h1m2 0h1m1 0h3m1 0h2m-33 1h2m2 0h1m3 0h1m2 0h1m4 0h3m4 0h2m1 0h1m2 0h2m1 0h1m-33 1h1m1 0h2m2 0h2m1 0h1m1 0h1m3 0h1m2 0h1m1 0h1m1 0h1m5 0h4m-32 1h1m1 0h2m1 0h1m1 0h1m4 0h2m2 0h7m4 0h1m1 0h4m-33 1h1m5 0h1m1 0h2m2 0h2m2 0h1m1 0h1m1 0h1m3 0h5m2 0h1m-24 1h4m1 0h2m1 0h3m1 0h1m3 0h1m3 0h3m1 0h1m-33 1h7m2 0h1m1 0h1m2 0h3m1 0h2m2 0h3m1 0h1m1 0h1m1 0h2m-32 1h1m5 0h1m3 0h1m2 0h2m1 0h1m3 0h3m1 0h1m3 0h5m-33 1h1m1 0h3m1 0h1m1 0h1m2 0h2m2 0h1m2 0h1m2 0h1m2 0h5m2 0h2m-33 1h1m1 0h3m1 0h1m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1m1 0h2m3 0h1m2 0h2m2 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h1m4 0h3m4 0h1m1 0h3m2 0h1m-30 1h1m5 0h1m6 0h2m3 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m-31 1h7m4 0h1m1 0h3m2 0h2m2 0h5m2 0h1m1 0h1"/></svg></div>
+    <p class="url">lucawtz.github.io/route23</p>
+    <div class="back-foot">
+      <svg viewBox="0 0 154 96" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 72Q16 72 16 66V36Q16 30 22 30H117Q121 30 124 32L135 41Q138 44 138 48V66Q138 72 132 72Z" fill="#E2542E"/>
+  <path d="M32 21Q77 9 122 21Q77 31 32 21Z" fill="#16302B" opacity=".75"/>
+  <rect x="27" y="35" width="30" height="13.5" rx="2.4" fill="#FFFFFF" opacity=".85"/>
+  <rect x="63" y="35" width="34" height="13.5" rx="2.4" fill="#FFFFFF" opacity=".85"/>
+  <path d="M103 35h13.5q2 0 3.6 1.4l9.4 8.2q1.5 1.3 1.5 2.6v1.3H103z" fill="#FFFFFF" opacity=".85"/>
+  <circle cx="48" cy="78" r="11.5" fill="#16302B"/><circle cx="48" cy="78" r="4.6" fill="#FFFFFF"/>
+  <circle cx="116" cy="78" r="11.5" fill="#16302B"/><circle cx="116" cy="78" r="4.6" fill="#FFFFFF"/>
+</svg>
+      <span>Route 23</span>
+    </div>
+  </div>
+
+  <div class="foldmark"></div>
+  <span class="foldlabel">hier falten</span>
+
+  <!-- ── RECHTS: Vorderseite ── -->
+  <div class="panel front">
+    <div class="plate"><svg preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420">
+<defs>
+<linearGradient id="stSky" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0A1714"/>
+<stop offset="0.30" stop-color="#0F211D"/>
+<stop offset="0.50" stop-color="#16302B"/>
+<stop offset="0.59" stop-color="#1E3E37"/>
+<stop offset="0.63" stop-color="#2A4740"/>
+<stop offset="1" stop-color="#0A1714"/>
+</linearGradient>
+<linearGradient id="stHorizon" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#C4643F" stop-opacity="0"/>
+<stop offset="0.45" stop-color="#C4643F" stop-opacity="0.38"/>
+<stop offset="0.78" stop-color="#E2A32E" stop-opacity="0.66"/>
+<stop offset="1" stop-color="#F0C97A" stop-opacity="0.82"/>
+</linearGradient>
+<linearGradient id="stRiver" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2E7D74"/>
+<stop offset="0.25" stop-color="#1B5852"/>
+<stop offset="0.70" stop-color="#164E49"/>
+<stop offset="1" stop-color="#16302B"/>
+</linearGradient>
+<linearGradient id="stMeadow" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#25392C"/>
+<stop offset="0.22" stop-color="#16261C"/>
+<stop offset="0.68" stop-color="#101F1C"/>
+<stop offset="1" stop-color="#0A1714"/>
+</linearGradient>
+<linearGradient id="stShell" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#EDEFE8"/>
+<stop offset="1" stop-color="#F3EBDA"/>
+</linearGradient>
+<linearGradient id="stWin" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#F0C97A"/>
+<stop offset="1" stop-color="#E2A32E"/>
+</linearGradient>
+<radialGradient id="stGlow" cx="0.5" cy="0.5" r="0.5">
+<stop offset="0" stop-color="#F0C97A" stop-opacity="0.50"/>
+<stop offset="0.38" stop-color="#E2A32E" stop-opacity="0.24"/>
+<stop offset="1" stop-color="#E2A32E" stop-opacity="0"/>
+</radialGradient>
+<radialGradient id="stDoorGlow" cx="0.5" cy="0.5" r="0.5">
+<stop offset="0" stop-color="#E2A32E" stop-opacity="0.38"/>
+<stop offset="1" stop-color="#E2A32E" stop-opacity="0"/>
+</radialGradient>
+</defs>
+<rect x="0" y="0" width="800" height="420" fill="url(#stSky)"/>
+<circle cx="60" cy="44" r="1.4" fill="#EDEFE8" opacity="0.75"/>
+<circle cx="140" cy="88" r="1" fill="#EDEFE8" opacity="0.5"/>
+<circle cx="210" cy="36" r="1.6" fill="#EDEFE8" opacity="0.85"/>
+<circle cx="286" cy="104" r="1" fill="#EDEFE8" opacity="0.45"/>
+<circle cx="330" cy="58" r="1.2" fill="#EDEFE8" opacity="0.65"/>
+<circle cx="402" cy="26" r="1.5" fill="#EDEFE8" opacity="0.8"/>
+<circle cx="452" cy="96" r="1" fill="#EDEFE8" opacity="0.5"/>
+<circle cx="520" cy="52" r="1.3" fill="#EDEFE8" opacity="0.7"/>
+<circle cx="592" cy="118" r="0.9" fill="#EDEFE8" opacity="0.4"/>
+<circle cx="636" cy="40" r="1.5" fill="#EDEFE8" opacity="0.8"/>
+<circle cx="700" cy="86" r="1.1" fill="#EDEFE8" opacity="0.55"/>
+<circle cx="756" cy="140" r="1" fill="#EDEFE8" opacity="0.4"/>
+<circle cx="250" cy="150" r="0.9" fill="#EDEFE8" opacity="0.35"/>
+<circle cx="486" cy="164" r="0.9" fill="#EDEFE8" opacity="0.3"/>
+<rect x="0" y="178" width="800" height="80" fill="url(#stHorizon)"/>
+<path d="M0 258 L0 226 L48 212 L96 224 L150 204 L206 220 L262 208 L318 224 L372 210 L430 226 L488 212 L540 226 L598 208 L654 222 L712 210 L762 224 L800 214 L800 258 Z" fill="#2A4740" opacity="0.9"/>
+<path d="M0 266 L0 244 L54 232 L110 246 L168 230 L228 246 L286 234 L344 248 L400 232 L458 248 L512 236 L570 250 L626 234 L684 248 L740 236 L800 248 L800 266 Z" fill="#1E3E37"/>
+<path d="M0 272 L0 258 L60 250 L120 260 L180 248 L244 260 L300 252 L360 262 L418 250 L478 262 L536 252 L596 262 L654 252 L716 262 L770 254 L800 260 L800 272 Z" fill="#16302B"/>
+<ellipse cx="170" cy="252" rx="210" ry="9" fill="#7D8E82" opacity="0.12"/>
+<ellipse cx="610" cy="246" rx="200" ry="7" fill="#C9D4C8" opacity="0.09"/>
+<path d="M0 274 L0 268 L18 254 L34 268 L52 250 L70 268 L88 258 L104 268 L124 248 L142 268 L160 256 L178 268 L198 252 L216 268 L236 258 L254 268 L276 250 L294 268 L314 258 L332 268 L354 252 L372 268 L392 256 L410 268 L432 250 L450 268 L470 258 L488 268 L510 252 L528 268 L548 256 L566 268 L588 250 L606 268 L626 258 L644 268 L666 252 L684 268 L704 256 L722 268 L744 250 L762 268 L782 258 L800 268 L800 274 Z" fill="#101F1C"/>
+<rect x="0" y="270" width="800" height="42" fill="url(#stRiver)"/>
+<path d="M40 270 L52 270 L48 294 L36 294 Z M120 270 L134 270 L130 300 L116 300 Z M250 270 L262 270 L258 292 L246 292 Z M420 270 L434 270 L430 298 L416 298 Z M600 270 L612 270 L608 294 L596 294 Z M710 270 L722 270 L718 290 L706 290 Z" fill="#0A1714" opacity="0.3"/>
+<rect x="300" y="274" width="240" height="3" rx="1.5" fill="#E2A32E" opacity="0.16"/>
+<rect x="344" y="283" width="164" height="2.4" rx="1.2" fill="#F0C97A" opacity="0.12"/>
+<path d="M30 280 h34 M96 288 h26 M160 276 h30 M214 294 h24 M268 284 h32 M344 300 h28 M420 278 h26 M486 296 h30 M556 284 h26 M620 300 h30 M690 282 h28 M744 294 h24" fill="none" stroke="#4E9E8E" stroke-width="1.4" stroke-linecap="round" opacity="0.35"/>
+<path d="M64 300 h22 M186 303 h26 M310 292 h20 M470 288 h18 M600 292 h22 M726 302 h20" fill="none" stroke="#8FBFAE" stroke-width="1.2" stroke-linecap="round" opacity="0.22"/>
+<ellipse cx="240" cy="282" rx="250" ry="9" fill="#7D8E82" opacity="0.11"/>
+<ellipse cx="580" cy="292" rx="240" ry="7" fill="#C9D4C8" opacity="0.08"/>
+<path d="M0 314 L0 304 C120 298 240 310 360 304 C480 298 600 310 720 304 L800 306 L800 314 Z" fill="#25392C"/>
+<rect x="0" y="310" width="800" height="110" fill="url(#stMeadow)"/>
+<path d="M124 318 L124 286 C104 284 96 266 108 254 C104 238 118 224 134 228 C146 216 168 222 170 238 C184 244 184 266 168 272 C168 288 150 294 138 286 L138 318 Z" fill="#101F1C"/>
+<path d="M660 318 L660 288 C642 286 634 268 646 256 C642 240 656 226 672 230 C684 218 706 224 708 240 C722 246 722 268 706 274 C706 290 688 296 676 288 L674 318 Z" fill="#101F1C"/>
+<ellipse cx="480" cy="352" rx="210" ry="36" fill="url(#stGlow)"/>
+<ellipse cx="300" cy="352" rx="150" ry="28" fill="url(#stDoorGlow)"/>
+<ellipse cx="272" cy="350" rx="128" ry="10" fill="#0A1714" opacity="0.32"/>
+<path d="M156 332 L156 296 Q156 288 163 284 L184 272 L196 250 Q198 246 204 246 L384 246 Q390 246 390 252 L390 332 Z" fill="url(#stShell)"/>
+<rect x="156" y="302" width="234" height="30" fill="#E2542E"/>
+<rect x="156" y="324" width="234" height="8" fill="#B23A1C"/>
+<rect x="156" y="299.5" width="234" height="2.5" fill="#F3EBDA" opacity="0.6"/>
+<path d="M206 248 L216 224 Q218 221 222 221 L366 221 Q371 221 371 226 L371 248 Z" fill="#EDEFE8"/>
+<path d="M214 216 C252 204 330 202 372 212 C374 215 372 219 367 220 C328 212 258 214 220 224 C215 225 213 219 214 216 Z" fill="#8A5A32"/>
+<path d="M215 215 C253 204 330 202 371 212" fill="none" stroke="#F0C97A" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+<path d="M232 221 L232 227 M348 221 L348 227" fill="none" stroke="#C9D4C8" stroke-width="2.4" opacity="0.6"/>
+<path d="M192 271 L203 253 L236 253 L236 271 Z" fill="#16302B"/>
+<path d="M196 270 L205 256 L220 256 L206 270 Z" fill="#4E9E8E" opacity="0.22"/>
+<rect x="250" y="259" width="56" height="70" rx="3" fill="url(#stWin)"/>
+<path d="M250 298 L306 298 L306 316 L250 316 Z M258 264 L280 264 L280 290 L258 290 Z" fill="#5A4128" opacity="0.55"/>
+<rect x="252" y="332" width="44" height="5" rx="2" fill="#C9D4C8" opacity="0.5"/>
+<path d="M248 257 L248 331 M306 257 L306 331 M246 258 L308 258" fill="none" stroke="#C9D4C8" stroke-width="2.4" stroke-linecap="round" opacity="0.5"/>
+<ellipse cx="348" cy="276" rx="76" ry="48" fill="url(#stGlow)" opacity="0.55"/>
+<rect x="320" y="258" width="56" height="34" rx="4" fill="url(#stWin)"/>
+<path d="M320 262 L338 259 L332 292 L320 292 Z" fill="#C4643F" opacity="0.4"/>
+<rect x="320" y="258" width="56" height="34" rx="4" fill="none" stroke="#C9D4C8" stroke-width="1.6" opacity="0.55"/>
+<path d="M390 254 L390 330" fill="none" stroke="#F0C97A" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+<circle cx="200" cy="334" r="16" fill="#0F211D"/>
+<circle cx="200" cy="334" r="6.5" fill="#25392C"/>
+<circle cx="356" cy="334" r="16" fill="#0F211D"/>
+<circle cx="356" cy="334" r="6.5" fill="#25392C"/>
+<path d="M252 330 L306 330 L346 362 L226 362 Z" fill="#E2A32E" opacity="0.1"/>
+<path d="M388 249 C452 254 530 260 597 266 L597 274 C530 268 452 262 388 257 Z" fill="#F3EBDA"/>
+<path d="M388 257 C452 262 530 268 597 274 L597 280 C530 274 452 268 388 263 Z" fill="#F0C97A" opacity="0.32"/>
+<path d="M589 265 L599 266 L599 286 L589 285 Z" fill="#EDEFE8"/>
+<path d="M596 286 L599 350 M591 284 L580 344" fill="none" stroke="#C9D4C8" stroke-width="2.2" stroke-linecap="round" opacity="0.6"/>
+<path d="M418 331 L423 307 M418 331 L446 333 M446 333 L451 346 M418 331 L412 346" fill="none" stroke="#0F211D" stroke-width="3.4" stroke-linecap="round"/>
+<path d="M568 330 L563 306 M568 330 L540 332 M540 332 L535 345 M568 330 L574 345" fill="none" stroke="#0F211D" stroke-width="3.4" stroke-linecap="round"/>
+<rect x="474" y="316" width="44" height="4" rx="2" fill="#16261C"/>
+<path d="M481 320 L478 342 M511 320 L514 342" fill="none" stroke="#16261C" stroke-width="3" stroke-linecap="round"/>
+<circle cx="428" cy="299" r="4.6" fill="#0F211D"/>
+<path d="M429 306 L426 324" fill="none" stroke="#0F211D" stroke-width="11" stroke-linecap="round"/>
+<path d="M430 312 L442 318" fill="none" stroke="#0F211D" stroke-width="3.4" stroke-linecap="round"/>
+<path d="M427 325 L446 331" fill="none" stroke="#0F211D" stroke-width="4.6" stroke-linecap="round"/>
+<path d="M432 295 Q435 300 432 304" fill="none" stroke="#E2A32E" stroke-width="1.5" stroke-linecap="round" opacity="0.45"/>
+<circle cx="556" cy="297" r="4.6" fill="#0F211D"/>
+<path d="M555 304 L558 322" fill="none" stroke="#0F211D" stroke-width="11" stroke-linecap="round"/>
+<path d="M554 310 L543 316" fill="none" stroke="#0F211D" stroke-width="3.4" stroke-linecap="round"/>
+<path d="M557 323 L540 329" fill="none" stroke="#0F211D" stroke-width="4.6" stroke-linecap="round"/>
+<path d="M552 293 Q549 298 552 302" fill="none" stroke="#E2A32E" stroke-width="1.5" stroke-linecap="round" opacity="0.45"/>
+<ellipse cx="496" cy="306" rx="112" ry="92" fill="url(#stGlow)"/>
+<rect x="490" y="300" width="12" height="16" rx="2" fill="url(#stWin)"/>
+<path d="M488 300 L504 300 L502 295 L490 295 Z" fill="#C9D4C8"/>
+<path d="M491 295 Q496 288 501 295" fill="none" stroke="#C9D4C8" stroke-width="1.3" stroke-linecap="round"/>
+<path d="M404 366 L400 356 M432 368 L436 358 M468 370 L464 360 M512 369 L516 359 M548 367 L544 357 M584 364 L588 355" fill="none" stroke="#3C5B45" stroke-width="1.6" stroke-linecap="round" opacity="0.45"/>
+<path d="M0 420 L0 392 C60 384 120 396 180 390 C240 384 300 398 360 392 C420 386 480 400 540 394 C600 388 660 400 720 394 L800 390 L800 420 Z" fill="#0A1714"/>
+<path d="M24 392 L20 376 M40 393 L44 378 M92 390 L88 374 M118 392 L122 378 M176 390 L172 376 M210 393 L214 379 M268 391 L264 375 M300 392 L304 378 M356 390 L352 376 M392 393 L396 379 M444 391 L440 377 M486 392 L490 378 M540 391 L536 375 M588 393 L592 379 M644 391 L640 377 M700 392 L704 378 M752 390 L748 376 M780 393 L784 379" fill="none" stroke="#0A1714" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M-10 0 L-10 214 C12 210 28 194 32 178 C54 184 76 172 78 152 C100 150 114 132 108 112 C128 102 134 78 122 60 C136 44 134 20 118 8 C104 -6 -10 -8 -10 0 Z" fill="#0A1714"/>
+<path d="M52 176 C58 250 54 320 46 420 L88 420 C82 320 84 250 84 172 Z" fill="#0A1714"/>
+<path d="M810 -8 L690 -8 C674 8 676 34 690 48 C674 62 676 88 692 98 C680 116 688 140 706 146 C702 168 716 186 738 188 C748 202 770 210 786 204 L810 208 Z" fill="#0A1714"/>
+<path d="M732 178 C740 250 738 320 730 420 L772 420 C766 320 768 250 768 174 Z" fill="#0A1714"/>
+</svg></div>
+    <div class="front-body">
+      <p class="eyebrow">Für</p>
+      <p class="name">Kim</p>
+      <p class="sub">Route&nbsp;23</p>
+      <div class="rule"></div>
+    </div>
+    <div class="front-foot">
+      <span>23 · 08 · 2026</span>
+      <span>Alles Gute</span>
+    </div>
+  </div>
+
+</div>
