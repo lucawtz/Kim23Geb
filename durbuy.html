@@ -852,7 +852,7 @@ body.parked .band-far{opacity:.18}
 }
 .mapwrap svg{display:block;width:100%;height:auto}
 .map-chip{
-  position:absolute;bottom:.75rem;left:.75rem;z-index:2;
+  position:absolute;top:.75rem;right:.75rem;z-index:2;
   display:flex;align-items:baseline;gap:.4rem;
   background:rgba(8,18,15,.9);border:1px solid rgba(201,212,200,.2);
   border-radius:2px;padding:.45rem .75rem;
@@ -885,6 +885,42 @@ body.parked .band-far{opacity:.18}
   background:linear-gradient(168deg,#12403B,#0B1815);
 }
 .slot.slot-other[aria-pressed="true"] .slot-when{color:var(--paper)}
+
+.map-replay{
+  position:absolute;bottom:.75rem;right:.75rem;z-index:2;
+  appearance:none;cursor:pointer;
+  background:rgba(8,18,15,.9);border:1px solid rgba(201,212,200,.2);
+  border-radius:2px;padding:.6rem .9rem;min-height:44px;
+  font-family:var(--f-data);font-size:.62rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--stone);line-height:1;
+  transition:color .25s ease,border-color .25s ease;
+}
+.map-replay:hover{color:var(--paper);border-color:rgba(201,212,200,.45)}
+.wp{transition:opacity .5s ease}
+
+/* Bildband über die volle Breite, flacher Ausschnitt */
+.plate-band{margin-top:clamp(1.2rem,3.5vw,1.8rem)}
+.plate-band img{aspect-ratio:3/1;object-fit:cover;height:auto}
+@media (max-width:760px){.plate-band img{aspect-ratio:2/1}}
+/* Kleines Zweitbild unter einem großen */
+.plate-small{margin-top:.6rem}
+.plate-small img{aspect-ratio:5/2;object-fit:cover}
+
+/* Während die Route läuft: Knopf zum Überspringen, sonst versteckt */
+.map-skip{
+  position:absolute;bottom:.75rem;left:.75rem;z-index:3;
+  appearance:none;cursor:pointer;display:none;
+  background:var(--camper);border:0;border-radius:2px;
+  padding:.6rem 1rem;min-height:44px;
+  font-family:var(--f-data);font-size:.62rem;letter-spacing:.16em;
+  text-transform:uppercase;color:#1A0B06;font-weight:600;line-height:1;
+}
+html.angehalten .map-skip{display:block}
+html.angehalten .map-replay{display:none}
+html.angehalten{overscroll-behavior:none}
+/* Der Wiederhol-Knopf erscheint erst, wenn die Fahrt durch ist */
+.map-replay{opacity:0;transition:opacity .5s ease .3s;pointer-events:none}
+.mapwrap.fertig .map-replay{opacity:1;pointer-events:auto}
 </style>
 
 <div class="sky" id="sky"></div>
@@ -1050,34 +1086,40 @@ body.parked .band-far{opacity:.18}
       <div class="shot" style="margin-top:clamp(1.4rem,4vw,2.2rem)">
         <div class="mapwrap reveal d2">
           <div class="map-chip"><span class="map-chip-lead">noch</span><b id="odoNum">113</b><span>km</span></div>
+          <button class="map-replay" id="mapReplay" type="button" aria-label="Fahrt noch einmal abspielen">nochmal</button>
+          <button class="map-skip" id="mapSkip" type="button">überspringen</button>
           <svg viewBox="0 0 820 404" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Route von Mürlenbach nach Durbuy, 112.6 Kilometer">
             <defs><filter id="mapGlow" x="-20%" y="-20%" width="140%" height="140%">
               <feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
             <rect width="820" height="404" fill="#0B1815"/>
             <g stroke="#1E3E37" stroke-width="1" opacity=".5"><line x1="117" y1="0" x2="117" y2="404"/><line x1="234" y1="0" x2="234" y2="404"/><line x1="351" y1="0" x2="351" y2="404"/><line x1="469" y1="0" x2="469" y2="404"/><line x1="586" y1="0" x2="586" y2="404"/><line x1="703" y1="0" x2="703" y2="404"/><line x1="0" y1="101" x2="820" y2="101"/><line x1="0" y1="202" x2="820" y2="202"/><line x1="0" y1="303" x2="820" y2="303"/></g>
-            <path d="M774.0,326.6 773.5,327.8 767.5,326.5 751.6,327.6 741.6,330.2 738.3,323.8 736.5,324.1 732.2,318.2 724.1,318.0 719.3,313.9 717.6,313.9 717.4,310.1 706.9,316.3 706.7,318.2 688.1,322.3 683.9,318.2 684.4,310.8 672.3,293.1 670.7,284.5 665.8,279.8 663.3,287.1 653.7,300.5 649.1,303.1 640.3,302.9 639.7,304.1 635.4,288.8 631.0,283.6 625.0,280.0 590.0,269.2 581.8,271.1 569.5,279.4 559.1,279.8 551.2,275.3 543.1,264.3 538.3,260.1 513.6,251.3 509.4,246.5 497.0,221.0 492.0,218.1 472.0,216.6 466.7,214.4 463.0,209.3 459.7,194.3 443.9,180.8 442.6,173.8 450.0,148.9 448.9,141.6 445.4,135.1 433.8,125.0 412.8,116.4 383.0,90.3 381.9,84.2 387.3,67.1 391.6,63.2 395.3,62.0 388.8,65.6 387.2,64.5 384.6,71.3 378.8,72.1 367.7,76.6 361.2,76.4 356.4,81.8 347.8,84.3 343.6,92.0 339.2,95.9 330.8,95.4 326.8,101.7 319.7,101.9 315.3,104.0 313.4,103.3 311.5,107.8 307.8,110.4 303.2,109.6 298.6,111.5 290.7,117.8 289.3,124.3 283.0,122.1 279.9,116.4 269.0,112.7 257.4,113.6 247.8,109.5 235.2,111.0 222.4,108.0 218.9,112.9 212.1,112.3 208.0,109.7 210.8,105.4 208.8,102.4 209.7,98.7 205.8,99.2 204.2,101.0 201.1,99.7 194.2,100.4 180.5,95.6 178.3,91.0 167.1,84.1 163.8,83.6 164.7,79.8 161.7,77.2 157.1,75.7 151.3,78.8 149.6,76.0 145.9,76.8 140.7,74.5 141.1,69.8 137.2,69.9 129.4,67.0 117.5,78.0 110.3,82.0 106.6,87.9 100.2,88.1 101.6,91.4 100.8,95.5 91.0,101.0 91.3,103.3 85.1,113.5 79.1,128.0 73.8,129.7 67.8,129.2 57.7,135.7 52.3,133.7 50.9,131.3 46.0,130.9 48.5,128.1" fill="none" stroke="#3E5A52" stroke-width="4" stroke-dasharray="10 9" stroke-linecap="round" stroke-linejoin="round"/>
-            <text class="map-alt" x="792" y="40" text-anchor="end">Nordroute · 125 km</text>
-            <path d="M774.0,326.6 773.5,327.8 767.5,326.5 760.7,327.7 754.8,327.3 754.0,328.3 751.6,327.6 749.4,328.8 744.0,328.9 741.6,330.2 738.3,323.8 736.5,324.1 735.3,321.7 733.3,320.8 732.2,318.2 724.1,318.0 719.3,313.9 717.6,313.9 717.4,310.1 714.2,311.0 711.3,314.0 706.9,316.3 706.7,318.2 687.9,322.2 686.9,320.0 683.7,317.8 684.4,310.8 672.3,293.1 670.8,289.0 670.7,284.5 667.3,282.4 665.8,279.8 663.3,287.1 658.5,292.4 653.7,300.5 649.1,303.1 640.3,302.9 639.8,304.1 636.5,290.8 633.7,286.4 629.9,282.7 624.3,279.7 605.5,274.7 595.0,269.9 589.3,269.2 583.6,270.3 579.6,272.4 572.8,277.8 567.7,279.9 562.2,280.4 556.7,279.0 550.6,274.7 543.4,264.6 538.3,260.1 532.3,257.3 516.5,252.9 512.1,250.1 509.4,246.5 498.7,223.3 495.7,219.8 491.0,217.9 471.4,216.5 466.3,214.0 462.8,208.7 460.5,195.8 455.5,189.7 453.0,191.9 450.4,187.6 443.8,187.4 434.2,183.4 423.3,186.9 420.7,186.9 418.3,184.9 417.1,177.4 414.4,173.5 412.3,172.0 400.8,171.0 400.0,167.5 383.9,167.0 372.2,171.6 371.0,173.1 370.1,177.8 367.3,181.6 361.6,184.2 357.2,184.1 354.3,186.7 344.2,190.8 343.2,193.2 339.9,193.9 337.0,198.3 336.1,203.4 333.9,206.7 334.9,211.0 332.7,213.3 326.1,211.2 305.2,210.7 296.4,215.7 293.4,216.0 291.3,217.8 286.0,216.4 283.5,216.9 273.1,226.5 264.9,227.8 254.9,225.8 237.7,230.0 227.1,229.9 220.7,224.4 207.4,217.1 198.9,210.7 197.9,205.0 200.4,195.4 199.9,194.0 196.8,193.3 191.2,193.6 187.1,187.1 180.2,188.3 176.9,184.6 173.8,185.4 172.2,183.4 171.6,178.7 168.0,176.5 165.2,176.5 161.7,172.9 158.2,171.6 153.5,166.8 149.0,165.3 141.0,159.7 139.8,151.2 138.3,148.2 134.4,143.8 134.0,138.3 131.6,136.2 129.3,130.1 124.9,129.2 121.8,130.8 118.0,130.9 115.7,132.4 114.3,131.0 109.9,129.4 104.2,128.8 98.6,126.7 94.1,130.2 90.8,130.0 87.3,131.8 83.3,131.7 81.1,130.6 80.4,128.1 76.7,131.4 73.8,129.7 67.8,129.2 57.7,135.7 52.3,133.7 50.9,131.3 48.1,130.2 46.0,130.9 47.4,129.5 47.2,128.4 48.5,128.1" fill="none" stroke="#7A2E17" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" opacity=".45"/>
-            <path id="mapRoute" d="M774.0,326.6 773.5,327.8 767.5,326.5 760.7,327.7 754.8,327.3 754.0,328.3 751.6,327.6 749.4,328.8 744.0,328.9 741.6,330.2 738.3,323.8 736.5,324.1 735.3,321.7 733.3,320.8 732.2,318.2 724.1,318.0 719.3,313.9 717.6,313.9 717.4,310.1 714.2,311.0 711.3,314.0 706.9,316.3 706.7,318.2 687.9,322.2 686.9,320.0 683.7,317.8 684.4,310.8 672.3,293.1 670.8,289.0 670.7,284.5 667.3,282.4 665.8,279.8 663.3,287.1 658.5,292.4 653.7,300.5 649.1,303.1 640.3,302.9 639.8,304.1 636.5,290.8 633.7,286.4 629.9,282.7 624.3,279.7 605.5,274.7 595.0,269.9 589.3,269.2 583.6,270.3 579.6,272.4 572.8,277.8 567.7,279.9 562.2,280.4 556.7,279.0 550.6,274.7 543.4,264.6 538.3,260.1 532.3,257.3 516.5,252.9 512.1,250.1 509.4,246.5 498.7,223.3 495.7,219.8 491.0,217.9 471.4,216.5 466.3,214.0 462.8,208.7 460.5,195.8 455.5,189.7 453.0,191.9 450.4,187.6 443.8,187.4 434.2,183.4 423.3,186.9 420.7,186.9 418.3,184.9 417.1,177.4 414.4,173.5 412.3,172.0 400.8,171.0 400.0,167.5 383.9,167.0 372.2,171.6 371.0,173.1 370.1,177.8 367.3,181.6 361.6,184.2 357.2,184.1 354.3,186.7 344.2,190.8 343.2,193.2 339.9,193.9 337.0,198.3 336.1,203.4 333.9,206.7 334.9,211.0 332.7,213.3 326.1,211.2 305.2,210.7 296.4,215.7 293.4,216.0 291.3,217.8 286.0,216.4 283.5,216.9 273.1,226.5 264.9,227.8 254.9,225.8 237.7,230.0 227.1,229.9 220.7,224.4 207.4,217.1 198.9,210.7 197.9,205.0 200.4,195.4 199.9,194.0 196.8,193.3 191.2,193.6 187.1,187.1 180.2,188.3 176.9,184.6 173.8,185.4 172.2,183.4 171.6,178.7 168.0,176.5 165.2,176.5 161.7,172.9 158.2,171.6 153.5,166.8 149.0,165.3 141.0,159.7 139.8,151.2 138.3,148.2 134.4,143.8 134.0,138.3 131.6,136.2 129.3,130.1 124.9,129.2 121.8,130.8 118.0,130.9 115.7,132.4 114.3,131.0 109.9,129.4 104.2,128.8 98.6,126.7 94.1,130.2 90.8,130.0 87.3,131.8 83.3,131.7 81.1,130.6 80.4,128.1 76.7,131.4 73.8,129.7 67.8,129.2 57.7,135.7 52.3,133.7 50.9,131.3 48.1,130.2 46.0,130.9 47.4,129.5 47.2,128.4 48.5,128.1" fill="none" stroke="#E2542E" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" filter="url(#mapGlow)"/>
-            <g><circle cx="774.0" cy="326.6" r="7" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/><circle class="map-minor" cx="653.7" cy="300.5" r="5" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/><g class="map-minor"><line x1="492.0" y1="205.1" x2="492.0" y2="231.1" stroke="#8DA093" stroke-width="2" stroke-dasharray="4 4"/></g><circle class="map-minor" cx="461.0" cy="197.3" r="5" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/><circle class="map-minor" cx="334.2" cy="206.2" r="5" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/><circle cx="225.7" cy="228.7" r="7" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/></g>
-            <circle cx="774.0" cy="326.6" r="11" fill="#E2542E"/><circle cx="774.0" cy="326.6" r="4.5" fill="#0B1815"/>
+            <path d="M46.0,77.4 46.5,76.2 52.5,77.5 68.4,76.4 78.4,73.8 81.7,80.2 83.5,79.9 87.8,85.8 95.9,86.0 100.7,90.1 102.4,90.1 102.6,93.9 113.1,87.7 113.3,85.8 131.9,81.7 136.1,85.8 135.6,93.2 147.7,110.9 149.3,119.5 154.2,124.2 156.7,116.9 166.3,103.5 170.9,100.9 179.7,101.1 180.3,99.9 184.6,115.2 189.0,120.4 195.0,124.0 230.0,134.8 238.2,132.9 250.5,124.6 260.9,124.2 268.8,128.7 276.9,139.7 281.7,143.9 306.4,152.7 310.6,157.5 323.0,183.0 328.0,185.9 348.0,187.4 353.3,189.6 357.0,194.7 360.3,209.7 376.1,223.2 377.4,230.2 370.0,255.1 371.1,262.4 374.6,268.9 386.2,279.0 407.2,287.6 437.0,313.7 438.1,319.8 432.7,336.9 428.4,340.8 424.7,342.0 431.2,338.4 432.8,339.5 435.4,332.7 441.2,331.9 452.3,327.4 458.8,327.6 463.6,322.2 472.2,319.7 476.4,312.0 480.8,308.1 489.2,308.6 493.2,302.3 500.3,302.1 504.7,300.0 506.6,300.7 508.5,296.2 512.2,293.6 516.8,294.4 521.4,292.5 529.3,286.2 530.7,279.7 537.0,281.9 540.1,287.6 551.0,291.3 562.6,290.4 572.2,294.5 584.8,293.0 597.6,296.0 601.1,291.1 607.9,291.7 612.0,294.3 609.2,298.6 611.2,301.6 610.3,305.3 614.2,304.8 615.8,303.0 618.9,304.3 625.8,303.6 639.5,308.4 641.7,313.0 652.9,319.9 656.2,320.4 655.3,324.2 658.3,326.8 662.9,328.3 668.7,325.2 670.4,328.0 674.1,327.2 679.3,329.5 678.9,334.2 682.8,334.1 690.6,337.0 702.5,326.0 709.7,322.0 713.4,316.1 719.8,315.9 718.4,312.6 719.2,308.5 729.0,303.0 728.7,300.7 734.9,290.5 740.9,276.0 746.2,274.3 752.2,274.8 762.3,268.3 767.7,270.3 769.1,272.7 774.0,273.1 771.5,275.9" fill="none" stroke="#3E5A52" stroke-width="4" stroke-dasharray="10 9" stroke-linecap="round" stroke-linejoin="round"/>
+            <text class="map-alt" x="28" y="388" text-anchor="start">Nordroute · 125 km</text>
+            <path d="M46.0,77.4 46.5,76.2 52.5,77.5 59.3,76.3 65.2,76.7 66.0,75.7 68.4,76.4 70.6,75.2 76.0,75.1 78.4,73.8 81.7,80.2 83.5,79.9 84.7,82.3 86.7,83.2 87.8,85.8 95.9,86.0 100.7,90.1 102.4,90.1 102.6,93.9 105.8,93.0 108.7,90.0 113.1,87.7 113.3,85.8 132.1,81.8 133.1,84.0 136.3,86.2 135.6,93.2 147.7,110.9 149.2,115.0 149.3,119.5 152.7,121.6 154.2,124.2 156.7,116.9 161.5,111.6 166.3,103.5 170.9,100.9 179.7,101.1 180.2,99.9 183.5,113.2 186.3,117.6 190.1,121.3 195.7,124.3 214.5,129.3 225.0,134.1 230.7,134.8 236.4,133.7 240.4,131.6 247.2,126.2 252.3,124.1 257.8,123.6 263.3,125.0 269.4,129.3 276.6,139.4 281.7,143.9 287.7,146.7 303.5,151.1 307.9,153.9 310.6,157.5 321.3,180.7 324.3,184.2 329.0,186.1 348.6,187.5 353.7,190.0 357.2,195.3 359.5,208.2 364.5,214.3 367.0,212.1 369.6,216.4 376.2,216.6 385.8,220.6 396.7,217.1 399.3,217.1 401.7,219.1 402.9,226.6 405.6,230.5 407.7,232.0 419.2,233.0 420.0,236.5 436.1,237.0 447.8,232.4 449.0,230.9 449.9,226.2 452.7,222.4 458.4,219.8 462.8,219.9 465.7,217.3 475.8,213.2 476.8,210.8 480.1,210.1 483.0,205.7 483.9,200.6 486.1,197.3 485.1,193.0 487.3,190.7 493.9,192.8 514.8,193.3 523.6,188.3 526.6,188.0 528.7,186.2 534.0,187.6 536.5,187.1 546.9,177.5 555.1,176.2 565.1,178.2 582.3,174.0 592.9,174.1 599.3,179.6 612.6,186.9 621.1,193.3 622.1,199.0 619.6,208.6 620.1,210.0 623.2,210.7 628.8,210.4 632.9,216.9 639.8,215.7 643.1,219.4 646.2,218.6 647.8,220.6 648.4,225.3 652.0,227.5 654.8,227.5 658.3,231.1 661.8,232.4 666.5,237.2 671.0,238.7 679.0,244.3 680.2,252.8 681.7,255.8 685.6,260.2 686.0,265.7 688.4,267.8 690.7,273.9 695.1,274.8 698.2,273.2 702.0,273.1 704.3,271.6 705.7,273.0 710.1,274.6 715.8,275.2 721.4,277.3 725.9,273.8 729.2,274.0 732.7,272.2 736.7,272.3 738.9,273.4 739.6,275.9 743.3,272.6 746.2,274.3 752.2,274.8 762.3,268.3 767.7,270.3 769.1,272.7 771.9,273.8 774.0,273.1 772.6,274.5 772.8,275.6 771.5,275.9" fill="none" stroke="#7A2E17" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" opacity=".4"/>
+            <path id="mapRoute" d="M46.0,77.4 46.5,76.2 52.5,77.5 59.3,76.3 65.2,76.7 66.0,75.7 68.4,76.4 70.6,75.2 76.0,75.1 78.4,73.8 81.7,80.2 83.5,79.9 84.7,82.3 86.7,83.2 87.8,85.8 95.9,86.0 100.7,90.1 102.4,90.1 102.6,93.9 105.8,93.0 108.7,90.0 113.1,87.7 113.3,85.8 132.1,81.8 133.1,84.0 136.3,86.2 135.6,93.2 147.7,110.9 149.2,115.0 149.3,119.5 152.7,121.6 154.2,124.2 156.7,116.9 161.5,111.6 166.3,103.5 170.9,100.9 179.7,101.1 180.2,99.9 183.5,113.2 186.3,117.6 190.1,121.3 195.7,124.3 214.5,129.3 225.0,134.1 230.7,134.8 236.4,133.7 240.4,131.6 247.2,126.2 252.3,124.1 257.8,123.6 263.3,125.0 269.4,129.3 276.6,139.4 281.7,143.9 287.7,146.7 303.5,151.1 307.9,153.9 310.6,157.5 321.3,180.7 324.3,184.2 329.0,186.1 348.6,187.5 353.7,190.0 357.2,195.3 359.5,208.2 364.5,214.3 367.0,212.1 369.6,216.4 376.2,216.6 385.8,220.6 396.7,217.1 399.3,217.1 401.7,219.1 402.9,226.6 405.6,230.5 407.7,232.0 419.2,233.0 420.0,236.5 436.1,237.0 447.8,232.4 449.0,230.9 449.9,226.2 452.7,222.4 458.4,219.8 462.8,219.9 465.7,217.3 475.8,213.2 476.8,210.8 480.1,210.1 483.0,205.7 483.9,200.6 486.1,197.3 485.1,193.0 487.3,190.7 493.9,192.8 514.8,193.3 523.6,188.3 526.6,188.0 528.7,186.2 534.0,187.6 536.5,187.1 546.9,177.5 555.1,176.2 565.1,178.2 582.3,174.0 592.9,174.1 599.3,179.6 612.6,186.9 621.1,193.3 622.1,199.0 619.6,208.6 620.1,210.0 623.2,210.7 628.8,210.4 632.9,216.9 639.8,215.7 643.1,219.4 646.2,218.6 647.8,220.6 648.4,225.3 652.0,227.5 654.8,227.5 658.3,231.1 661.8,232.4 666.5,237.2 671.0,238.7 679.0,244.3 680.2,252.8 681.7,255.8 685.6,260.2 686.0,265.7 688.4,267.8 690.7,273.9 695.1,274.8 698.2,273.2 702.0,273.1 704.3,271.6 705.7,273.0 710.1,274.6 715.8,275.2 721.4,277.3 725.9,273.8 729.2,274.0 732.7,272.2 736.7,272.3 738.9,273.4 739.6,275.9 743.3,272.6 746.2,274.3 752.2,274.8 762.3,268.3 767.7,270.3 769.1,272.7 771.9,273.8 774.0,273.1 772.6,274.5 772.8,275.6 771.5,275.9" fill="none" stroke="#E2542E" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" filter="url(#mapGlow)"/>
+            <g id="mapWps"><g class="wp" data-x="46.0" data-y="77.4"><circle cx="46.0" cy="77.4" r="7" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/><text class="map-label" x="66.0" y="83.4" text-anchor="start">Mürlenbach</text></g><g class="wp map-minor" data-x="328.0" data-y="185.9"><line x1="328.0" y1="172.9" x2="328.0" y2="198.9" stroke="#8DA093" stroke-width="2" stroke-dasharray="4 4"/></g><g class="wp map-minor" data-x="359.0" data-y="206.7"><circle cx="359.0" cy="206.7" r="5" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/><text class="map-label" x="359.0" y="238.7" text-anchor="middle">St. Vith</text></g><g class="wp map-minor" data-x="485.8" data-y="197.8"><circle cx="485.8" cy="197.8" r="5" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/><text class="map-label" x="485.8" y="181.8" text-anchor="middle">Vielsalm</text></g><g class="wp" data-x="594.3" data-y="175.3"><circle cx="594.3" cy="175.3" r="7" fill="#0B1815" stroke="#C9D4C8" stroke-width="2.5"/><text class="map-label" x="594.3" y="135.3" text-anchor="middle">Baraque de Fraiture</text><text class="map-sub" x="594.3" y="157.3" text-anchor="middle">653 m · höchster Punkt</text></g></g>
+            <circle cx="46.0" cy="77.4" r="11" fill="#E2542E"/><circle cx="46.0" cy="77.4" r="4.5" fill="#0B1815"/>
             <g id="mapGoal" opacity="0">
-              <path d="M48.5 132.1 c-13-17-19-24-19-33 a19 19 0 1 1 38 0 c0 9-6 16-19 33z" fill="#E2A32E"/>
-              <circle cx="48.5" cy="98.1" r="7" fill="#0B1815"/></g>
-            <text class="map-label" id="mapGoalLabel" x="68.5" y="134.1" text-anchor="start">?</text>
-            <text class="map-sub" id="mapGoalSub" x="68.5" y="156.1" text-anchor="start"></text>
-            <g><text class="map-label" x="754.0" y="310.6" text-anchor="end">Mürlenbach</text><text class="map-label map-minor" x="659.7" y="284.5" text-anchor="middle">Prüm</text><text class="map-label map-minor" x="461.0" y="229.3" text-anchor="middle">St. Vith</text><text class="map-label map-minor" x="334.2" y="190.2" text-anchor="middle">Vielsalm</text><text class="map-label" x="225.7" y="262.7" text-anchor="middle">Baraque de Fraiture</text><text class="map-sub" x="225.7" y="284.7" text-anchor="middle">653 m · höchster Punkt</text></g>
-            <circle id="mapDot" cx="774.0" cy="326.6" r="9" fill="#F3EBDA" opacity="0"/>
+              <path d="M771.5 279.9 c-13-17-19-24-19-33 a19 19 0 1 1 38 0 c0 9-6 16-19 33z" fill="#E2A32E"/>
+              <circle cx="771.5" cy="245.89999999999998" r="7" fill="#0B1815"/></g>
+            <g id="mapGoalText" opacity="0">
+              <text class="map-label" x="749.5" y="281.9" text-anchor="end">Durbuy</text>
+              <text class="map-sub" x="749.5" y="303.9" text-anchor="end">Belgien · Ardennen</text></g>
+            <circle id="mapDot" cx="46.0" cy="77.4" r="9" fill="#F3EBDA" opacity="0"/>
             <g class="map-scale">
               <line x1="350" y1="378" x2="450" y2="378" stroke="#7D8E82" stroke-width="2.5"/>
               <line x1="350" y1="372" x2="350" y2="384" stroke="#7D8E82" stroke-width="2.5"/>
               <line x1="450" y1="372" x2="450" y2="384" stroke="#7D8E82" stroke-width="2.5"/>
               <text class="map-sub" x="400" y="366" text-anchor="middle">20 km</text></g>
+            <g class="map-compass" opacity=".65">
+              <line x1="778" y1="340" x2="778" y2="374" stroke="#7D8E82" stroke-width="2"/>
+              <path d="M778 378 l-5 -9 h10 z" fill="#7D8E82"/>
+              <text class="map-sub" x="778" y="334" text-anchor="middle">N</text></g>
           </svg>
         </div>
         <div>
-          <p class="lead reveal d2">Ab unserer Haustür. Scroll weiter –
-            die Strecke zeichnet sich von allein.</p>
+          <p class="lead reveal d2">Ab unserer Haustür bis vor die Burg. Einmal kurz zusehen –
+            danach geht es weiter.</p>
           <dl class="facts reveal d3">
             <div class="fact"><dt>Strecke</dt><dd>112,6 km<em>ab Mürlenbach</em></dd></div>
             <div class="fact"><dt>Fahrzeit</dt><dd>2 Std 5 Min<em>mit Camper eher 2½ bis 3</em></dd></div>
@@ -1094,62 +1136,27 @@ body.parked .band-far{opacity:.18}
     <div class="wrap">
       <p class="eyebrow reveal">Stopp 03 — Ankunft</p>
       <h2 class="reveal d1">Die kleinste<br>Stadt der Welt</h2>
-      <div class="split" style="margin-top:clamp(1.6rem,5vw,2.6rem)">
+      <div class="shot" style="margin-top:clamp(1.4rem,4vw,2.2rem)">
+        <div class="plate reveal d2">
+            <img src="img/blick-800.webp" sizes="(max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Durbuy im Abendlicht, vom Hang gegenüber">
+            <span class="plate-cap">Durbuy im Abendlicht, vom Hang gegenüber</span>
+          </div>
         <div>
-          <p class="lead reveal d2">Durbuy hat im historischen Kern rund 400 Einwohner – und trotzdem seit
-            1331 offiziell Stadtrechte. Verliehen von Johann von Böhmen, und seitdem nie wieder abgegeben.</p>
-          <p class="reveal d3">Die Ourthe legt eine Schleife um den Burgfelsen, oben thront das Schloss der
-            Grafen d’Ursel. Zieh feste Schuhe an: die Gassen sind mit runden Kieseln aus genau diesem Fluss
-            gepflastert – wunderschön und gnadenlos glatt.</p>
-        </div>
-        <div class="reveal d3">
-          <p class="quote">Um kurz nach sieben steht der Nebel noch wie Milch in der Flussschleife,
-            und die Burg schwimmt darüber wie eine Insel.</p>
-          <dl class="facts" style="margin-top:1.8rem">
+          <p class="lead reveal d2">Durbuy hat im historischen Kern rund 400 Einwohner – und trotzdem
+            seit 1331 offiziell Stadtrechte. Verliehen von Johann von Böhmen, und seitdem nie
+            wieder abgegeben.</p>
+          <p class="quote reveal d3" style="margin-top:1.2rem">Um kurz nach sieben steht der Nebel noch wie
+            Milch in der Flussschleife, und die Burg schwimmt darüber wie eine Insel.</p>
+          <dl class="facts reveal d3" style="margin-top:1.6rem">
             <div class="fact"><dt>Stadtrechte</dt><dd>seit 1331<em>Johann von Böhmen</em></dd></div>
             <div class="fact"><dt>Altstadtkern</dt><dd>ca. 400<em>Einwohner</em></dd></div>
-            <div class="fact"><dt>Fluss</dt><dd>Ourthe<em>ca. 18 °C im September</em></dd></div>
-            <div class="fact"><dt>Sonnenaufgang</dt><dd>07:08 Uhr<em>Samstag, 12.09.</em></dd></div>
+            <div class="fact"><dt>Sonnenuntergang</dt><dd>20:01 Uhr<em>Samstag, 12.09.</em></dd></div>
           </dl>
         </div>
       </div>
     </div>
   </section>
 
-
-  <!-- ══ 04 ECHTE BILDER ══ -->
-  <section class="scene" id="s-fotos" data-stop="Bilder" data-sky="day">
-    <div class="wrap">
-      <p class="eyebrow reveal">Zwischenstopp — keine Zeichnung</p>
-      <h2 class="reveal d1">So sieht es<br>da wirklich aus</h2>
-      <p class="lead reveal d2" style="margin-top:1.1rem;max-width:38ch">
-        Keine Zeichnungen mehr. So sieht die kleinste Stadt der Welt aus,
-        wenn man wirklich davorsteht.</p>
-      <div class="gallery reveal d3">
-          <figure>
-            <img src="img/blick-800.webp" sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Durbuy im Abendlicht, vom Hang aus">
-            <figcaption>Durbuy im Abendlicht, vom Hang aus</figcaption>
-          </figure>
-          <figure>
-            <img src="img/gasse-800.webp" srcset="img/gasse-800.webp 800w, img/gasse-1600.webp 1600w" sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Gassen mit Läden und Terrassen">
-            <figcaption>Gassen mit Läden und Terrassen</figcaption>
-          </figure>
-          <figure>
-            <img src="img/platz-800.webp" srcset="img/platz-800.webp 800w, img/platz-1600.webp 1600w" sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Fachwerk am Platz">
-            <figcaption>Fachwerk am Platz</figcaption>
-          </figure>
-          <figure>
-            <img src="img/pflaster-800.webp" sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Kopfsteinpflaster in der Altstadt">
-            <figcaption>Kopfsteinpflaster in der Altstadt</figcaption>
-          </figure>
-          <figure>
-            <img src="img/zipline-800.webp" sizes="(max-width:820px) 82vw, 33vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Zipline über dem Wasser, Adventure Valley">
-            <figcaption>Zipline über dem Wasser, Adventure Valley</figcaption>
-          </figure>
-      </div>
-      <p class="swipe-hint reveal d4">Wischen</p>
-    </div>
-  </section>
 
   <!-- ══ 05 DIE OURTHE ══ -->
   <section class="scene" id="s-ourthe" data-stop="Ourthe" data-sky="river">
@@ -1192,6 +1199,10 @@ body.parked .band-far{opacity:.18}
           <img src="img/ferrata-800.webp" sizes="(max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Der Klettersteig oberhalb von Durbuy · Eisenbügel im Kalkstein">
           <span class="plate-cap">Der Klettersteig oberhalb von Durbuy · Eisenbügel im Kalkstein</span>
         </div>
+          <div class="plate plate-small reveal d2">
+            <img src="img/zipline-800.webp" sizes=" (max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Die Zipline über dem Wasser">
+            <span class="plate-cap">Die Zipline über dem Wasser</span>
+          </div>
         <div>
           <p class="lead reveal d2">Der Klettersteig oberhalb von Durbuy hängt an einer Felswand, die seit
             300 Millionen Jahren da ist. Wir hängen deutlich kürzer dran.</p>
@@ -1215,6 +1226,10 @@ body.parked .band-far{opacity:.18}
     <div class="wrap">
       <p class="eyebrow reveal">Stopp 07 — Jetzt du</p>
       <h2 class="reveal d1">Aber entscheiden<br>darfst du</h2>
+      <div class="plate plate-band reveal d2">
+            <img src="img/gasse-800.webp" srcset="img/gasse-800.webp 800w, img/gasse-1600.webp 1600w" sizes="92vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Gassen, Läden und Terrassen – das ist die Kulisse">
+            <span class="plate-cap">Gassen, Läden und Terrassen – das ist die Kulisse</span>
+          </div>
       <p class="lead reveal d2" style="margin-top:1.2rem;max-width:44ch">
         Sechs Erlebnisse stehen zur Auswahl. Nichts davon ist fest verplant –
         <span class="emo">wir entscheiden vor Ort, nach Wetter und Laune.</span>
@@ -1242,6 +1257,10 @@ body.parked .band-far{opacity:.18}
     <div class="wrap">
       <p class="eyebrow reveal">Stopp 08 — Wann</p>
       <h2 class="reveal d1">Such dir das<br>Wochenende aus</h2>
+      <div class="plate plate-band reveal d2">
+            <img src="img/platz-800.webp" srcset="img/platz-800.webp 800w, img/platz-1600.webp 1600w" sizes="92vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Am Place aux Foires sitzt man draußen, solange es geht">
+            <span class="plate-cap">Am Place aux Foires sitzt man draußen, solange es geht</span>
+          </div>
       <p class="lead reveal d2" style="margin-top:1.2rem;max-width:40ch">
         Der 11. bis 13. September ist geblockt. Wie viel davon wir uns nehmen, entscheidest du –
         und wenn du an dem Wochenende nicht kannst, sagst du das einfach.
@@ -1403,6 +1422,10 @@ body.parked .band-far{opacity:.18}
           <p class="reveal d3">Der Camper bleibt stehen, sobald wir angekommen sind – bei zweien
             davon kommt man abends zu Fuß in die Altstadt und wieder zurück.
             Niemand muss fahren.</p>
+          <div class="plate plate-small reveal d2">
+            <img src="img/pflaster-800.webp" sizes="(max-width:939px) 92vw, 38vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Zehn Minuten zu Fuß – und man steht hier">
+            <span class="plate-cap">Zehn Minuten zu Fuß – und man steht hier</span>
+          </div>
         </div>
       </div>
       <div class="camps reveal d3" id="camps"></div>
@@ -2922,10 +2945,10 @@ const CAMPS = [
     note:"Direkt an der Ourthe, und trotzdem zehn Minuten zu Fuß in die Altstadt. Abends essen gehen und zu Fuß zurück – niemand muss fahren.",
     meta:["ca. 30 € / Nacht","10 Min zu Fuß","vorher buchen"],
     short:"Le Vedeur, Durbuy" },
-  { id:"barvaux", tag:"Einfach & günstig", name:"Petit Barvaux",
-    note:"Ein schlichter Stellplatz am Fluss, Automat statt Rezeption, Bäcker um die Ecke. Kein Komfort, dafür bleibt Geld fürs Essen übrig.",
-    meta:["10 € / 24 Std","Bäcker fußläufig","keine Reservierung"],
-    short:"Petit Barvaux" },
+  { id:"bomal", tag:"Einfach & günstig", name:"Camping International, Bomal",
+    note:"Ein Familienplatz direkt an der Ourthe, Brasserie und Terrasse zum Wasser. Und sonntagmorgens ist vierhundert Meter weiter Markt: zweihundert Stände am Ufer, Käse neben Trödel.",
+    meta:["ab ca. 20 € / Nacht","7 km bis Durbuy","Markt am Sonntag"],
+    short:"Camping International, Bomal" },
   { id:"glawan", tag:"Direkt am Wasser", name:"Rochers du Glawan",
     note:"Ein kleiner Platz unter Felsen, auf dem wirklich jeder Stellplatz am Wasser liegt. Bar am Platz, neues Sanitär, und ein Uferweg nach Durbuy.",
     meta:["ab 32 € / Nacht","35 Min am Fluss","Bar am Platz"],
@@ -3171,56 +3194,119 @@ function tickCountdown() {
 tickCountdown(); setInterval(tickCountdown, 1000);
 
 /* ════════════════════════════════════════════════════════════
-   DIE KARTE — die Strecke zeichnet sich beim Scrollen
+   DIE KARTE — die Fahrt spielt sich ab, sobald sie ins Bild kommt
    ════════════════════════════════════════════════════════════ */
-const wegSec = $("#s-wegweiser"), odoNum = $("#odoNum"), fLand = $("#fLand");
-const mapRoute = $("#mapRoute"), mapDot = $("#mapDot"), mapGoal = $("#mapGoal");
-const mapGoalLabel = $("#mapGoalLabel"), mapGoalSub = $("#mapGoalSub");
+const odoNum = $("#odoNum"), fLand = $("#fLand");
+const mapWrap = $(".mapwrap"), mapRoute = $("#mapRoute"), mapDot = $("#mapDot");
+const mapGoal = $("#mapGoal"), mapGoalText = $("#mapGoalText");
+const mapWps = $$("#mapWps .wp");
 
-let routeLen = 0;
+let routeLen = 0, wpLen = [];
 if (mapRoute) {
   routeLen = mapRoute.getTotalLength();
+  /* Einmalig: wo auf der Linie liegt welcher Wegpunkt? 400 Stützstellen
+     reichen, das kostet ein paar Millisekunden beim Laden. */
+  const N = 400, proben = [];
+  for (let i = 0; i <= N; i++) {
+    const p = mapRoute.getPointAtLength(routeLen * i / N);
+    proben.push([p.x, p.y]);
+  }
+  wpLen = mapWps.map(g => {
+    const x = +g.dataset.x, y = +g.dataset.y;
+    let best = 0, bd = Infinity;
+    for (let i = 0; i <= N; i++) {
+      const dx = proben[i][0] - x, dy = proben[i][1] - y, d = dx*dx + dy*dy;
+      if (d < bd) { bd = d; best = i; }
+    }
+    return routeLen * best / N;
+  });
+  mapWps.forEach(g => { g.style.opacity = "0"; g.style.transition = "opacity .5s ease"; });
   mapRoute.style.strokeDasharray = routeLen;
-  mapRoute.style.strokeDashoffset = routeLen;
 }
 
-let angekommen = false;
-function revealStep() {
-  if (!wegSec || !mapRoute) return;
-  const r = wegSec.getBoundingClientRect();
-  const t = clamp((innerHeight * .82 - r.top) / Math.max(1, r.height * .7), 0, 1);
-  /* Erst ein Stück Vorlauf, dann zeichnet sich die Linie */
-  const gezeichnet = clamp((t - .06) / .68, 0, 1);
-
-  mapRoute.style.strokeDashoffset = (routeLen * (1 - gezeichnet)).toFixed(1);
-  odoNum.textContent = Math.round(lerp(CFG.kmStart, 0, gezeichnet));
-
-  if (mapDot) {
-    if (gezeichnet > .004 && gezeichnet < .997) {
-      const p = mapRoute.getPointAtLength(routeLen * gezeichnet);
-      mapDot.setAttribute("cx", p.x.toFixed(1));
-      mapDot.setAttribute("cy", p.y.toFixed(1));
-      mapDot.setAttribute("opacity", "1");
-    } else {
-      mapDot.setAttribute("opacity", "0");
-    }
+function setMap(p) {
+  if (!mapRoute) return;
+  const gefahren = routeLen * p;
+  mapRoute.style.strokeDashoffset = (routeLen - gefahren).toFixed(1);
+  odoNum.textContent = Math.round(lerp(CFG.kmStart, 0, p));
+  mapWps.forEach((g, i) => { g.style.opacity = gefahren >= wpLen[i] - 3 ? "1" : "0"; });
+  if (p > .004 && p < .998) {
+    const q = mapRoute.getPointAtLength(gefahren);
+    mapDot.setAttribute("cx", q.x.toFixed(1));
+    mapDot.setAttribute("cy", q.y.toFixed(1));
+    mapDot.setAttribute("opacity", "1");
+  } else {
+    mapDot.setAttribute("opacity", "0");
   }
-
-  const da = gezeichnet > .985;
-  if (da !== angekommen) {
-    angekommen = da;
-    if (mapGoal) mapGoal.setAttribute("opacity", da ? "1" : "0");
-    if (mapGoalLabel) mapGoalLabel.textContent = da ? "Durbuy" : "?";
-    if (mapGoalSub) mapGoalSub.textContent = da ? "Belgien · Ardennen" : "";
-    if (fLand) fLand.innerHTML = da
-      ? 'Belgien<em>Wallonien, Ardennen</em>'
-      : "wird noch nicht verraten";
-    if (da && mapGoal && !RM) {
-      mapGoal.animate([{transform:"translateY(-14px)",opacity:0},{transform:"none",opacity:1}],
-        {duration:520, easing:"cubic-bezier(.2,.8,.25,1)"});
-    }
-  }
+  const da = p > .985;
+  if (mapGoal) mapGoal.setAttribute("opacity", da ? "1" : "0");
+  if (mapGoalText) mapGoalText.setAttribute("opacity", da ? "1" : "0");
+  if (fLand) fLand.innerHTML = da ? 'Belgien<em>Wallonien, Ardennen</em>' : "wird noch nicht verraten";
 }
+
+let laeuft = false, gelaufen = false;
+function fahreAb() {
+  if (laeuft || !mapRoute) return;
+  if (RM) { setMap(1); gelaufen = true; loesen(); return; }
+  laeuft = true;
+  const dauer = 3200, t0 = performance.now();
+  (function schritt(now) {
+    const e = clamp((now - t0) / dauer, 0, 1);
+    /* sanft anfahren, sanft ankommen */
+    const w = e < .5 ? 4*e*e*e : 1 - Math.pow(-2*e + 2, 3) / 2;
+    setMap(w);
+    if (e < 1) requestAnimationFrame(schritt);
+    else { laeuft = false; gelaufen = true; loesen(); mapWrap.classList.add("fertig"); }
+  })(performance.now());
+}
+
+/* ── Die Seite hält an, bis die Route durch ist ──────────────
+   Scroll anzuhalten ist heikel: wer hier hängenbleibt, kommt nicht
+   mehr weiter. Deshalb drei Notausgänge — Escape, ein Überspringen-
+   Knopf und eine harte Zeitgrenze, die auch dann löst, wenn die
+   Animation aus irgendeinem Grund nicht fertig wird. */
+let angehalten = false, loesenTimer = 0;
+const blockScroll = e => e.preventDefault();
+const blockTasten = e => {
+  if (e.key === "Escape") { loesen(); return; }
+  if ([" ","ArrowDown","ArrowUp","PageDown","PageUp","Home","End"].includes(e.key)) e.preventDefault();
+};
+function anhalten() {
+  if (angehalten) return;
+  angehalten = true;
+  addEventListener("wheel", blockScroll, { passive: false });
+  addEventListener("touchmove", blockScroll, { passive: false });
+  addEventListener("keydown", blockTasten);
+  document.documentElement.classList.add("angehalten");
+  clearTimeout(loesenTimer);
+  loesenTimer = setTimeout(loesen, 6000);        /* Notbremse */
+}
+function loesen() {
+  if (!angehalten) return;
+  angehalten = false;
+  clearTimeout(loesenTimer);
+  removeEventListener("wheel", blockScroll, { passive: false });
+  removeEventListener("touchmove", blockScroll, { passive: false });
+  removeEventListener("keydown", blockTasten);
+  document.documentElement.classList.remove("angehalten");
+}
+
+if (mapRoute) {
+  setMap(0);
+  new IntersectionObserver((es, obs) => {
+    es.forEach(e => {
+      if (!e.isIntersecting || gelaufen) return;
+      obs.disconnect();
+      if (!RM) anhalten();
+      fahreAb();
+    });
+  }, { threshold: .55 }).observe(mapWrap);
+}
+const mapSkip = $("#mapSkip");
+if (mapSkip) mapSkip.addEventListener("click", () => { setMap(1); laeuft = false; gelaufen = true; loesen(); mapWrap.classList.add("fertig"); });
+
+const mapReplay = $("#mapReplay");
+if (mapReplay) mapReplay.addEventListener("click", () => { gelaufen = false; setMap(0); fahreAb(); });
 
 /* ════════════════════════════════════════════════════════════
    PARTIKEL — Sterne, eine Sternschnuppe, treibende Blätter
@@ -3292,7 +3378,7 @@ function drawParticles(t) {
 
   ctx.globalAlpha = 1;
 }
-function particleLoop(t) { drawParticles(t); revealStep(); requestAnimationFrame(particleLoop); }
+function particleLoop(t) { drawParticles(t); requestAnimationFrame(particleLoop); }
 addEventListener("resize", initCanvas, { passive: true });
 initCanvas(); requestAnimationFrame(particleLoop);
 
