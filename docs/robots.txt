@@ -1,0 +1,4 @@
+# Diese Seite ist ein persönliches Geschenk.
+# Erreichbar für den, der den Link hat – aber nicht über Suchmaschinen.
+User-agent: *
+Disallow: /
