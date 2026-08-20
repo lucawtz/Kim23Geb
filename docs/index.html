@@ -269,7 +269,7 @@ strong{font-variation-settings:"wdth" 100,"wght" 700;color:var(--paper);font-wei
 }
 .card:hover{transform:translateY(-3px);border-color:rgba(201,212,200,.4)}
 .card-art{position:relative;aspect-ratio:16/9;background:var(--moss-deep);overflow:hidden}
-.card-art svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.card-art svg,.card-art img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover}
 .card-body{padding:1.05rem 1.15rem 1.25rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
 .card h3{font-size:var(--s1);line-height:1.05}
 .card p{font-size:.93rem;margin:0;color:var(--mist);max-width:none;line-height:1.5}
@@ -886,16 +886,6 @@ body.parked .band-far{opacity:.18}
 }
 .slot.slot-other[aria-pressed="true"] .slot-when{color:var(--paper)}
 
-.map-replay{
-  position:absolute;bottom:.75rem;right:.75rem;z-index:2;
-  appearance:none;cursor:pointer;
-  background:rgba(8,18,15,.9);border:1px solid rgba(201,212,200,.2);
-  border-radius:2px;padding:.6rem .9rem;min-height:44px;
-  font-family:var(--f-data);font-size:.62rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--stone);line-height:1;
-  transition:color .25s ease,border-color .25s ease;
-}
-.map-replay:hover{color:var(--paper);border-color:rgba(201,212,200,.45)}
 .wp{transition:opacity .5s ease}
 
 /* Bildband über die volle Breite, flacher Ausschnitt */
@@ -903,8 +893,8 @@ body.parked .band-far{opacity:.18}
 .plate-band img{aspect-ratio:3/1;object-fit:cover;height:auto}
 @media (max-width:760px){.plate-band img{aspect-ratio:2/1}}
 /* Kleines Zweitbild unter einem großen */
-.plate-small{margin-top:.6rem}
-.plate-small img{aspect-ratio:5/2;object-fit:cover}
+.plate-small{margin-top:clamp(1rem,2.5vw,1.5rem)}
+.plate-small img{aspect-ratio:16/9;object-fit:cover}
 
 /* Während die Route läuft: Knopf zum Überspringen, sonst versteckt */
 .map-skip{
@@ -916,11 +906,20 @@ body.parked .band-far{opacity:.18}
   text-transform:uppercase;color:#1A0B06;font-weight:600;line-height:1;
 }
 html.angehalten .map-skip{display:block}
-html.angehalten .map-replay{display:none}
-html.angehalten{overscroll-behavior:none}
-/* Der Wiederhol-Knopf erscheint erst, wenn die Fahrt durch ist */
-.map-replay{opacity:0;transition:opacity .5s ease .3s;pointer-events:none}
-.mapwrap.fertig .map-replay{opacity:1;pointer-events:auto}
+html.angehalten html.angehalten{overscroll-behavior:none}
+
+/* Hinweis, solange die Karte auf die Scrollbewegung wartet */
+.map-cue{
+  position:absolute;left:50%;bottom:1rem;z-index:3;transform:translateX(-50%);
+  margin:0;display:none;flex-direction:column;align-items:center;gap:.5rem;
+  font-family:var(--f-data);font-size:.64rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--paper);text-shadow:0 2px 12px rgba(8,18,15,.9);
+}
+.mapwrap.wartet .map-cue{display:flex}
+.map-cue i{display:block;width:1px;height:26px;background:linear-gradient(180deg,var(--paper),transparent);position:relative;overflow:hidden}
+@media (prefers-reduced-motion:no-preference){
+  .map-cue i::after{content:"";position:absolute;inset:0;background:var(--camper);animation:cue 1.5s cubic-bezier(.5,0,.5,1) infinite}
+}
 </style>
 
 <div class="sky" id="sky"></div>
@@ -1086,8 +1085,8 @@ html.angehalten{overscroll-behavior:none}
       <div class="shot" style="margin-top:clamp(1.4rem,4vw,2.2rem)">
         <div class="mapwrap reveal d2">
           <div class="map-chip"><span class="map-chip-lead">noch</span><b id="odoNum">113</b><span>km</span></div>
-          <button class="map-replay" id="mapReplay" type="button" aria-label="Fahrt noch einmal abspielen">nochmal</button>
           <button class="map-skip" id="mapSkip" type="button">überspringen</button>
+          <p class="map-cue" aria-hidden="true"><span>weiter scrollen</span><i></i></p>
           <svg viewBox="0 0 820 404" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Route von Mürlenbach nach Durbuy, 112.6 Kilometer">
             <defs><filter id="mapGlow" x="-20%" y="-20%" width="140%" height="140%">
               <feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
@@ -1199,10 +1198,6 @@ html.angehalten{overscroll-behavior:none}
           <img src="img/ferrata-800.webp" sizes="(max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Der Klettersteig oberhalb von Durbuy · Eisenbügel im Kalkstein">
           <span class="plate-cap">Der Klettersteig oberhalb von Durbuy · Eisenbügel im Kalkstein</span>
         </div>
-          <div class="plate plate-small reveal d2">
-            <img src="img/zipline-800.webp" sizes=" (max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Die Zipline über dem Wasser">
-            <span class="plate-cap">Die Zipline über dem Wasser</span>
-          </div>
         <div>
           <p class="lead reveal d2">Der Klettersteig oberhalb von Durbuy hängt an einer Felswand, die seit
             300 Millionen Jahren da ist. Wir hängen deutlich kürzer dran.</p>
@@ -1226,10 +1221,6 @@ html.angehalten{overscroll-behavior:none}
     <div class="wrap">
       <p class="eyebrow reveal">Stopp 07 — Jetzt du</p>
       <h2 class="reveal d1">Aber entscheiden<br>darfst du</h2>
-      <div class="plate plate-band reveal d2">
-            <img src="img/gasse-800.webp" srcset="img/gasse-800.webp 800w, img/gasse-1600.webp 1600w" sizes="92vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Gassen, Läden und Terrassen – das ist die Kulisse">
-            <span class="plate-cap">Gassen, Läden und Terrassen – das ist die Kulisse</span>
-          </div>
       <p class="lead reveal d2" style="margin-top:1.2rem;max-width:44ch">
         Sechs Erlebnisse stehen zur Auswahl. Nichts davon ist fest verplant –
         <span class="emo">wir entscheiden vor Ort, nach Wetter und Laune.</span>
@@ -1257,10 +1248,6 @@ html.angehalten{overscroll-behavior:none}
     <div class="wrap">
       <p class="eyebrow reveal">Stopp 08 — Wann</p>
       <h2 class="reveal d1">Such dir das<br>Wochenende aus</h2>
-      <div class="plate plate-band reveal d2">
-            <img src="img/platz-800.webp" srcset="img/platz-800.webp 800w, img/platz-1600.webp 1600w" sizes="92vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Am Place aux Foires sitzt man draußen, solange es geht">
-            <span class="plate-cap">Am Place aux Foires sitzt man draußen, solange es geht</span>
-          </div>
       <p class="lead reveal d2" style="margin-top:1.2rem;max-width:40ch">
         Der 11. bis 13. September ist geblockt. Wie viel davon wir uns nehmen, entscheidest du –
         und wenn du an dem Wochenende nicht kannst, sagst du das einfach.
@@ -1419,9 +1406,9 @@ html.angehalten{overscroll-behavior:none}
         <div>
           <p class="lead reveal d2">Drei Möglichkeiten, und sie fühlen sich völlig
             unterschiedlich an. Such aus, wie das Wochenende sein soll.</p>
-          <p class="reveal d3">Der Camper bleibt stehen, sobald wir angekommen sind – bei zweien
-            davon kommt man abends zu Fuß in die Altstadt und wieder zurück.
-            Niemand muss fahren.</p>
+          <p class="reveal d3">Der Camper bleibt stehen, sobald wir angekommen sind. Von einem
+            kommt man abends zu Fuß in die Altstadt und wieder zurück – bei den
+            anderen beiden fahren wir die paar Kilometer.</p>
           <div class="plate plate-small reveal d2">
             <img src="img/pflaster-800.webp" sizes="(max-width:939px) 92vw, 38vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Zehn Minuten zu Fuß – und man steht hier">
             <span class="plate-cap">Zehn Minuten zu Fuß – und man steht hier</span>
@@ -2913,24 +2900,27 @@ requestAnimationFrame(frame);
 /* ════════════════════════════════════════════════════════════
    DIE SECHS AKTIVITÄTEN
    ════════════════════════════════════════════════════════════ */
+const FOTO_DATA = {};   /* wird in der Einzeldatei gefüllt */
+const FOTOS = {"kanu": [800, 1600], "ferrata": [800], "blick": [800], "gasse": [800, 1600], "platz": [800, 1600], "pflaster": [800], "zipline": [800]};
+
 const ACTS = [
-  { id:"kanu", flag:"Mein Favorit", title:"Kanu auf der Ourthe",
+  { id:"kanu", foto:"kanu", flag:"Mein Favorit", title:"Kanu auf der Ourthe",
     text:"Der Bus bringt uns flussaufwärts, den Rest übernimmt die Strömung. Vier bis dreiundzwanzig Kilometer – du sagst, wie weit.",
     meta:["4–23 km", "Transfer inkl.", "April – Oktober"],
     short:"Kanu auf der Ourthe" },
-  { id:"klettern", flag:"Mein Favorit", title:"Klettersteig & Baumwipfel",
+  { id:"klettern", foto:"zipline", flag:"Mein Favorit", title:"Klettersteig & Baumwipfel",
     text:"Vier Parcours an einer Wand, die seit 300 Millionen Jahren dort steht. Bis 35 Meter hoch, Gurt und Helm gibt’s vor Ort. Bei Regen geht auch drinnen was.",
     meta:["bis 35 m", "ca. 1,5–2 Std", "So geschlossen"],
     short:"Klettersteig & Baumwipfel" },
-  { id:"essen", flag:"", title:"Einmal richtig schön essen",
+  { id:"essen", foto:"platz", flag:"", title:"Einmal richtig schön essen",
     text:"Crêpes bei einer Familie, die das seit 1971 macht, eine Brasserie am Place aux Foires oder eine Terrasse direkt überm Fluss mit Blick aufs Schloss. Du sagst, worauf du Lust hast.",
     meta:["ab 15 € bis Sterneküche", "Terrasse überm Fluss", "Fr–So offen"],
     short:"Schön essen gehen" },
-  { id:"aussicht", flag:"", title:"Sonnenuntergang überm Tal",
+  { id:"aussicht", foto:"blick", flag:"", title:"Sonnenuntergang überm Tal",
     text:"Fünf Minuten von der Altstadt steht ein Felsen, der 300 Millionen Jahre alt und zu einem Bogen gefaltet ist. Am Samstag sinkt die Sonne dort um 20:01 Uhr direkt neben dem Schloss weg.",
     meta:["20:01 Uhr", "5 Min zu Fuß", "kostet nichts"],
     short:"Sonnenuntergang am Felsen" },
-  { id:"altstadt", flag:"", title:"Durbuy erkunden",
+  { id:"altstadt", foto:"gasse", flag:"", title:"Durbuy erkunden",
     text:"Gassen aus runden Flusskieseln, 400 Einwohner, Stadtrechte seit 1331. Samstags gibt es eine Führung mit zwei Bieren, Ziegenkäse und Pralinen unterwegs – oder wir laufen einfach los.",
     meta:["2 Std", "15 € mit Führung", "oder einfach so"],
     short:"Durbuy erkunden" },
@@ -2986,8 +2976,24 @@ ACTS.forEach((a, i) => {
     `<span class="card-tick">${TICK}</span>` +
     `<div class="card-body"><h3>${a.title}</h3><p>${a.text}</p>` +
     `<div class="card-meta">${a.meta.map(m => `<span>${m}</span>`).join("")}</div></div>`;
-  const artTpl = document.getElementById("art-" + a.id);
-  if (artTpl) b.querySelector(".card-art").appendChild(artTpl.content.cloneNode(true));
+  const halter = b.querySelector(".card-art");
+  if (a.foto && FOTOS[a.foto]) {
+    const im = document.createElement("img");
+    const g = FOTOS[a.foto];
+    if (FOTO_DATA[a.foto]) {
+      im.src = FOTO_DATA[a.foto];
+    } else {
+      im.src = `img/${a.foto}-${g[0]}.webp`;
+      if (g.length > 1) im.srcset = g.map(w => `img/${a.foto}-${w}.webp ${w}w`).join(", ");
+      im.sizes = "(max-width:820px) 92vw, 33vw";
+    }
+    im.width = 1600; im.height = 1067;
+    im.loading = "lazy"; im.decoding = "async"; im.alt = a.title;
+    halter.appendChild(im);
+  } else {
+    const artTpl = document.getElementById("art-" + a.id);
+    if (artTpl) halter.appendChild(artTpl.content.cloneNode(true));
+  }
   b.addEventListener("click", () => toggleAct(a.id, b));
   cardsHost.appendChild(b);
   revObs.observe(b);
@@ -3256,7 +3262,7 @@ function fahreAb() {
     const w = e < .5 ? 4*e*e*e : 1 - Math.pow(-2*e + 2, 3) / 2;
     setMap(w);
     if (e < 1) requestAnimationFrame(schritt);
-    else { laeuft = false; gelaufen = true; loesen(); mapWrap.classList.add("fertig"); }
+    else { laeuft = false; gelaufen = true; loesen(); }
   })(performance.now());
 }
 
@@ -3265,48 +3271,79 @@ function fahreAb() {
    mehr weiter. Deshalb drei Notausgänge — Escape, ein Überspringen-
    Knopf und eine harte Zeitgrenze, die auch dann löst, wenn die
    Animation aus irgendeinem Grund nicht fertig wird. */
-let angehalten = false, loesenTimer = 0;
-const blockScroll = e => e.preventDefault();
-const blockTasten = e => {
-  if (e.key === "Escape") { loesen(); return; }
-  if ([" ","ArrowDown","ArrowUp","PageDown","PageUp","Home","End"].includes(e.key)) e.preventDefault();
+let angehalten = false, scharf = false, loesenTimer = 0, startTimer = 0, tippY = null;
+
+function starten() {
+  if (!scharf) return;
+  scharf = false;
+  clearTimeout(startTimer);
+  mapWrap.classList.remove("wartet");
+  fahreAb();
+}
+
+const blockScroll = e => {
+  e.preventDefault();
+  if (!scharf || e.type !== "wheel") return;
+  if (e.deltaY > 4) starten();
+  else if (e.deltaY < -4) { loesen(); fahreAb(); }   /* zurück nach oben: freigeben */
 };
+const tippAn  = e => { tippY = e.touches[0].clientY; };
+const tippZieh = e => {
+  e.preventDefault();
+  if (!scharf || tippY === null) return;
+  const dy = tippY - e.touches[0].clientY;
+  if (dy > 12) starten();
+  else if (dy < -12) { loesen(); fahreAb(); }
+};
+const blockTasten = e => {
+  if (e.key === "Escape") { loesen(); fahreAb(); return; }
+  if ([" ","ArrowDown","ArrowUp","PageDown","PageUp","Home","End"].includes(e.key)) {
+    e.preventDefault();
+    if (scharf && [" ","ArrowDown","PageDown"].includes(e.key)) starten();
+  }
+};
+
 function anhalten() {
   if (angehalten) return;
-  angehalten = true;
+  angehalten = true; scharf = true;
   addEventListener("wheel", blockScroll, { passive: false });
-  addEventListener("touchmove", blockScroll, { passive: false });
+  addEventListener("touchstart", tippAn, { passive: true });
+  addEventListener("touchmove", tippZieh, { passive: false });
   addEventListener("keydown", blockTasten);
   document.documentElement.classList.add("angehalten");
-  clearTimeout(loesenTimer);
-  loesenTimer = setTimeout(loesen, 6000);        /* Notbremse */
+  mapWrap.classList.add("wartet");
+  /* Wer nichts tut, bekommt die Fahrt nach kurzer Zeit von selbst */
+  clearTimeout(startTimer); startTimer = setTimeout(starten, 4500);
+  /* Notbremse: löst auf jeden Fall */
+  clearTimeout(loesenTimer); loesenTimer = setTimeout(loesen, 14000);
 }
 function loesen() {
   if (!angehalten) return;
-  angehalten = false;
-  clearTimeout(loesenTimer);
+  angehalten = false; scharf = false; tippY = null;
+  clearTimeout(loesenTimer); clearTimeout(startTimer);
   removeEventListener("wheel", blockScroll, { passive: false });
-  removeEventListener("touchmove", blockScroll, { passive: false });
+  removeEventListener("touchstart", tippAn, { passive: true });
+  removeEventListener("touchmove", tippZieh, { passive: false });
   removeEventListener("keydown", blockTasten);
   document.documentElement.classList.remove("angehalten");
+  mapWrap.classList.remove("wartet");
 }
 
 if (mapRoute) {
   setMap(0);
   new IntersectionObserver((es, obs) => {
     es.forEach(e => {
-      if (!e.isIntersecting || gelaufen) return;
+      if (!e.isIntersecting || gelaufen || laeuft) return;
       obs.disconnect();
-      if (!RM) anhalten();
-      fahreAb();
+      if (RM) { fahreAb(); return; }   /* ohne Bewegung: kein Anhalten */
+      anhalten();                      /* wartet auf die nächste Scrollbewegung */
     });
   }, { threshold: .55 }).observe(mapWrap);
 }
-const mapSkip = $("#mapSkip");
-if (mapSkip) mapSkip.addEventListener("click", () => { setMap(1); laeuft = false; gelaufen = true; loesen(); mapWrap.classList.add("fertig"); });
 
-const mapReplay = $("#mapReplay");
-if (mapReplay) mapReplay.addEventListener("click", () => { gelaufen = false; setMap(0); fahreAb(); });
+const mapSkip = $("#mapSkip");
+if (mapSkip) mapSkip.addEventListener("click", () => { setMap(1); laeuft = false; gelaufen = true; loesen(); });
+
 
 /* ════════════════════════════════════════════════════════════
    PARTIKEL — Sterne, eine Sternschnuppe, treibende Blätter

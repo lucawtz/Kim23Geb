@@ -26,5 +26,10 @@ def ersetze(m):
     return tag
 
 out = re.sub(r"<img\b[^>]*>", ersetze, src)
+
+# Auch die Fotos, die das Skript auf den Erlebnis-Karten setzt
+karten = ["kanu", "zipline", "platz", "blick", "gasse"]
+daten = ",".join('"%s":"%s"' % (k, hole(k)) for k in karten)
+out = out.replace("const FOTO_DATA = {};", "const FOTO_DATA = {%s};" % daten)
 open("einzeldatei.html", "w", encoding="utf-8").write(out)
 print(f"  {len(cache)} Fotos eingebettet")
