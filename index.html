@@ -3276,6 +3276,12 @@ function load() {
     if (CAMPS.some(c => c.id === raw.camp)) state.camp = raw.camp;
   } catch {}
 }
+/* Zum Testen: die Seite mit #neu am Ende aufrufen, dann startet sie
+   mit leerer Auswahl. Für Kim unsichtbar, sie bekommt den Link ohne. */
+if (location.hash === "#neu" || location.hash === "#reset") {
+  try { localStorage.removeItem(KEY); } catch {}
+  history.replaceState(null, "", location.pathname + location.search);
+}
 load(); paint();
 
 /* ════════════════════════════════════════════════════════════
