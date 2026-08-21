@@ -3279,7 +3279,7 @@ function fahreAb() {
   if (laeuft || !mapRoute) return;
   if (RM) { setMap(1); gelaufen = true; loesen(); return; }
   laeuft = true;
-  const dauer = 3200, t0 = performance.now();
+  const dauer = 1900, t0 = performance.now();
   (function schritt(now) {
     const e = clamp((now - t0) / dauer, 0, 1);
     /* sanft anfahren, sanft ankommen */
@@ -3295,27 +3295,38 @@ function fahreAb() {
    mehr weiter. Deshalb drei Notausgänge — Escape, ein Überspringen-
    Knopf und eine harte Zeitgrenze, die auch dann löst, wenn die
    Animation aus irgendeinem Grund nicht fertig wird. */
-let angehalten = false, scharf = false, loesenTimer = 0, startTimer = 0, tippY = null;
+let angehalten = false, scharf = false, loesenTimer = 0, startTimer = 0, tippY = null, drangVersuche = 0;
 
 function starten() {
   if (!scharf) return;
   scharf = false;
+  drangVersuche = 0;
   clearTimeout(startTimer);
   mapWrap.classList.remove("wartet");
   fahreAb();
 }
 
+/* Wer während der Fahrt noch einmal wischt, will offensichtlich weiter.
+   Beim zweiten Versuch springen wir ans Ende und geben frei — eine Seite,
+   die auf Wischen nicht reagiert, fühlt sich kaputt an. */
+function drang() {
+  if (scharf || !angehalten) return;
+  if (++drangVersuche >= 2) { setMap(1); laeuft = false; gelaufen = true; loesen(); }
+}
+
 const blockScroll = e => {
   e.preventDefault();
-  if (!scharf || e.type !== "wheel") return;
+  if (e.type !== "wheel") return;
+  if (!scharf) { if (Math.abs(e.deltaY) > 4) drang(); return; }
   if (e.deltaY > 4) starten();
   else if (e.deltaY < -4) { loesen(); fahreAb(); }   /* zurück nach oben: freigeben */
 };
 const tippAn  = e => { tippY = e.touches[0].clientY; };
 const tippZieh = e => {
   e.preventDefault();
-  if (!scharf || tippY === null) return;
+  if (tippY === null) return;
   const dy = tippY - e.touches[0].clientY;
+  if (!scharf) { if (Math.abs(dy) > 24) { tippY = null; drang(); } return; }
   if (dy > 12) starten();
   else if (dy < -12) { loesen(); fahreAb(); }
 };
@@ -3337,9 +3348,9 @@ function anhalten() {
   document.documentElement.classList.add("angehalten");
   mapWrap.classList.add("wartet");
   /* Wer nichts tut, bekommt die Fahrt nach kurzer Zeit von selbst */
-  clearTimeout(startTimer); startTimer = setTimeout(starten, 6000);
+  clearTimeout(startTimer); startTimer = setTimeout(starten, 4000);
   /* Notbremse: löst auf jeden Fall */
-  clearTimeout(loesenTimer); loesenTimer = setTimeout(loesen, 14000);
+  clearTimeout(loesenTimer); loesenTimer = setTimeout(loesen, 10000);
 }
 function loesen() {
   if (!angehalten) return;

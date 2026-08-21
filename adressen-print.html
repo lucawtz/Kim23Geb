@@ -1,4 +1,9 @@
 <!doctype html>
+<!-- Druckfassung von adressen.md · erzeugt das PDF mit:
+     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu \
+       --no-pdf-header-footer --virtual-time-budget=15000 \
+       --print-to-pdf="$PWD/Durbuy-Adressen.pdf" "file://$PWD/adressen-print.html"
+     Erzeugt mit Chrome headless, Schriften kommen von Google Fonts (Internet nötig). -->
 <html lang="de">
 <meta charset="utf-8">
 <title>Durbuy — Adressen, Websites &amp; Buchungslinks</title>
@@ -17,8 +22,8 @@
   --ink-2:#16302B;
   --stone:#6E7E73;
   --line:#D5D8CE;
-  --paper:#FBFAF6;
-  --panel:#F2F1E9;
+  --paper:#FFFFFF;
+  --panel:#F3F1E7;
   --river:#1B5852;
   --moss:#3C5B45;
   --beech:#8A4A20;
@@ -33,10 +38,10 @@
 @page:first{ margin-top:14mm; }
 
 *,*::before,*::after{ box-sizing:border-box }
-html{ -webkit-print-color-adjust:exact; print-color-adjust:exact }
+html{ -webkit-print-color-adjust:exact; print-color-adjust:exact; background:var(--paper) }
 body{
-  margin:0; background:var(--paper); color:var(--ink);
-  font-family:var(--f-sign); font-size:9.4pt; line-height:1.5;
+  margin:0; background:transparent; color:var(--ink);
+  font-family:var(--f-sign); font-size:9.2pt; line-height:1.48;
   font-variation-settings:"wdth" 100,"wght" 400;
   -webkit-font-smoothing:antialiased;
 }
@@ -69,7 +74,7 @@ h1 em{ font-style:italic; color:var(--camper) }
 .deckel-zeile .hinweis{ font-size:8.2pt; color:var(--stone); max-width:96mm }
 
 /* ---------- Abschnitte ---------- */
-section{ margin-top:15pt; break-inside:auto }
+section{ margin-top:13pt; break-inside:auto }
 .kopf{
   display:flex; align-items:baseline; gap:8pt;
   border-bottom:1.1pt solid var(--ink); padding-bottom:4pt; margin-bottom:9pt;
@@ -89,8 +94,8 @@ section{ margin-top:15pt; break-inside:auto }
 
 /* ---------- Karte ---------- */
 .karte{
-  background:var(--panel); border-left:2pt solid var(--akzent,var(--river));
-  padding:8pt 10pt 8pt 9pt; margin-bottom:7pt; break-inside:avoid;
+  background:var(--panel); border-left:3pt solid var(--akzent,var(--river));
+  padding:7.5pt 9pt 7.5pt 8pt; margin-bottom:6pt; break-inside:avoid;
 }
 .karte h3{
   font-family:var(--f-sign); font-size:11pt; margin:0 0 1pt;
@@ -138,7 +143,7 @@ section{ margin-top:15pt; break-inside:auto }
 .achtung li{ margin-bottom:1.5pt }
 
 /* ---------- Kompaktliste ---------- */
-ul.kompakt{ margin:0; padding-left:0; list-style:none }
+ul.kompakt{ margin:0; padding-left:0; list-style:none; column-count:2; column-gap:7mm }
 ul.kompakt li{
   padding:3.4pt 0; border-bottom:.4pt solid var(--line); break-inside:avoid;
 }
@@ -147,8 +152,8 @@ ul.kompakt .name{ font-variation-settings:"wdth" 100,"wght" 620 }
 ul.kompakt .detail{ color:var(--stone) }
 
 /* ---------- Tabelle ---------- */
-table{ width:100%; border-collapse:collapse; margin-top:2pt }
-th,td{ text-align:left; vertical-align:top; padding:4.4pt 6pt; border-bottom:.5pt solid var(--line) }
+table{ width:100%; border-collapse:collapse; margin-top:2pt; break-inside:avoid }
+th,td{ text-align:left; vertical-align:top; padding:3.6pt 6pt; border-bottom:.5pt solid var(--line) }
 th{
   font-family:var(--f-data); font-size:6.6pt; letter-spacing:.13em;
   text-transform:uppercase; color:var(--stone); border-bottom:1pt solid var(--ink);
@@ -160,11 +165,17 @@ tr{ break-inside:avoid }
 
 /* ---------- Fußzeile ---------- */
 .fuss{
-  margin-top:14pt; border-top:.5pt solid var(--line); padding-top:6pt;
+  break-inside:avoid; margin-top:9pt; border-top:.5pt solid var(--line); padding-top:6pt;
   font-family:var(--f-data); font-size:6.6pt; letter-spacing:.12em;
   text-transform:uppercase; color:var(--stone);
   display:flex; justify-content:space-between; gap:10pt;
 }
+.spalten{ column-count:2; column-gap:7mm }
+.spalten > *{ break-inside:avoid }
+.spalten .zeilen{ grid-template-columns:18mm 1fr; gap:1.4pt 5pt }
+.spalten .zeilen .v{ font-size:8.2pt }
+.spalten .karte p{ font-size:8.6pt }
+.spalten ul.kompakt li{ padding:3pt 0 }
 .umbruch{ break-before:page }
 </style>
 
@@ -241,79 +252,98 @@ tr{ break-inside:avoid }
     <span class="lead">Von Crêpes bis Sterneküche</span>
   </div>
 
-  <p class="gruppe-titel">Crêpes, Waffeln, kleine Karte</p>
-  <div class="karte" style="--akzent:var(--beech)">
-    <h3>La Vieille Demeure</h3>
-    <p class="eng">Crêperie, Gaufrerie und Brasserie, seit über vier Jahrzehnten in Familienhand.
-    Hausgemachtes Eis, regionale Kleinigkeiten.</p>
-    <div class="zeilen">
-      <span class="k">Website</span><span class="v"><a href="http://www.lavieilledemeure.be" class="url">lavieilledemeure.be</a></span>
-      <span class="k">Adresse</span><span class="v">Rue du Comte Théodule d'Ursel 15, 6940 Durbuy</span>
-      <span class="k">Kontakt</span><span class="v"><span class="tel">+32 86 21 13 18</span> · info@lavieilledemeure.be</span>
+  <div class="spalten">
+    <div class="karte" style="--akzent:var(--beech)">
+      <p class="tag">Crêpes, Waffeln, Eis</p>
+      <h3>La Vieille Demeure</h3>
+      <p class="eng">Crêperie, Gaufrerie und Brasserie, seit über vier Jahrzehnten in
+      Familienhand. Hausgemachtes Eis, regionale Kleinigkeiten.</p>
+      <div class="zeilen">
+        <span class="k">Web</span><span class="v"><a href="http://www.lavieilledemeure.be" class="url">lavieilledemeure.be</a></span>
+        <span class="k">Adresse</span><span class="v">Rue du Comte Théodule d'Ursel 15</span>
+        <span class="k">Kontakt</span><span class="v"><span class="tel">+32 86 21 13 18</span><br>info@lavieilledemeure.be</span>
+      </div>
     </div>
-  </div>
 
-  <p class="gruppe-titel">Brasserien am Place aux Foires</p>
-  <div class="karte" style="--akzent:var(--beech)">
-    <h3>Le Grand Café</h3>
-    <p class="eng">Brasserie direkt am Hauptplatz, regionale Küche.</p>
-    <div class="zeilen">
-      <span class="k">Website</span><span class="v"><a href="https://www.legrandcafedurbuy.be/" class="url">legrandcafedurbuy.be</a> · <a href="https://www.legrandcafedurbuy.be/menu" class="url">/menu</a></span>
+    <div class="karte" style="--akzent:var(--beech)">
+      <p class="tag">Brasserie am Hauptplatz</p>
+      <h3>Le Grand Café</h3>
+      <p class="eng">Direkt am Place aux Foires, regionale Küche, große Karte.</p>
+      <div class="zeilen">
+        <span class="k">Web</span><span class="v"><a href="https://www.legrandcafedurbuy.be/" class="url">legrandcafedurbuy.be</a></span>
+        <span class="k">Karte</span><span class="v"><a href="https://www.legrandcafedurbuy.be/menu" class="url">legrandcafedurbuy.be/menu</a></span>
+      </div>
     </div>
-  </div>
-  <div class="karte" style="--akzent:var(--beech)">
-    <h3>Brasserie de l'Ourthe</h3>
-    <p class="eng">Klassische Brasserie mit Terrasse, sieben Tage die Woche offen. Keine eigene Website.</p>
-    <div class="zeilen">
-      <span class="k">Karte</span><span class="v"><a href="https://en.resto.be/restaurant/durbuy/6940-durbuy/39085-brasserie-de-lourthe/" class="url">resto.be &rarr; Brasserie de l'Ourthe</a></span>
-      <span class="k">Adresse</span><span class="v">Place aux Foires 5, 6940 Durbuy · <span class="tel">+32 86 21 31 20</span></span>
-    </div>
-  </div>
-  <div class="karte" style="--akzent:var(--beech)">
-    <h3>Le Victoria</h3>
-    <p class="eng">Hotel-Restaurant am Platz, französisch und regional.</p>
-    <div class="zeilen">
-      <span class="k">Adresse</span><span class="v">Place aux Foires 15, 6940 Durbuy</span>
-      <span class="k">Übersicht</span><span class="v"><a href="https://en.resto.be/restaurant/durbuy/6940-durbuy" class="url">resto.be/restaurant/durbuy/6940-durbuy</a></span>
-    </div>
-  </div>
 
-  <p class="gruppe-titel">Schön essen, mit Terrasse am Schloss</p>
-  <div class="karte" style="--akzent:var(--camper)">
-    <h3>Le Fou du Roy</h3>
-    <p class="eng">Kleines Restaurant am Fuß des Schlosses, französische Küche mit italienischem
-    Einschlag, romantische Terrasse.</p>
-    <div class="zeilen">
-      <span class="k">Website</span><span class="v"><a href="https://www.lefouduroy.com/" class="url">lefouduroy.com</a></span>
-      <span class="k">Adresse</span><span class="v">Rue du Comte Théodule d'Ursel 4, 6940 Durbuy</span>
+    <div class="karte" style="--akzent:var(--beech)">
+      <p class="tag">Brasserie mit Terrasse</p>
+      <h3>Brasserie de l'Ourthe</h3>
+      <p class="eng">Klassische Brasserie, sieben Tage die Woche offen. Keine eigene Website.</p>
+      <div class="zeilen">
+        <span class="k">Karte</span><span class="v"><a href="https://en.resto.be/restaurant/durbuy/6940-durbuy/39085-brasserie-de-lourthe/" class="url">resto.be &rarr; Brasserie de l'Ourthe</a></span>
+        <span class="k">Adresse</span><span class="v">Place aux Foires 5</span>
+        <span class="k">Telefon</span><span class="v"><span class="tel">+32 86 21 31 20</span></span>
+      </div>
     </div>
-  </div>
-  <div class="karte" style="--akzent:var(--camper)">
-    <h3>Le Sanglier des Ardennes</h3>
-    <p class="eng">Das Haus mit Blick über die Ourthe — vier Restaurants unter einem Dach.
-    Für Samstagabend früh reservieren.</p>
-    <div class="zeilen">
-      <span class="k">Alle vier</span><span class="v"><a href="https://www.sanglier-durbuy.be/en/restaurants" class="url">sanglier-durbuy.be/en/restaurants</a></span>
-      <span class="k">Bru'sserie</span><span class="v">Weltküche, Terrasse mit Blick auf Fluss und Schloss — der entspannteste der vier · <a href="https://www.sanglier-durbuy.be/en/restaurants/la-brusserie" class="url">/la-brusserie</a></span>
-      <span class="k">Grand Verre</span><span class="v">1 Michelin-Stern, Küche von Wout Bru · <a href="https://guide.michelin.com/hu/en/be-luxembourg/durbuy/restaurant/le-sanglier-des-ardennes" class="url">Michelin-Eintrag</a></span>
-      <span class="k">Dazu</span><span class="v">L'Orangerie (Frühstück, nachmittags Tearoom) und Le Wagyu (Fleisch)</span>
-      <span class="k">Adresse</span><span class="v">Rue Jean de Bohême 6, 6940 Durbuy</span>
+
+    <div class="karte" style="--akzent:var(--beech)">
+      <p class="tag">Hotel-Restaurant am Platz</p>
+      <h3>Le Victoria</h3>
+      <p class="eng">Französisch und regional, mitten im Ort.</p>
+      <div class="zeilen">
+        <span class="k">Adresse</span><span class="v">Place aux Foires 15</span>
+        <span class="k">Mehr</span><span class="v"><a href="https://en.resto.be/restaurant/durbuy/6940-durbuy" class="url">resto.be &rarr; alle Restaurants in Durbuy</a></span>
+      </div>
     </div>
-  </div>
-  <div class="karte" style="--akzent:var(--camper)">
-    <h3>Durbuy Ô · La Calèche</h3>
-    <p class="eng">Zwei weitere Adressen mit Küche und Zimmern: Durbuy Ô ist familiengeführt und
-    im Michelin-Guide gelistet, La Calèche liegt mitten in der Altstadt.</p>
-    <div class="zeilen">
-      <span class="k">Durbuy Ô</span><span class="v"><a href="https://guide.michelin.com/us/en/be-luxembourg/durbuy/restaurant/durbuy-o" class="url">guide.michelin.com &rarr; Durbuy Ô</a></span>
-      <span class="k">La Calèche</span><span class="v"><a href="https://lacaleche.be/" class="url">lacaleche.be</a></span>
-      <span class="k">Terrassen</span><span class="v"><a href="https://www.sanglier-durbuy.be/en/news/4-restaurants-terraces-durbuy-every-occasion" class="url">Übersicht der schönsten Terrassen der Stadt</a></span>
+
+    <div class="karte" style="--akzent:var(--camper)">
+      <p class="tag">Am Fuß des Schlosses</p>
+      <h3>Le Fou du Roy</h3>
+      <p class="eng">Kleines Restaurant, französische Küche mit italienischem Einschlag,
+      romantische Terrasse.</p>
+      <div class="zeilen">
+        <span class="k">Web</span><span class="v"><a href="https://www.lefouduroy.com/" class="url">lefouduroy.com</a></span>
+        <span class="k">Adresse</span><span class="v">Rue du Comte Théodule d'Ursel 4</span>
+      </div>
+    </div>
+
+    <div class="karte" style="--akzent:var(--camper)">
+      <p class="tag">Zwei weitere Adressen</p>
+      <h3>Durbuy Ô · La Calèche</h3>
+      <p class="eng">Durbuy Ô ist familiengeführt und im Michelin-Guide gelistet,
+      La Calèche liegt mitten in der Altstadt. Beide mit Zimmern.</p>
+      <div class="zeilen">
+        <span class="k">Durbuy Ô</span><span class="v"><a href="https://guide.michelin.com/us/en/be-luxembourg/durbuy/restaurant/durbuy-o" class="url">guide.michelin.com &rarr; Durbuy Ô</a></span>
+        <span class="k">Calèche</span><span class="v"><a href="https://lacaleche.be/" class="url">lacaleche.be</a></span>
+      </div>
+    </div>
+
+    <div class="karte" style="--akzent:var(--camper)">
+      <p class="tag">Vier Restaurants, Blick über den Fluss</p>
+      <h3>Le Sanglier des Ardennes</h3>
+      <p class="eng">Das Haus über der Ourthe. Für Samstagabend früh reservieren.</p>
+      <div class="zeilen">
+        <span class="k">Alle vier</span><span class="v"><a href="https://www.sanglier-durbuy.be/en/restaurants" class="url">sanglier-durbuy.be/en/restaurants</a></span>
+        <span class="k">Terrasse</span><span class="v">Weltküche, Terrasse mit Blick auf Fluss und Schloss — der entspannteste der vier · <a href="https://www.sanglier-durbuy.be/en/restaurants/la-brusserie" class="url">/la-brusserie</a></span>
+        <span class="k">Stern</span><span class="v">1 Michelin-Stern, Küche von Wout Bru · <a href="https://guide.michelin.com/hu/en/be-luxembourg/durbuy/restaurant/le-sanglier-des-ardennes" class="url">Michelin-Eintrag</a></span>
+        <span class="k">Dazu</span><span class="v">L'Orangerie (Frühstück, nachmittags Tearoom) und Le Wagyu (Fleisch)</span>
+        <span class="k">Adresse</span><span class="v">Rue Jean de Bohême 6</span>
+      </div>
+    </div>
+
+    <div class="karte" style="--akzent:var(--stone)">
+      <p class="tag">Zum Stöbern</p>
+      <h3>Weitere Terrassen</h3>
+      <p class="eng">Übersicht der schönsten Terrassen der Stadt — sortiert nach Anlass.</p>
+      <div class="zeilen">
+        <span class="k">Liste</span><span class="v"><a href="https://www.sanglier-durbuy.be/en/news/4-restaurants-terraces-durbuy-every-occasion" class="url">sanglier-durbuy.be &rarr; 4 restaurants with terraces</a></span>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ═══ 3 · AKTIVITÄTEN ═══ -->
-<section class="umbruch">
+<section>
   <div class="kopf">
     <span class="nr">03</span>
     <h2>Touren, Kanu, Klettern</h2>
@@ -350,13 +380,14 @@ tr{ break-inside:avoid }
     </ul>
   </div>
 
+  <div class="spalten">
   <div class="karte" style="--akzent:var(--river)">
     <p class="tag">Falls Adventure Valley ausgebucht ist</p>
     <h3>Andere Kajak-Anbieter</h3>
     <div class="zeilen">
       <span class="k">Outlive</span><span class="v">Barvaux–Bomal–Hamoir bis Comblain-au-Pont, Abfahrten durchgehend 10–16 Uhr · <a href="https://durbuytourisme.be/hades_offre/parcours-en-kayak/" class="url">durbuytourisme.be &rarr; parcours en kayak</a></span>
-      <span class="k">2 Rivières</span><span class="v"><a href="https://www.xn--kayakdes2rivires-5pb.be/" class="url">kayakdes2rivières.be</a></span>
-      <span class="k">Übersicht</span><span class="v"><a href="https://www.famenneardenne.be/en/kajak-canoe/" class="url">famenneardenne.be/en/kajak-canoe</a></span>
+      <span class="k">Alternativ</span><span class="v"><a href="https://www.xn--kayakdes2rivires-5pb.be/" class="url">kayakdes2rivières.be</a></span>
+      <span class="k">Mehr</span><span class="v"><a href="https://www.famenneardenne.be/en/kajak-canoe/" class="url">famenneardenne.be/en/kajak-canoe</a></span>
     </div>
   </div>
 
@@ -403,10 +434,11 @@ tr{ break-inside:avoid }
     <p class="tag">Bei Regen oder für zwischendurch</p>
     <h3>Drinnen und Kleines</h3>
     <div class="zeilen">
-      <span class="k">Topiaires</span><span class="v">Parc des Topiaires, Buchsbaumfiguren über 10.000 m² · <a href="https://topiaires.be/en/" class="url">topiaires.be</a> · Rue Haie Himbe 1 · <span class="tel">+32 86 21 90 75</span></span>
-      <span class="k">Confiture</span><span class="v">Confiturerie Saint-Amour, Manufaktur mit Film und Laden, täglich 10–18 Uhr · <a href="https://www.confitureriesaintamour.be/" class="url">confitureriesaintamour.be</a> · Rue Saint-Amour 13</span>
+      <span class="k">Park</span><span class="v">Parc des Topiaires, Buchsbaumfiguren über 10.000 m² · <a href="https://topiaires.be/en/" class="url">topiaires.be</a> · Rue Haie Himbe 1 · <span class="tel">+32 86 21 90 75</span></span>
+      <span class="k">Laden</span><span class="v">Confiturerie Saint-Amour, Manufaktur mit Film und Laden, täglich 10–18 Uhr · <a href="https://www.confitureriesaintamour.be/" class="url">confitureriesaintamour.be</a> · Rue Saint-Amour 13</span>
       <span class="k">Indoor</span><span class="v">Adventure Valley: Lasergame, Escape Room, Click &amp; Climb — siehe oben</span>
     </div>
+  </div>
   </div>
 </section>
 
