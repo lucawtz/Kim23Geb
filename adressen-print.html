@@ -177,6 +177,26 @@ tr{ break-inside:avoid }
 .spalten .karte p{ font-size:8.6pt }
 .spalten ul.kompakt li{ padding:3pt 0 }
 .umbruch{ break-before:page }
+
+/* ---------- Fotos ---------- */
+figure{ margin:0 }
+figcaption{
+  font-family:var(--f-data); font-size:6pt; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--stone); margin-top:2.6pt;
+}
+.bildband{ margin:0 0 13pt; break-inside:avoid }
+.bildband img{ width:100%; height:36mm; object-fit:cover; display:block }
+.bildband.abschluss img{ height:76mm }
+.bildzeile{ display:grid; gap:6pt; margin:0 0 8pt; break-inside:avoid }
+.bildzeile.zwei{ grid-template-columns:1fr 1fr }
+.bildzeile.drei{ grid-template-columns:1fr 1fr 1fr }
+.bildzeile img{ width:100%; height:30mm; object-fit:cover; display:block }
+.bildzeile.hoch img{ height:33mm }
+.karte.mit-bild{
+  display:grid; grid-template-columns:1fr 48mm; gap:10pt; align-items:start;
+}
+.karte.mit-bild .bild img{ width:100%; height:34mm; object-fit:cover; display:block }
+
 </style>
 
 <header class="deckel">
@@ -189,6 +209,11 @@ tr{ break-inside:avoid }
   </div>
 </header>
 
+<figure class="bildband">
+  <img src="img-print/durbuy-blick.jpg" alt="Durbuy im Abendlicht, vom Hang gegenüber">
+  <figcaption>Durbuy von oben — Burg, Ourthe und die Altstadt in einer Schleife</figcaption>
+</figure>
+
 <!-- ═══ 1 · CAMPING ═══ -->
 <section>
   <div class="kopf">
@@ -197,50 +222,68 @@ tr{ break-inside:avoid }
     <span class="lead">Alle drei direkt an der Ourthe</span>
   </div>
 
-  <div class="karte" style="--akzent:var(--river)">
-    <p class="tag">Mittendrin</p>
-    <h3>Le Vedeur, Durbuy</h3>
-    <p>Der einzige, von dem man abends zu Fuß in die Altstadt und wieder zurück kommt —
-    rund 600 m bis zum Ortskern. Nur Wohnmobile und Zelte, 38 Stellplätze.
-    Keine eigene Website, alles läuft über das Reservierungsportal.</p>
-    <div class="zeilen">
-      <span class="k">Buchen</span><span class="v"><a href="https://reservation.elloha.com/?IdPublication=616d7938-2a0a-4440-a6cc-3d43a8ec1fa8&amp;culture=fr-FR&amp;idoi=e9a44955-3be7-4173-984e-6b7eb3b94beb&amp;idPrestation=8aa58315-821e-4e6d-acb3-91e625801118&amp;searchFirstAvailableDates=1" class="url">reservation.elloha.com &rarr; Camping Le Vedeur</a></span>
-      <span class="k">Infos</span><span class="v"><a href="https://www.camping.info/en/campsite/camping-le-vedeur" class="url">camping.info/en/campsite/camping-le-vedeur</a></span>
-      <span class="k">Adresse</span><span class="v">Rue Fond de Vedeur 1, 6940 Durbuy</span>
-      <span class="k">Telefon</span><span class="v"><span class="tel">+32 86 21 02 09</span> <em>— Nummer variiert je nach Quelle, sicherer ist die Buchungsseite</em></span>
-      <span class="k">Preis</span><span class="v">ab ca. 30 € / Nacht (2 Personen, Fahrzeug, Strom, Kurtaxe)</span>
-      <span class="k">Saison</span><span class="v">14.02. – 05.01. · Strom max. 6 A · Ver- und Entsorgung · WLAN gratis</span>
+  <div class="karte mit-bild" style="--akzent:var(--river)">
+    <div class="txt">
+      <p class="tag">Mittendrin</p>
+      <h3>Le Vedeur, Durbuy</h3>
+      <p>Der einzige, von dem man abends zu Fuß in die Altstadt und wieder zurück kommt —
+      rund 600 m bis zum Ortskern. Nur Wohnmobile und Zelte, 38 Stellplätze.
+      Keine eigene Website, alles läuft über das Reservierungsportal.</p>
+      <div class="zeilen">
+        <span class="k">Buchen</span><span class="v"><a href="https://reservation.elloha.com/?IdPublication=616d7938-2a0a-4440-a6cc-3d43a8ec1fa8&amp;culture=fr-FR&amp;idoi=e9a44955-3be7-4173-984e-6b7eb3b94beb&amp;idPrestation=8aa58315-821e-4e6d-acb3-91e625801118&amp;searchFirstAvailableDates=1" class="url">reservation.elloha.com &rarr; Camping Le Vedeur</a></span>
+        <span class="k">Infos</span><span class="v"><a href="https://www.camping.info/en/campsite/camping-le-vedeur" class="url">camping.info/en/campsite/camping-le-vedeur</a></span>
+        <span class="k">Adresse</span><span class="v">Rue Fond de Vedeur 1, 6940 Durbuy</span>
+        <span class="k">Telefon</span><span class="v"><span class="tel">+32 86 21 02 09</span> <em>— Nummer variiert je nach Quelle, sicherer ist die Buchungsseite</em></span>
+        <span class="k">Preis</span><span class="v">ab ca. 30 € / Nacht (2 Personen, Fahrzeug, Strom, Kurtaxe)</span>
+        <span class="k">Saison</span><span class="v">14.02. – 05.01. · Strom max. 6 A · Ver- und Entsorgung · WLAN gratis</span>
+      </div>
     </div>
+    <figure class="bild">
+      <img src="img-print/vedeur.jpg" alt="Stellplätze am Ourthe-Ufer, Le Vedeur">
+      <figcaption>Le&nbsp;Vedeur · Foto camping.info</figcaption>
+    </figure>
   </div>
 
-  <div class="karte" style="--akzent:var(--moss)">
-    <p class="tag">Einfach &amp; günstig</p>
-    <h3>Camping International, Bomal-sur-Ourthe</h3>
-    <p>Familienplatz am Wasser mit eigener Brasserie und Terrasse zum Fluss. Sonntagmorgens
-    ist wenige Hundert Meter weiter der Markt. Lagerfeuerplatz, neues Sanitär, Hunde erlaubt.</p>
-    <div class="zeilen">
-      <span class="k">Website</span><span class="v"><a href="https://www.campinginternational.be/" class="url">campinginternational.be</a></span>
-      <span class="k">Buchen</span><span class="v"><a href="https://www.campinginternational.be/zoek-en-boek" class="url">campinginternational.be/zoek-en-boek</a></span>
-      <span class="k">Adresse</span><span class="v">Pré Cawiai 3, 6941 Bomal-sur-Ourthe (Durbuy) · 5–10 km bis Durbuy</span>
-      <span class="k">Kontakt</span><span class="v"><span class="tel">+32 491 61 34 88</span> · info@campinginternational.be</span>
-      <span class="k">Saison</span><span class="v">01.03. – 12.11., Restaurant in der Zeit täglich</span>
-      <span class="k">Aktuell</span><span class="v"><a href="https://www.facebook.com/www.campingdinternational.be/" class="url">facebook.com/www.campingdinternational.be</a></span>
+  <div class="karte mit-bild" style="--akzent:var(--moss)">
+    <div class="txt">
+      <p class="tag">Einfach &amp; günstig</p>
+      <h3>Camping International, Bomal-sur-Ourthe</h3>
+      <p>Familienplatz am Wasser mit eigener Brasserie und Terrasse zum Fluss. Sonntagmorgens
+      ist wenige Hundert Meter weiter der Markt. Lagerfeuerplatz, neues Sanitär, Hunde erlaubt.</p>
+      <div class="zeilen">
+        <span class="k">Website</span><span class="v"><a href="https://www.campinginternational.be/" class="url">campinginternational.be</a></span>
+        <span class="k">Buchen</span><span class="v"><a href="https://www.campinginternational.be/zoek-en-boek" class="url">campinginternational.be/zoek-en-boek</a></span>
+        <span class="k">Adresse</span><span class="v">Pré Cawiai 3, 6941 Bomal-sur-Ourthe (Durbuy) · 5–10 km bis Durbuy</span>
+        <span class="k">Kontakt</span><span class="v"><span class="tel">+32 491 61 34 88</span> · info@campinginternational.be</span>
+        <span class="k">Saison</span><span class="v">01.03. – 12.11., Restaurant in der Zeit täglich</span>
+        <span class="k">Aktuell</span><span class="v"><a href="https://www.facebook.com/www.campingdinternational.be/" class="url">facebook.com/www.campingdinternational.be</a></span>
+      </div>
     </div>
+    <figure class="bild">
+      <img src="img-print/international.jpg" alt="Camping International von oben, direkt am Fluss">
+      <figcaption>Bomal · Foto campinginternational.be</figcaption>
+    </figure>
   </div>
 
-  <div class="karte" style="--akzent:var(--sun)">
-    <p class="tag">Direkt am Wasser</p>
-    <h3>Camping des Rochers du Glawan</h3>
-    <p>Kleiner Platz unter den Felsen zwischen Durbuy und Barvaux, Uferweg nach Durbuy.
-    Ganzjährig offen, Bar am Platz, Sanitär von 2021. Frühstücksbuffet Sa + So,
-    Pétanque Mi + Sa, Bingo freitags.</p>
-    <div class="zeilen">
-      <span class="k">Website</span><span class="v"><a href="https://www.glawan.be/" class="url">glawan.be</a> · <a href="https://www.glawan.be/emplacements/" class="url">/emplacements</a> · <a href="https://www.glawan.be/activites/" class="url">/activites</a></span>
-      <span class="k">Buchen</span><span class="v"><a href="https://www.glawan.be/reservation/" class="url">glawan.be/reservation</a></span>
-      <span class="k">Adresse</span><span class="v">Rue des Glawans 25, 6940 Durbuy · 500 m vom Zentrum Barvaux, ca. 6 km bis Durbuy</span>
-      <span class="k">Kontakt</span><span class="v"><span class="tel">+32 86 21 29 81</span> oder <span class="tel">+32 475 65 29 04</span> · info@glawan.be</span>
-      <span class="k">Platz</span><span class="v">85 Stellplätze (22 für Durchreisende) · Bancontact &amp; Kreditkarte · Hunde erlaubt</span>
+  <div class="karte mit-bild" style="--akzent:var(--sun)">
+    <div class="txt">
+      <p class="tag">Direkt am Wasser</p>
+      <h3>Camping des Rochers du Glawan</h3>
+      <p>Kleiner Platz unter den Felsen zwischen Durbuy und Barvaux, Uferweg nach Durbuy.
+      Ganzjährig offen, Bar am Platz, Sanitär von 2021. Frühstücksbuffet Sa + So,
+      Pétanque Mi + Sa, Bingo freitags.</p>
+      <div class="zeilen">
+        <span class="k">Website</span><span class="v"><a href="https://www.glawan.be/" class="url">glawan.be</a> · <a href="https://www.glawan.be/emplacements/" class="url">/emplacements</a> · <a href="https://www.glawan.be/activites/" class="url">/activites</a></span>
+        <span class="k">Buchen</span><span class="v"><a href="https://www.glawan.be/reservation/" class="url">glawan.be/reservation</a></span>
+        <span class="k">Adresse</span><span class="v">Rue des Glawans 25, 6940 Durbuy · 500 m vom Zentrum Barvaux, ca. 6 km bis Durbuy</span>
+        <span class="k">Kontakt</span><span class="v"><span class="tel">+32 86 21 29 81</span> oder <span class="tel">+32 475 65 29 04</span> · info@glawan.be</span>
+        <span class="k">Platz</span><span class="v">85 Stellplätze (22 für Durchreisende) · Bancontact &amp; Kreditkarte · Hunde erlaubt</span>
+      </div>
     </div>
+    <figure class="bild">
+      <img src="img-print/glawan.jpg" alt="Empfang und Terrasse am Camping des Rochers du Glawan">
+      <figcaption>Glawan · Foto glawan.be</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -251,6 +294,11 @@ tr{ break-inside:avoid }
     <h2>Essen gehen</h2>
     <span class="lead">Von Crêpes bis Sterneküche</span>
   </div>
+
+<div class="bildzeile zwei">
+  <figure><img src="img-print/platz.jpg" alt="Terrassen am Place aux Foires"><figcaption>Place aux Foires</figcaption></figure>
+  <figure><img src="img-print/gasse.jpg" alt="Gassen mit Läden und Terrassen"><figcaption>Gassen der Altstadt</figcaption></figure>
+</div>
 
   <div class="spalten">
     <div class="karte" style="--akzent:var(--beech)">
@@ -350,6 +398,12 @@ tr{ break-inside:avoid }
     <span class="lead">Was gebucht werden muss</span>
   </div>
 
+<div class="bildzeile drei hoch">
+  <figure><img src="img-print/kanu.jpg" alt="Kanus auf der Ourthe unter dem Burgfelsen"><figcaption>Kajak auf der Ourthe</figcaption></figure>
+  <figure><img src="img-print/ferrata.jpg" alt="Eisenbügel der Via Ferrata im Kalkstein"><figcaption>Via Ferrata im Fels</figcaption></figure>
+  <figure><img src="img-print/zipline.jpg" alt="Zipline über dem Wasser bei Adventure Valley"><figcaption>Superfly · 566 m</figcaption></figure>
+</div>
+
   <div class="karte" style="--akzent:var(--camper)">
     <p class="tag">Kanu · Klettersteig · Zipline — alles bei einem Anbieter</p>
     <h3>Adventure Valley Durbuy</h3>
@@ -448,6 +502,11 @@ tr{ break-inside:avoid }
     <span class="nr">04</span>
     <h2>Nützliche Seiten</h2>
   </div>
+
+<figure class="bildband">
+  <img src="img-print/pflaster.jpg" alt="Kopfsteinpflaster in der Altstadt von Durbuy">
+  <figcaption>Zehn Minuten zu Fuß vom Platz — und man steht hier</figcaption>
+</figure>
   <ul class="kompakt">
     <li><span class="name">Tourismusbüro Durbuy (offiziell)</span> — <a href="https://durbuytourisme.be/" class="url">durbuytourisme.be</a>
       <span class="detail">· Place aux Foires 25, 6940 Durbuy · <span class="tel">+32 86 21 24 28</span> · tourisme@durbuy.be</span></li>
@@ -458,27 +517,15 @@ tr{ break-inside:avoid }
   </ul>
 </section>
 
-<!-- ═══ 5 · FRISTEN ═══ -->
-<section>
-  <div class="kopf">
-    <span class="nr">05</span>
-    <h2>Was wann buchen</h2>
-    <span class="lead">Reihenfolge für das Wochenende</span>
-  </div>
-  <table>
-    <tr><th>Wann</th><th>Was</th></tr>
-    <tr><td>Sobald der Termin steht</td><td>Campingplatz — im September noch entspannt, aber Le Vedeur hat nur 38 Plätze</td></tr>
-    <tr><td>2–3 Wochen vorher</td><td>Adventure Valley online: Kajak und Klettersteig, ausschließlich über booking.adventure-valley.be</td></tr>
-    <tr><td>2–3 Wochen vorher</td><td>Tisch am Samstagabend, vor allem bei Le Sanglier oder Le Fou du Roy</td></tr>
-    <tr><td>Bis Donnerstag vorher</td><td>Stadtführung am Samstag — telefonisch oder per Mail beim RSI</td></tr>
-    <tr><td>Mind. 48 Std vorher</td><td>Kutschfahrt mit Apéro beim Élevage de Durbuy</td></tr>
-    <tr><td>Am Morgen selbst</td><td>Wasserstand der Ourthe prüfen — die Freigabe steht ab ca. 8:15 Uhr online</td></tr>
-  </table>
-</section>
+<figure class="bildband abschluss">
+  <img src="img-print/altstadt.jpg" alt="Fachwerkhaus und Terrassen in der Altstadt von Durbuy">
+  <figcaption>Bis September — dann steht der Camper irgendwo hier um die Ecke</figcaption>
+</figure>
 
 <div class="fuss">
   <span>Route 23 · Durbuy</span>
   <span>Stand August 2026</span>
+  <span>Fotos: camping.info · glawan.be · campinginternational.be</span>
   <span>Alle Angaben ohne Gewähr</span>
 </div>
 </html>

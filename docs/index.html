@@ -2975,7 +2975,12 @@ function pdfVorladen() {
 /* Teilen mit Anhang koennen nur sichere Seiten (https oder localhost)
    und laengst nicht jeder Browser. */
 function kannTeilen() {
-  return !!(pdfDatei && navigator.canShare && navigator.canShare({ files: [pdfDatei] }));
+  /* Auf dem Mac meldet Safari zwar, dass es Dateien teilen kann — aber
+     dann haengt der ganze Absendeweg am Teilen-Dialog, und bricht der ab,
+     passiert gar nichts mehr. Am Rechner soll der Link einfach ein Link
+     sein; der Dialog mit Anhang ist eine Handy-Sache. */
+  const amHandy = matchMedia("(pointer: coarse)").matches;
+  return !!(amHandy && pdfDatei && navigator.canShare && navigator.canShare({ files: [pdfDatei] }));
 }
 
 function pdfInDownloads() {
@@ -3194,7 +3199,10 @@ function paint() {
   });
   /* Sobald die Wahl steht, das PDF im Hintergrund holen — es muss
      fertig daliegen, bevor der Teilen-Dialog es mitnehmen kann. */
-  if (ready) pdfVorladen();
+  /* Nur vorladen, wo es gebraucht wird: fuer den Teilen-Dialog auf dem
+     Handy. Am Rechner laedt das PDF erst beim Klick — sonst zieht die
+     Seite 3 MB, die vielleicht nie jemand braucht. */
+  if (ready && matchMedia("(pointer: coarse)").matches) pdfVorladen();
   const anhang = !ready ? ""
     : kannTeilen()             ? " Das PDF mit allen Adressen geht mit."
     : (pdfDatei || PDF_DATA)   ? " Das PDF mit allen Adressen kommt in deine Downloads."
@@ -3262,7 +3270,12 @@ btnCopy.addEventListener("click", async () => {
       } catch (err) {
         if (err && err.name === "AbortError") return;      /* selbst abgebrochen */
         pdfInDownloads();
-        window.open(b.href, b === btnMail ? "_self" : "_blank", "noopener");
+        /* Nach dem await ist die Nutzerinteraktion verbraucht — ein
+           window.open wuerde jetzt stillschweigend geblockt. Deshalb
+           notfalls im selben Tab weiterleiten, das laesst sich nicht
+           blockieren. */
+        if (b === btnMail) location.href = b.href;
+        else { const w = window.open(b.href, "_blank", "noopener"); if (!w) location.href = b.href; }
         celebrate("Teilen ging nicht – das PDF liegt in deinen Downloads.");
       }
       return;
