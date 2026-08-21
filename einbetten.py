@@ -18,7 +18,7 @@ def hole(name):
 # srcset entfernen und src durch die eingebettete Fassung ersetzen
 def ersetze(m):
     tag = m.group(0)
-    name = re.search(r'src="img/([a-z0-9]+)-800\.webp"', tag)
+    name = re.search(r'src="img/([a-z0-9-]+)-800\.webp"', tag)
     if not name:
         return tag
     tag = re.sub(r'\s*srcset="[^"]*"', "", tag)

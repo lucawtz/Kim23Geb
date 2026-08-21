@@ -946,6 +946,16 @@ html.angehalten html.angehalten{overscroll-behavior:none}
 .plate-zweit img{aspect-ratio:16/9;object-fit:cover}
 .plate-stapel{display:flex;flex-direction:column;gap:.6rem;min-width:0}
 .plate-stapel .plate-zweit{margin-top:0}
+
+/* Fotos von uns beiden — gerahmt wie ein Abzug */
+.portrait{
+  width:clamp(190px,58vw,300px);margin:0 auto;line-height:0;
+  border-radius:2px;overflow:hidden;background:#0B1815;
+  border:1px solid rgba(201,212,200,.22);
+  box-shadow:0 22px 44px -22px rgba(0,0,0,.85);
+}
+.portrait.gross{width:clamp(230px,74vw,420px);margin-top:clamp(1.4rem,4vw,2rem)}
+.portrait img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
 </style>
 
 <div class="sky" id="sky"></div>
@@ -1064,6 +1074,9 @@ html.angehalten html.angehalten{overscroll-behavior:none}
   <section class="ignition" id="s-start" data-stop="Zündung" data-sky="night">
     <div class="ig-inner">
       <p class="ig-plate reveal in">23 · 08 · 2026</p>
+      <div class="portrait reveal in">
+        <img src="img/wir-abend-800.webp" srcset="img/wir-abend-800.webp 800w, img/wir-abend-1600.webp 1600w" sizes="(max-width:760px) 62vw, 300px" width="1600" height="1200" loading="lazy" decoding="async" alt="Wir beide">
+      </div>
       <div class="ig-title">
         <span class="data reveal d1">Für</span>
         <span class="ig-name reveal d1">Kim</span>
@@ -1506,6 +1519,9 @@ html.angehalten html.angehalten{overscroll-behavior:none}
       </p>
       <p class="reveal d3" style="max-width:34ch">Und irgendwo hinten im Wald röhrt zum ersten Mal
         in diesem Jahr ein Hirsch. Ich freu mich drauf. Sehr.</p>
+      <div class="portrait gross reveal d3">
+        <img src="img/wir-berge-800.webp" srcset="img/wir-berge-800.webp 800w, img/wir-berge-1600.webp 1600w" sizes="(max-width:760px) 78vw, 420px" width="1600" height="1200" loading="lazy" decoding="async" alt="Wir beide in den Bergen">
+      </div>
       <hr class="rule reveal d3">
       <p class="data reveal d4" style="white-space:nowrap">50°21′N · 5°27′E</p>
     </div>
