@@ -3265,23 +3265,19 @@ function toast(msg) {
   clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("on"), 2600);
 }
 
-const KEY = "route23.auswahl";
-function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {} }
-function load() {
-  try {
-    const raw = JSON.parse(localStorage.getItem(KEY) || "null");
-    if (!raw) return;
-    if (SLOTS.some(s => s.id === raw.slot)) state.slot = raw.slot;
-    if (Array.isArray(raw.acts)) state.acts = raw.acts.filter(id => ACTS.some(a => a.id === id)).slice(0, 2);
-    if (CAMPS.some(c => c.id === raw.camp)) state.camp = raw.camp;
-  } catch {}
-}
-/* Zum Testen: die Seite mit #neu am Ende aufrufen, dann startet sie
-   mit leerer Auswahl. Für Kim unsichtbar, sie bekommt den Link ohne. */
-if (location.hash === "#neu" || location.hash === "#reset") {
-  try { localStorage.removeItem(KEY); } catch {}
-  history.replaceState(null, "", location.pathname + location.search);
-}
+/* Bewusst kein Speichern: Jeder Aufruf der Seite fängt bei null an.
+   Sonst ist nach einem Neuladen alles schon ausgefüllt und die Fahrt
+   auf der Karte gilt als gesehen. */
+function save() {}
+function load() {}
+
+/* Der Browser merkt sich beim Neuladen die Scrollposition und springt
+   mitten in die Seite. Dann läuft die Karte unbemerkt ab, und man steht
+   vor einer Strecke, die schon gefahren ist. Also: immer von vorn. */
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+addEventListener("load", () => { if (!location.hash) scrollTo(0, 0); });
+scrollTo(0, 0);
+
 load(); paint();
 
 /* ════════════════════════════════════════════════════════════
