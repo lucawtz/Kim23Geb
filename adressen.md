@@ -1,6 +1,6 @@
 # Durbuy — Adressen, Websites & Buchungslinks
 
-Alles, was für das Wochenende **Fr 11. – So 13.09.2026** gebucht oder wenigstens
+Alles, was für das Wochenende – **Fr 11.–13. September** oder **Fr 16.–18. Oktober 2026** – gebucht oder wenigstens
 angerufen werden muss. Sortiert nach: Camping → Essen → Aktivitäten → Nützliches.
 
 > Preise sind Stand August 2026 und nur Richtwerte – auf den Seiten selbst
@@ -77,7 +77,7 @@ mit italienischem Einschlag, romantische Terrasse.
 - Rue du Comte Théodule d'Ursel 4, 6940 Durbuy
 
 **Le Sanglier des Ardennes** – das Haus mit Blick über die Ourthe, vier Restaurants
-unter einem Dach. Für den 12. September früh reservieren.
+unter einem Dach. Für den Samstagabend früh reservieren.
 - **Alle Restaurants:** https://www.sanglier-durbuy.be/en/restaurants
 - **La Bru'sserie** (Weltküche, Terrasse mit Blick auf Fluss und Schloss – der
   entspannteste der vier): https://www.sanglier-durbuy.be/en/restaurants/la-brusserie
