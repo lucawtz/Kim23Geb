@@ -1456,7 +1456,7 @@ html.angehalten html.angehalten{overscroll-behavior:none}
         <div class="ticket-row"><span class="ticket-k">Für</span><span class="ticket-v">Kim</span></div>
         <div class="ticket-row"><span class="ticket-k">Wann</span><span class="ticket-v ticket-empty" id="tWhen">noch offen</span></div>
         <div class="ticket-row"><span class="ticket-k">Wir machen</span><span class="ticket-v ticket-empty" id="tWhat">noch offen</span></div>
-        <div class="ticket-row"><span class="ticket-k">Fahrzeug</span><span class="ticket-v">Camper, Kanu auf dem Dach</span></div>
+        <div class="ticket-row"><span class="ticket-k">Fahrzeug</span><span class="ticket-v">Camper, Baloo</span></div>
         <div class="ticket-row"><span class="ticket-k">Basislager</span><span class="ticket-v ticket-empty" id="tCamp">such du aus</span></div>
       </div>
       <div class="send-row reveal d3">
@@ -2927,6 +2927,44 @@ requestAnimationFrame(frame);
 const FOTO_DATA = {};   /* wird in der Einzeldatei gefüllt */
 const FOTOS = {"kanu": [800, 1600], "ferrata": [800], "blick": [800], "gasse": [800, 1600], "platz": [800, 1600], "pflaster": [800], "zipline": [800]};
 
+/* ════════════════════════════════════════════════════════════
+   DAS PDF, DAS BEIM ABSCHICKEN MITGEHT
+   Weder wa.me noch mailto koennen eine Datei anhaengen — das kann nur
+   der Teilen-Dialog des Systems (Web Share, auf dem Handy). Wo es den
+   nicht gibt, legen wir das PDF stattdessen in die Downloads und sagen
+   in der Meldung Bescheid.
+   ════════════════════════════════════════════════════════════ */
+const PDF_NAME = "Durbuy-Adressen.pdf";
+const PDF_DATA = "";   /* wird in der Einzeldatei gefüllt */
+let pdfDatei = null, pdfHolt = null;
+
+function pdfVorladen() {
+  if (pdfDatei || pdfHolt) return pdfHolt;
+  pdfHolt = fetch(PDF_DATA || PDF_NAME)
+    .then(r => r.ok ? r.blob() : Promise.reject(new Error("PDF " + r.status)))
+    .then(b => {
+      pdfDatei = new File([b], PDF_NAME, { type: "application/pdf" });
+      paint();               /* Hinweistext nachziehen, sobald es da ist */
+      return pdfDatei;
+    })
+    .catch(() => { pdfHolt = null; return null; });   /* ohne PDF laeuft alles wie vorher */
+  return pdfHolt;
+}
+
+/* Teilen mit Anhang koennen nur sichere Seiten (https oder localhost)
+   und laengst nicht jeder Browser. */
+function kannTeilen() {
+  return !!(pdfDatei && navigator.canShare && navigator.canShare({ files: [pdfDatei] }));
+}
+
+function pdfInDownloads() {
+  const quelle = pdfDatei ? URL.createObjectURL(pdfDatei) : (PDF_DATA || PDF_NAME);
+  const a = document.createElement("a");
+  a.href = quelle; a.download = PDF_NAME; a.rel = "noopener";
+  document.body.appendChild(a); a.click(); a.remove();
+  if (pdfDatei) setTimeout(() => URL.revokeObjectURL(quelle), 8000);
+}
+
 const ACTS = [
   { id:"kanu", flag:"Mein Favorit", title:"Kanu auf der Ourthe",
     text:"Der Bus bringt uns flussaufwärts, den Rest übernimmt die Strömung. Vier bis dreiundzwanzig Kilometer – du sagst, wie weit.",
@@ -3135,9 +3173,17 @@ function paint() {
     b.style.pointerEvents = ready ? "" : "none";
     b.style.opacity = ready ? "" : ".45";
   });
+  /* Sobald die Wahl steht, das PDF im Hintergrund holen — es muss
+     fertig daliegen, bevor der Teilen-Dialog es mitnehmen kann. */
+  if (ready) pdfVorladen();
+  const anhang = !ready ? ""
+    : kannTeilen()             ? " Das PDF mit allen Adressen geht mit."
+    : (pdfDatei || PDF_DATA)   ? " Das PDF mit allen Adressen kommt in deine Downloads."
+    : "";
+
   sendHint.textContent = ready
     ? (hasMail ? "Ein Tipp – such dir einen Weg aus – und ich weiß Bescheid."
-               : "Ein Tipp – und ich weiß Bescheid.")
+               : "Ein Tipp – und ich weiß Bescheid.") + anhang
     : !slot ? "Fehlt noch: ein Termin." : `Fehlt noch: ${2 - chosen.length} Aktivität${2 - chosen.length === 1 ? "" : "en"}.`;
 
   if (ready) {
@@ -3179,7 +3225,39 @@ btnCopy.addEventListener("click", async () => {
           ta.remove(); }
 });
 [btnSend, btnMail].forEach(b =>
-  b.addEventListener("click", () => { if (state.slot && state.acts.length === 2) celebrate(); }));
+  b.addEventListener("click", async e => {
+    if (!(state.slot && state.acts.length === 2)) return;
+
+    /* Der Weg, auf dem das PDF wirklich mitgeht: der Teilen-Dialog.
+       navigator.share muss ohne vorheriges await aufgerufen werden,
+       darum liegt die Datei schon fertig bereit. */
+    if (kannTeilen()) {
+      e.preventDefault();
+      try {
+        await navigator.share({
+          title: "Route 23 – Durbuy",
+          text:  message(),
+          files: [pdfDatei]
+        });
+        celebrate("Abgeschickt – das PDF hängt mit dran.");
+      } catch (err) {
+        if (err && err.name === "AbortError") return;      /* selbst abgebrochen */
+        pdfInDownloads();
+        window.open(b.href, b === btnMail ? "_self" : "_blank", "noopener");
+        celebrate("Teilen ging nicht – das PDF liegt in deinen Downloads.");
+      }
+      return;
+    }
+
+    /* Kein Teilen-Dialog: WhatsApp bzw. Mail oeffnet wie gehabt,
+       das PDF wandert daneben in die Downloads. */
+    if (pdfDatei || PDF_DATA) {
+      pdfInDownloads();
+      celebrate("Steht fest. Das PDF liegt in deinen Downloads – häng es einfach an.");
+    } else {
+      celebrate();
+    }
+  }));
 
 let toastT;
 function toast(msg) {
@@ -3473,8 +3551,9 @@ addEventListener("resize", initCanvas, { passive: true });
 initCanvas(); requestAnimationFrame(particleLoop);
 
 /* Belohnung beim Abschicken */
-function celebrate() {
-  if (RM) { toast("Steht fest. Ich freu mich."); return; }
+function celebrate(meldung) {
+  const sagen = meldung || "Steht fest. Ich freu mich.";
+  if (RM) { toast(sagen); return; }
   for (let i = 0; i < 40; i++) {
     const l = newLeaf();
     l.x = Math.random() * W; l.y = -20 - Math.random() * 120;
@@ -3482,7 +3561,7 @@ function celebrate() {
     leaves.push(l);
   }
   curSky.leaves = 1; tgtSky.leaves = Math.max(tgtSky.leaves ?? 0, .5);
-  toast("Steht fest. Ich freu mich.");
+  toast(sagen);
 }
 
 /* „Losfahren" antippbar machen */

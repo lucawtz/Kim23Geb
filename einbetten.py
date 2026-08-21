@@ -1,5 +1,6 @@
-"""Baut aus durbuy.html eine einzelne Datei, in der auch die Fotos stecken.
-   Nutzt nur die 800px-Fassung, damit die Datei nicht ausufert."""
+"""Baut aus durbuy.html eine einzelne Datei, in der auch die Fotos und
+   das Adressen-PDF stecken. Nutzt nur die 800px-Fassung der Fotos,
+   damit die Datei nicht ausufert."""
 import base64, re, os
 
 src = open("durbuy.html", encoding="utf-8").read()
@@ -31,5 +32,15 @@ out = re.sub(r"<img\b[^>]*>", ersetze, src)
 karten = ["kanu", "zipline", "platz", "blick", "gasse"]
 daten = ",".join('"%s":"%s"' % (k, hole(k)) for k in karten)
 out = out.replace("const FOTO_DATA = {};", "const FOTO_DATA = {%s};" % daten)
+
+# Das PDF, das beim Abschicken mitgeht — in der Einzeldatei liegt es
+# als Data-URI drin, sonst wuerde es beim Verschicken fehlen.
+if os.path.exists("Durbuy-Adressen.pdf"):
+    with open("Durbuy-Adressen.pdf", "rb") as f:
+        pdf = "data:application/pdf;base64," + base64.b64encode(f.read()).decode()
+    out = out.replace('const PDF_DATA = "";', 'const PDF_DATA = "%s";' % pdf)
+    print(f"  PDF eingebettet ({len(pdf)//1024} KB als Text)")
+else:
+    print("  Kein Durbuy-Adressen.pdf gefunden – Einzeldatei bleibt ohne Anhang")
 open("einzeldatei.html", "w", encoding="utf-8").write(out)
 print(f"  {len(cache)} Fotos eingebettet")
