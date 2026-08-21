@@ -920,6 +920,12 @@ html.angehalten html.angehalten{overscroll-behavior:none}
 @media (prefers-reduced-motion:no-preference){
   .map-cue i::after{content:"";position:absolute;inset:0;background:var(--camper);animation:cue 1.5s cubic-bezier(.5,0,.5,1) infinite}
 }
+
+/* Zweites Bild direkt unter dem ersten, gleiche Breite */
+.plate-zweit{margin-top:.6rem}
+.plate-zweit img{aspect-ratio:16/9;object-fit:cover}
+.plate-stapel{display:flex;flex-direction:column;gap:.6rem;min-width:0}
+.plate-stapel .plate-zweit{margin-top:0}
 </style>
 
 <div class="sky" id="sky"></div>
@@ -1136,10 +1142,16 @@ html.angehalten html.angehalten{overscroll-behavior:none}
       <p class="eyebrow reveal">Stopp 03 — Ankunft</p>
       <h2 class="reveal d1">Die kleinste<br>Stadt der Welt</h2>
       <div class="shot" style="margin-top:clamp(1.4rem,4vw,2.2rem)">
-        <div class="plate reveal d2">
+        <div class="plate-stapel">
+          <div class="plate reveal d2">
             <img src="img/blick-800.webp" sizes="(max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Durbuy im Abendlicht, vom Hang gegenüber">
             <span class="plate-cap">Durbuy im Abendlicht, vom Hang gegenüber</span>
           </div>
+          <div class="plate plate-zweit reveal d3">
+            <img src="img/gasse-800.webp" srcset="img/gasse-800.webp 800w, img/gasse-1600.webp 1600w" sizes="(max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Gassen, Läden und Terrassen">
+            <span class="plate-cap">Gassen, Läden und Terrassen</span>
+          </div>
+        </div>
         <div>
           <p class="lead reveal d2">Durbuy hat im historischen Kern rund 400 Einwohner – und trotzdem
             seit 1331 offiziell Stadtrechte. Verliehen von Johann von Böhmen, und seitdem nie
@@ -1194,9 +1206,15 @@ html.angehalten html.angehalten{overscroll-behavior:none}
       <p class="eyebrow reveal">Stopp 06 — Die Wand</p>
       <h2 class="reveal d1">Fünfunddreißig<br>Meter über<br>dem Boden</h2>
       <div class="shot" style="margin-top:clamp(1.6rem,5vw,2.6rem)">
-        <div class="plate reveal d2" id="plate-wand">
+        <div class="plate-stapel">
+          <div class="plate reveal d2" id="plate-wand">
           <img src="img/ferrata-800.webp" sizes="(max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Der Klettersteig oberhalb von Durbuy · Eisenbügel im Kalkstein">
           <span class="plate-cap">Der Klettersteig oberhalb von Durbuy · Eisenbügel im Kalkstein</span>
+        </div>
+          <div class="plate plate-zweit reveal d3">
+            <img src="img/zipline-800.webp" sizes="(max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Die Zipline über dem Wasser">
+            <span class="plate-cap">Die Zipline über dem Wasser</span>
+          </div>
         </div>
         <div>
           <p class="lead reveal d2">Der Klettersteig oberhalb von Durbuy hängt an einer Felswand, die seit
@@ -1248,10 +1266,16 @@ html.angehalten html.angehalten{overscroll-behavior:none}
     <div class="wrap">
       <p class="eyebrow reveal">Stopp 08 — Wann</p>
       <h2 class="reveal d1">Such dir das<br>Wochenende aus</h2>
-      <p class="lead reveal d2" style="margin-top:1.2rem;max-width:40ch">
-        Der 11. bis 13. September ist geblockt. Wie viel davon wir uns nehmen, entscheidest du –
-        und wenn du an dem Wochenende nicht kannst, sagst du das einfach.
-      </p>
+      <div class="shot" style="margin-top:clamp(1.4rem,4vw,2.2rem)">
+        <div class="plate reveal d2">
+            <img src="img/platz-800.webp" srcset="img/platz-800.webp 800w, img/platz-1600.webp 1600w" sizes="(max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Am Place aux Foires sitzt man draußen, solange es geht">
+            <span class="plate-cap">Am Place aux Foires sitzt man draußen, solange es geht</span>
+          </div>
+        <p class="lead reveal d2">
+          Der 11. bis 13. September ist geblockt. Wie viel davon wir uns nehmen, entscheidest du –
+          und wenn du an dem Wochenende nicht kannst, sagst du das einfach.
+        </p>
+      </div>
       <div class="slots reveal d3" id="slots" style="margin-top:clamp(1.8rem,5vw,2.6rem)"></div>
     </div>
   </section>
@@ -2904,23 +2928,23 @@ const FOTO_DATA = {};   /* wird in der Einzeldatei gefüllt */
 const FOTOS = {"kanu": [800, 1600], "ferrata": [800], "blick": [800], "gasse": [800, 1600], "platz": [800, 1600], "pflaster": [800], "zipline": [800]};
 
 const ACTS = [
-  { id:"kanu", foto:"kanu", flag:"Mein Favorit", title:"Kanu auf der Ourthe",
+  { id:"kanu", flag:"Mein Favorit", title:"Kanu auf der Ourthe",
     text:"Der Bus bringt uns flussaufwärts, den Rest übernimmt die Strömung. Vier bis dreiundzwanzig Kilometer – du sagst, wie weit.",
     meta:["4–23 km", "Transfer inkl.", "April – Oktober"],
     short:"Kanu auf der Ourthe" },
-  { id:"klettern", foto:"zipline", flag:"Mein Favorit", title:"Klettersteig & Baumwipfel",
+  { id:"klettern", flag:"Mein Favorit", title:"Klettersteig & Baumwipfel",
     text:"Vier Parcours an einer Wand, die seit 300 Millionen Jahren dort steht. Bis 35 Meter hoch, Gurt und Helm gibt’s vor Ort. Bei Regen geht auch drinnen was.",
     meta:["bis 35 m", "ca. 1,5–2 Std", "So geschlossen"],
     short:"Klettersteig & Baumwipfel" },
-  { id:"essen", foto:"platz", flag:"", title:"Einmal richtig schön essen",
+  { id:"essen", flag:"", title:"Einmal richtig schön essen",
     text:"Crêpes bei einer Familie, die das seit 1971 macht, eine Brasserie am Place aux Foires oder eine Terrasse direkt überm Fluss mit Blick aufs Schloss. Du sagst, worauf du Lust hast.",
     meta:["ab 15 € bis Sterneküche", "Terrasse überm Fluss", "Fr–So offen"],
     short:"Schön essen gehen" },
-  { id:"aussicht", foto:"blick", flag:"", title:"Sonnenuntergang überm Tal",
+  { id:"aussicht", flag:"", title:"Sonnenuntergang überm Tal",
     text:"Fünf Minuten von der Altstadt steht ein Felsen, der 300 Millionen Jahre alt und zu einem Bogen gefaltet ist. Am Samstag sinkt die Sonne dort um 20:01 Uhr direkt neben dem Schloss weg.",
     meta:["20:01 Uhr", "5 Min zu Fuß", "kostet nichts"],
     short:"Sonnenuntergang am Felsen" },
-  { id:"altstadt", foto:"gasse", flag:"", title:"Durbuy erkunden",
+  { id:"altstadt", flag:"", title:"Durbuy erkunden",
     text:"Gassen aus runden Flusskieseln, 400 Einwohner, Stadtrechte seit 1331. Samstags gibt es eine Führung mit zwei Bieren, Ziegenkäse und Pralinen unterwegs – oder wir laufen einfach los.",
     meta:["2 Std", "15 € mit Führung", "oder einfach so"],
     short:"Durbuy erkunden" },
@@ -3313,7 +3337,7 @@ function anhalten() {
   document.documentElement.classList.add("angehalten");
   mapWrap.classList.add("wartet");
   /* Wer nichts tut, bekommt die Fahrt nach kurzer Zeit von selbst */
-  clearTimeout(startTimer); startTimer = setTimeout(starten, 4500);
+  clearTimeout(startTimer); startTimer = setTimeout(starten, 6000);
   /* Notbremse: löst auf jeden Fall */
   clearTimeout(loesenTimer); loesenTimer = setTimeout(loesen, 14000);
 }
@@ -3331,14 +3355,32 @@ function loesen() {
 
 if (mapRoute) {
   setMap(0);
-  new IntersectionObserver((es, obs) => {
+  /* Erst anhalten, wenn die Karte auch wirklich vollständig im Bild
+     steht. Sonst passiert es, dass die Fahrt losläuft, während die
+     Karte noch halb unter dem Bildrand hängt – und man sitzt vor
+     einem abgeschnittenen Bild fest. */
+  const gutImBild = () => {
+    const r = mapWrap.getBoundingClientRect();
+    if (r.height > innerHeight * .82) return r.top <= innerHeight * .28 && r.bottom > innerHeight * .6;
+    return r.top >= -24 && r.bottom <= innerHeight + 24;
+  };
+  const kartenObs = new IntersectionObserver(es => {
     es.forEach(e => {
-      if (!e.isIntersecting || gelaufen || laeuft) return;
-      obs.disconnect();
-      if (RM) { fahreAb(); return; }   /* ohne Bewegung: kein Anhalten */
-      anhalten();                      /* wartet auf die nächste Scrollbewegung */
+      if (!e.isIntersecting || gelaufen || laeuft || angehalten) return;
+      if (RM) { kartenObs.disconnect(); fahreAb(); return; }
+      if (!gutImBild()) return;        /* noch nicht so weit – weiter beobachten */
+      kartenObs.disconnect();
+      anhalten();
     });
-  }, { threshold: .55 }).observe(mapWrap);
+  }, { threshold: [.3, .5, .7, .9, 1] });
+  kartenObs.observe(mapWrap);
+  /* Beim Scrollen erneut prüfen, weil der Beobachter nur bei
+     Schwellenwechseln feuert. */
+  const nachpruefen = () => {
+    if (gelaufen || laeuft || angehalten) { removeEventListener("scroll", nachpruefen); return; }
+    if (!RM && gutImBild()) { removeEventListener("scroll", nachpruefen); kartenObs.disconnect(); anhalten(); }
+  };
+  addEventListener("scroll", nachpruefen, { passive: true });
 }
 
 const mapSkip = $("#mapSkip");

@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="de">
+<meta charset="utf-8">
+<title>Durbuy — Adressen, Websites &amp; Buchungslinks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,75..125,400..700;1,75..125,400&family=Instrument+Serif:ital@0;1&family=Martian+Mono:wght@300;400;500&display=swap">
+<style>
+/* ============================================================
+   ROUTE 23 — Druckfassung der Adressliste
+   Gleiche Tonleiter wie die Website, nur auf Papier gedacht:
+   heller Grund, dunkle Tinte, der Camper-Ton bleibt der einzige
+   wirklich gesättigte Akzent.
+   ============================================================ */
+:root{
+  --ink:#0A1714;
+  --ink-2:#16302B;
+  --stone:#6E7E73;
+  --line:#D5D8CE;
+  --paper:#FBFAF6;
+  --panel:#F2F1E9;
+  --river:#1B5852;
+  --moss:#3C5B45;
+  --beech:#8A4A20;
+  --sun:#B07C13;
+  --camper:#C2431F;
+  --f-sign:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-emo:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --f-data:"Martian Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+
+@page{ size:A4; margin:16mm 14mm 14mm; }
+@page:first{ margin-top:14mm; }
+
+*,*::before,*::after{ box-sizing:border-box }
+html{ -webkit-print-color-adjust:exact; print-color-adjust:exact }
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--f-sign); font-size:9.4pt; line-height:1.5;
+  font-variation-settings:"wdth" 100,"wght" 400;
+  -webkit-font-smoothing:antialiased;
+}
+a{ color:var(--river); text-decoration:none; border-bottom:.4pt solid rgba(27,88,82,.35) }
+strong{ font-variation-settings:"wdth" 100,"wght" 620 }
+em{ font-style:italic; color:var(--stone) }
+
+/* ---------- Titelkopf ---------- */
+.deckel{
+  border-top:2.4pt solid var(--camper);
+  padding-top:9pt; margin-bottom:16pt;
+}
+.kicker{
+  font-family:var(--f-data); font-size:6.6pt; font-weight:400;
+  letter-spacing:.22em; text-transform:uppercase; color:var(--camper);
+  margin:0 0 7pt;
+}
+h1{
+  font-family:var(--f-emo); font-weight:400; font-size:31pt; line-height:1.02;
+  margin:0 0 8pt; letter-spacing:-.005em;
+}
+h1 em{ font-style:italic; color:var(--camper) }
+.deckel-zeile{
+  display:flex; gap:14pt; flex-wrap:wrap; align-items:baseline;
+  border-top:.5pt solid var(--line); padding-top:7pt;
+}
+.deckel-zeile .datum{
+  font-family:var(--f-data); font-size:8pt; letter-spacing:.04em; color:var(--ink-2);
+}
+.deckel-zeile .hinweis{ font-size:8.2pt; color:var(--stone); max-width:96mm }
+
+/* ---------- Abschnitte ---------- */
+section{ margin-top:15pt; break-inside:auto }
+.kopf{
+  display:flex; align-items:baseline; gap:8pt;
+  border-bottom:1.1pt solid var(--ink); padding-bottom:4pt; margin-bottom:9pt;
+  break-after:avoid;
+}
+.nr{
+  font-family:var(--f-data); font-size:7.4pt; font-weight:500;
+  color:var(--camper); letter-spacing:.06em;
+}
+.kopf h2{
+  font-family:var(--f-emo); font-weight:400; font-size:16.5pt; line-height:1;
+  margin:0; flex:1;
+}
+.kopf .lead{
+  font-size:7.8pt; color:var(--stone); text-align:right; max-width:70mm;
+}
+
+/* ---------- Karte ---------- */
+.karte{
+  background:var(--panel); border-left:2pt solid var(--akzent,var(--river));
+  padding:8pt 10pt 8pt 9pt; margin-bottom:7pt; break-inside:avoid;
+}
+.karte h3{
+  font-family:var(--f-sign); font-size:11pt; margin:0 0 1pt;
+  font-variation-settings:"wdth" 100,"wght" 650; letter-spacing:-.005em;
+}
+.tag{
+  font-family:var(--f-data); font-size:6.4pt; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--akzent,var(--river)); margin:0 0 4pt;
+}
+.karte p{ margin:0 0 6pt; max-width:150mm }
+.karte p.eng{ margin-bottom:3pt }
+
+/* ---------- Zeilenraster in den Karten ---------- */
+.zeilen{ display:grid; grid-template-columns:19mm 1fr; gap:1.6pt 6pt; margin-top:5pt }
+.zeilen .k{
+  font-family:var(--f-data); font-size:6.6pt; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--stone); padding-top:1.2pt;
+}
+.zeilen .v{ font-size:8.6pt; overflow-wrap:anywhere }
+.zeilen .v a{ overflow-wrap:anywhere }
+.url{ font-family:var(--f-data); font-size:7.6pt; letter-spacing:-.01em }
+.tel{ font-family:var(--f-data); font-size:7.9pt; color:var(--ink) }
+
+/* ---------- Untergruppen bei den Restaurants ---------- */
+.gruppe{ margin:0 0 4pt; break-inside:avoid }
+.gruppe-titel{
+  font-family:var(--f-data); font-size:6.8pt; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--beech);
+  border-bottom:.5pt solid var(--line); padding-bottom:2.5pt; margin:9pt 0 6pt;
+  break-after:avoid;
+}
+.gruppe-titel:first-of-type{ margin-top:0 }
+
+/* ---------- Hinweiskasten ---------- */
+.achtung{
+  border:1pt solid var(--camper); background:#FBEDE7;
+  padding:8pt 10pt; margin:8pt 0; break-inside:avoid;
+}
+.achtung h3{
+  font-family:var(--f-sign); font-size:9.6pt; margin:0 0 3pt; color:var(--camper);
+  font-variation-settings:"wdth" 100,"wght" 650;
+}
+.achtung p{ margin:0 0 4pt }
+.achtung ul{ margin:0; padding-left:11pt }
+.achtung li{ margin-bottom:1.5pt }
+
+/* ---------- Kompaktliste ---------- */
+ul.kompakt{ margin:0; padding-left:0; list-style:none }
+ul.kompakt li{
+  padding:3.4pt 0; border-bottom:.4pt solid var(--line); break-inside:avoid;
+}
+ul.kompakt li:last-child{ border-bottom:0 }
+ul.kompakt .name{ font-variation-settings:"wdth" 100,"wght" 620 }
+ul.kompakt .detail{ color:var(--stone) }
+
+/* ---------- Tabelle ---------- */
+table{ width:100%; border-collapse:collapse; margin-top:2pt }
+th,td{ text-align:left; vertical-align:top; padding:4.4pt 6pt; border-bottom:.5pt solid var(--line) }
+th{
+  font-family:var(--f-data); font-size:6.6pt; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--stone); border-bottom:1pt solid var(--ink);
+}
+td:first-child{
+  width:34mm; font-family:var(--f-data); font-size:7.6pt; color:var(--camper);
+}
+tr{ break-inside:avoid }
+
+/* ---------- Fußzeile ---------- */
+.fuss{
+  margin-top:14pt; border-top:.5pt solid var(--line); padding-top:6pt;
+  font-family:var(--f-data); font-size:6.6pt; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--stone);
+  display:flex; justify-content:space-between; gap:10pt;
+}
+.umbruch{ break-before:page }
+</style>
+
+<header class="deckel">
+  <p class="kicker">Route 23 · Durbuy, Belgien · 50°21′N 5°27′E</p>
+  <h1>Adressen, Websites<br>&amp; <em>Buchungslinks</em></h1>
+  <div class="deckel-zeile">
+    <span class="datum">Fr 11. – So 13. September 2026</span>
+    <span class="hinweis">Preise sind Richtwerte (Stand August 2026) und gehören auf den Seiten
+    selbst gegengeprüft. Belgische Nummern aus Deutschland mit +32 und ohne die führende Null.</span>
+  </div>
+</header>
+
+<!-- ═══ 1 · CAMPING ═══ -->
+<section>
+  <div class="kopf">
+    <span class="nr">01</span>
+    <h2>Wo der Camper steht</h2>
+    <span class="lead">Alle drei direkt an der Ourthe</span>
+  </div>
+
+  <div class="karte" style="--akzent:var(--river)">
+    <p class="tag">Mittendrin</p>
+    <h3>Le Vedeur, Durbuy</h3>
+    <p>Der einzige, von dem man abends zu Fuß in die Altstadt und wieder zurück kommt —
+    rund 600 m bis zum Ortskern. Nur Wohnmobile und Zelte, 38 Stellplätze.
+    Keine eigene Website, alles läuft über das Reservierungsportal.</p>
+    <div class="zeilen">
+      <span class="k">Buchen</span><span class="v"><a href="https://reservation.elloha.com/?IdPublication=616d7938-2a0a-4440-a6cc-3d43a8ec1fa8&amp;culture=fr-FR&amp;idoi=e9a44955-3be7-4173-984e-6b7eb3b94beb&amp;idPrestation=8aa58315-821e-4e6d-acb3-91e625801118&amp;searchFirstAvailableDates=1" class="url">reservation.elloha.com &rarr; Camping Le Vedeur</a></span>
+      <span class="k">Infos</span><span class="v"><a href="https://www.camping.info/en/campsite/camping-le-vedeur" class="url">camping.info/en/campsite/camping-le-vedeur</a></span>
+      <span class="k">Adresse</span><span class="v">Rue Fond de Vedeur 1, 6940 Durbuy</span>
+      <span class="k">Telefon</span><span class="v"><span class="tel">+32 86 21 02 09</span> <em>— Nummer variiert je nach Quelle, sicherer ist die Buchungsseite</em></span>
+      <span class="k">Preis</span><span class="v">ab ca. 30 € / Nacht (2 Personen, Fahrzeug, Strom, Kurtaxe)</span>
+      <span class="k">Saison</span><span class="v">14.02. – 05.01. · Strom max. 6 A · Ver- und Entsorgung · WLAN gratis</span>
+    </div>
+  </div>
+
+  <div class="karte" style="--akzent:var(--moss)">
+    <p class="tag">Einfach &amp; günstig</p>
+    <h3>Camping International, Bomal-sur-Ourthe</h3>
+    <p>Familienplatz am Wasser mit eigener Brasserie und Terrasse zum Fluss. Sonntagmorgens
+    ist wenige Hundert Meter weiter der Markt. Lagerfeuerplatz, neues Sanitär, Hunde erlaubt.</p>
+    <div class="zeilen">
+      <span class="k">Website</span><span class="v"><a href="https://www.campinginternational.be/" class="url">campinginternational.be</a></span>
+      <span class="k">Buchen</span><span class="v"><a href="https://www.campinginternational.be/zoek-en-boek" class="url">campinginternational.be/zoek-en-boek</a></span>
+      <span class="k">Adresse</span><span class="v">Pré Cawiai 3, 6941 Bomal-sur-Ourthe (Durbuy) · 5–10 km bis Durbuy</span>
+      <span class="k">Kontakt</span><span class="v"><span class="tel">+32 491 61 34 88</span> · info@campinginternational.be</span>
+      <span class="k">Saison</span><span class="v">01.03. – 12.11., Restaurant in der Zeit täglich</span>
+      <span class="k">Aktuell</span><span class="v"><a href="https://www.facebook.com/www.campingdinternational.be/" class="url">facebook.com/www.campingdinternational.be</a></span>
+    </div>
+  </div>
+
+  <div class="karte" style="--akzent:var(--sun)">
+    <p class="tag">Direkt am Wasser</p>
+    <h3>Camping des Rochers du Glawan</h3>
+    <p>Kleiner Platz unter den Felsen zwischen Durbuy und Barvaux, Uferweg nach Durbuy.
+    Ganzjährig offen, Bar am Platz, Sanitär von 2021. Frühstücksbuffet Sa + So,
+    Pétanque Mi + Sa, Bingo freitags.</p>
+    <div class="zeilen">
+      <span class="k">Website</span><span class="v"><a href="https://www.glawan.be/" class="url">glawan.be</a> · <a href="https://www.glawan.be/emplacements/" class="url">/emplacements</a> · <a href="https://www.glawan.be/activites/" class="url">/activites</a></span>
+      <span class="k">Buchen</span><span class="v"><a href="https://www.glawan.be/reservation/" class="url">glawan.be/reservation</a></span>
+      <span class="k">Adresse</span><span class="v">Rue des Glawans 25, 6940 Durbuy · 500 m vom Zentrum Barvaux, ca. 6 km bis Durbuy</span>
+      <span class="k">Kontakt</span><span class="v"><span class="tel">+32 86 21 29 81</span> oder <span class="tel">+32 475 65 29 04</span> · info@glawan.be</span>
+      <span class="k">Platz</span><span class="v">85 Stellplätze (22 für Durchreisende) · Bancontact &amp; Kreditkarte · Hunde erlaubt</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 2 · ESSEN ═══ -->
+<section>
+  <div class="kopf">
+    <span class="nr">02</span>
+    <h2>Essen gehen</h2>
+    <span class="lead">Von Crêpes bis Sterneküche</span>
+  </div>
+
+  <p class="gruppe-titel">Crêpes, Waffeln, kleine Karte</p>
+  <div class="karte" style="--akzent:var(--beech)">
+    <h3>La Vieille Demeure</h3>
+    <p class="eng">Crêperie, Gaufrerie und Brasserie, seit über vier Jahrzehnten in Familienhand.
+    Hausgemachtes Eis, regionale Kleinigkeiten.</p>
+    <div class="zeilen">
+      <span class="k">Website</span><span class="v"><a href="http://www.lavieilledemeure.be" class="url">lavieilledemeure.be</a></span>
+      <span class="k">Adresse</span><span class="v">Rue du Comte Théodule d'Ursel 15, 6940 Durbuy</span>
+      <span class="k">Kontakt</span><span class="v"><span class="tel">+32 86 21 13 18</span> · info@lavieilledemeure.be</span>
+    </div>
+  </div>
+
+  <p class="gruppe-titel">Brasserien am Place aux Foires</p>
+  <div class="karte" style="--akzent:var(--beech)">
+    <h3>Le Grand Café</h3>
+    <p class="eng">Brasserie direkt am Hauptplatz, regionale Küche.</p>
+    <div class="zeilen">
+      <span class="k">Website</span><span class="v"><a href="https://www.legrandcafedurbuy.be/" class="url">legrandcafedurbuy.be</a> · <a href="https://www.legrandcafedurbuy.be/menu" class="url">/menu</a></span>
+    </div>
+  </div>
+  <div class="karte" style="--akzent:var(--beech)">
+    <h3>Brasserie de l'Ourthe</h3>
+    <p class="eng">Klassische Brasserie mit Terrasse, sieben Tage die Woche offen. Keine eigene Website.</p>
+    <div class="zeilen">
+      <span class="k">Karte</span><span class="v"><a href="https://en.resto.be/restaurant/durbuy/6940-durbuy/39085-brasserie-de-lourthe/" class="url">resto.be &rarr; Brasserie de l'Ourthe</a></span>
+      <span class="k">Adresse</span><span class="v">Place aux Foires 5, 6940 Durbuy · <span class="tel">+32 86 21 31 20</span></span>
+    </div>
+  </div>
+  <div class="karte" style="--akzent:var(--beech)">
+    <h3>Le Victoria</h3>
+    <p class="eng">Hotel-Restaurant am Platz, französisch und regional.</p>
+    <div class="zeilen">
+      <span class="k">Adresse</span><span class="v">Place aux Foires 15, 6940 Durbuy</span>
+      <span class="k">Übersicht</span><span class="v"><a href="https://en.resto.be/restaurant/durbuy/6940-durbuy" class="url">resto.be/restaurant/durbuy/6940-durbuy</a></span>
+    </div>
+  </div>
+
+  <p class="gruppe-titel">Schön essen, mit Terrasse am Schloss</p>
+  <div class="karte" style="--akzent:var(--camper)">
+    <h3>Le Fou du Roy</h3>
+    <p class="eng">Kleines Restaurant am Fuß des Schlosses, französische Küche mit italienischem
+    Einschlag, romantische Terrasse.</p>
+    <div class="zeilen">
+      <span class="k">Website</span><span class="v"><a href="https://www.lefouduroy.com/" class="url">lefouduroy.com</a></span>
+      <span class="k">Adresse</span><span class="v">Rue du Comte Théodule d'Ursel 4, 6940 Durbuy</span>
+    </div>
+  </div>
+  <div class="karte" style="--akzent:var(--camper)">
+    <h3>Le Sanglier des Ardennes</h3>
+    <p class="eng">Das Haus mit Blick über die Ourthe — vier Restaurants unter einem Dach.
+    Für Samstagabend früh reservieren.</p>
+    <div class="zeilen">
+      <span class="k">Alle vier</span><span class="v"><a href="https://www.sanglier-durbuy.be/en/restaurants" class="url">sanglier-durbuy.be/en/restaurants</a></span>
+      <span class="k">Bru'sserie</span><span class="v">Weltküche, Terrasse mit Blick auf Fluss und Schloss — der entspannteste der vier · <a href="https://www.sanglier-durbuy.be/en/restaurants/la-brusserie" class="url">/la-brusserie</a></span>
+      <span class="k">Grand Verre</span><span class="v">1 Michelin-Stern, Küche von Wout Bru · <a href="https://guide.michelin.com/hu/en/be-luxembourg/durbuy/restaurant/le-sanglier-des-ardennes" class="url">Michelin-Eintrag</a></span>
+      <span class="k">Dazu</span><span class="v">L'Orangerie (Frühstück, nachmittags Tearoom) und Le Wagyu (Fleisch)</span>
+      <span class="k">Adresse</span><span class="v">Rue Jean de Bohême 6, 6940 Durbuy</span>
+    </div>
+  </div>
+  <div class="karte" style="--akzent:var(--camper)">
+    <h3>Durbuy Ô · La Calèche</h3>
+    <p class="eng">Zwei weitere Adressen mit Küche und Zimmern: Durbuy Ô ist familiengeführt und
+    im Michelin-Guide gelistet, La Calèche liegt mitten in der Altstadt.</p>
+    <div class="zeilen">
+      <span class="k">Durbuy Ô</span><span class="v"><a href="https://guide.michelin.com/us/en/be-luxembourg/durbuy/restaurant/durbuy-o" class="url">guide.michelin.com &rarr; Durbuy Ô</a></span>
+      <span class="k">La Calèche</span><span class="v"><a href="https://lacaleche.be/" class="url">lacaleche.be</a></span>
+      <span class="k">Terrassen</span><span class="v"><a href="https://www.sanglier-durbuy.be/en/news/4-restaurants-terraces-durbuy-every-occasion" class="url">Übersicht der schönsten Terrassen der Stadt</a></span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 3 · AKTIVITÄTEN ═══ -->
+<section class="umbruch">
+  <div class="kopf">
+    <span class="nr">03</span>
+    <h2>Touren, Kanu, Klettern</h2>
+    <span class="lead">Was gebucht werden muss</span>
+  </div>
+
+  <div class="karte" style="--akzent:var(--camper)">
+    <p class="tag">Kanu · Klettersteig · Zipline — alles bei einem Anbieter</p>
+    <h3>Adventure Valley Durbuy</h3>
+    <p>Der größte Abenteuerpark Belgiens, direkt in Durbuy: Kajak auf der Ourthe, Via Ferrata,
+    16 Kletterparcours, die Superfly-Zipline (566 m) und Indoor-Programm für Regen
+    — Lasergame, Escape Room, Click &amp; Climb.</p>
+    <div class="zeilen">
+      <span class="k">Website</span><span class="v"><a href="https://www.adventure-valley.be/" class="url">adventure-valley.be</a></span>
+      <span class="k">Buchen</span><span class="v"><a href="https://booking.adventure-valley.be" class="url">booking.adventure-valley.be</a> — <strong>nur online, keine Telefonreservierung</strong></span>
+      <span class="k">Kajak</span><span class="v"><a href="https://www.adventure-valley.be/kayak-en-ardenne" class="url">adventure-valley.be/kayak-en-ardenne</a> · <a href="https://www.adventure-valley.be/en/activities/kayak" class="url">englische Fassung</a></span>
+      <span class="k">Strecken</span><span class="v">4 km Barvaux&rarr;Barvaux · 8 km Durbuy&rarr;Barvaux (ca. 2 Std) · 12 km Noiseux&rarr;Durbuy (ca. 3 Std) · 23 km Hotton&rarr;Durbuy (ca. 5 Std)</span>
+      <span class="k">Preis</span><span class="v">ca. 27–35 € p. P., Transferbus, Kajak, Paddel und Schwimmweste inklusive</span>
+      <span class="k">Saison</span><span class="v">Kajak 01.04. – 31.10., sieben Tage die Woche</span>
+      <span class="k">Klettern</span><span class="v">Parcours und Via Ferrata samstags sowie täglich im Juli/August, sonst nur auf Reservierung — für den 11.–13.09. den Kalender auf der Buchungsseite prüfen. Gurt, Helm und Set gibt es vor Ort, feste Schuhe und lange Hose mitbringen.</span>
+      <span class="k">Adresse</span><span class="v">Rue de Rome 1, 6940 Durbuy · <span class="tel">+32 86 21 28 15</span> · info@adventure-valley.be</span>
+      <span class="k">Rabatt</span><span class="v">10 % mit dem <a href="https://visitwallonia.de/de/attraction/parc-aventure-adventure-valley-durbuy/27018" class="url">Pass VISITWallonia</a> (01.03.–31.10.2026, max. 4 Personen, nur vor Ort einlösbar)</span>
+    </div>
+  </div>
+
+  <div class="achtung">
+    <h3>Vor jeder Kanutour: Freigabe prüfen</h3>
+    <p>Die Ourthe wird nur bei ausreichendem Wasserstand freigegeben. Die Liste wird täglich
+    am Morgen aktualisiert — ohne Freigabe fährt niemand.</p>
+    <ul>
+      <li>Tagesaktuelle Freigabe: <a href="http://kayak.environnement.wallonie.be/public/home" class="url">kayak.environnement.wallonie.be/public/home</a></li>
+      <li>Regeln und Hintergrund: <a href="https://environnement.wallonie.be/home/loisirs/circulation-sur-les-cours-deau.html" class="url">environnement.wallonie.be &rarr; circulation sur les cours d'eau</a></li>
+      <li>Contrat Rivière Ourthe: <a href="https://www.cr-ourthe.be/info-ourthe/circulation-sur-la-riviere/" class="url">cr-ourthe.be/info-ourthe/circulation-sur-la-riviere</a></li>
+    </ul>
+  </div>
+
+  <div class="karte" style="--akzent:var(--river)">
+    <p class="tag">Falls Adventure Valley ausgebucht ist</p>
+    <h3>Andere Kajak-Anbieter</h3>
+    <div class="zeilen">
+      <span class="k">Outlive</span><span class="v">Barvaux–Bomal–Hamoir bis Comblain-au-Pont, Abfahrten durchgehend 10–16 Uhr · <a href="https://durbuytourisme.be/hades_offre/parcours-en-kayak/" class="url">durbuytourisme.be &rarr; parcours en kayak</a></span>
+      <span class="k">2 Rivières</span><span class="v"><a href="https://www.xn--kayakdes2rivires-5pb.be/" class="url">kayakdes2rivières.be</a></span>
+      <span class="k">Übersicht</span><span class="v"><a href="https://www.famenneardenne.be/en/kajak-canoe/" class="url">famenneardenne.be/en/kajak-canoe</a></span>
+    </div>
+  </div>
+
+  <div class="karte" style="--akzent:var(--moss)">
+    <p class="tag">Eine Stunde im Schritttempo</p>
+    <h3>Kutschfahrt mit Ardennen-Apéro</h3>
+    <p class="eng">Élevage de Durbuy in Tohogne — Kutschfahrt durch die Wälder, auf Wunsch mit
+    Verkostung lokaler Produkte.</p>
+    <div class="zeilen">
+      <span class="k">Website</span><span class="v"><a href="https://www.elevagededurbuy.be/fr/balade-en-caleche-et-a-cheval" class="url">elevagededurbuy.be/fr/balade-en-caleche-et-a-cheval</a></span>
+      <span class="k">Apéro</span><span class="v">„L'apéro ardennais“: 1 Std Kutschfahrt plus Käse, Charcuterie, Bier und Softdrinks von lokalen Produzenten — 40 € Erwachsene, 30 € Kinder (3–12), max. 10 Erwachsene</span>
+      <span class="k">Ohne</span><span class="v">reine Fahrt: 1 Std 30 €, 1,5 Std 40 € (max. 4 Personen)</span>
+      <span class="k">Frist</span><span class="v"><strong>Mindestens 48 Stunden vorher reservieren.</strong></span>
+      <span class="k">Kontakt</span><span class="v">Rue Christophe Théate 40, 6941 Tohogne · <span class="tel">+32 494 18 46 95</span> · info@elevagededurbuy.be</span>
+    </div>
+  </div>
+
+  <div class="karte" style="--akzent:var(--sun)">
+    <p class="tag">Samstags, zwei Stunden</p>
+    <h3>Stadtführung durch die Altstadt</h3>
+    <p class="eng">Vom Royal Syndicat d'Initiative de Durbuy, historisch und gourmand: unterwegs
+    zwei Biere, Ziegenkäse, Charcuterie, Pralinen, Bonbons und Marmelade.</p>
+    <div class="zeilen">
+      <span class="k">Infos</span><span class="v"><a href="https://www.famenneardenne.be/details/EVT-A0-006F-42D5&amp;type=9/" class="url">famenneardenne.be &rarr; visite guidée historique et gourmande</a></span>
+      <span class="k">Termine</span><span class="v">jeden Samstag 10:30 und 13:30 Uhr · ca. 2 Std, ca. 1.200 m Fußweg</span>
+      <span class="k">Preis</span><span class="v">15 € p. P., <strong>Reservierung erforderlich</strong></span>
+      <span class="k">Buchen</span><span class="v"><span class="tel">+32 86 21 24 28</span> · rsidurbuy@gmail.com</span>
+      <span class="k">Start</span><span class="v">Place aux Foires 25, 6940 Durbuy</span>
+      <span class="k">Sprache</span><span class="v">läuft auf Französisch — bei der Buchung nach einer deutsch- oder niederländischsprachigen Führung fragen</span>
+    </div>
+  </div>
+
+  <div class="karte" style="--akzent:var(--moss)">
+    <p class="tag">Kostet nichts</p>
+    <h3>Aussicht, Wege, Markt</h3>
+    <div class="zeilen">
+      <span class="k">Falize</span><span class="v">Roche à la Falize / Belvédère — der gefaltete Felsen über der Stadt, fünf Minuten von der Altstadt, freier Zugang. Am 12.09. geht die Sonne um 20:01 Uhr unter. <a href="https://www.cirkwi.com/en/point-interet/1176212-durbuy-anticline" class="url">Beschreibung</a></span>
+      <span class="k">Wandern</span><span class="v"><a href="https://www.komoot.com/guide/655693/hiking-around-durbuy" class="url">komoot.com/guide/655693/hiking-around-durbuy</a></span>
+      <span class="k">Markt</span><span class="v">„La Petite Batte“ in Bomal, jeden Sonntag ca. 8–13 Uhr, rund 200 Stände am Ufer, ganzjährig — vom Camping International zu Fuß. <a href="https://www.famenneardenne.be/details/EVT-01-08H5-1I47&amp;type=9/" class="url">Infos</a></span>
+    </div>
+  </div>
+
+  <div class="karte" style="--akzent:var(--river)">
+    <p class="tag">Bei Regen oder für zwischendurch</p>
+    <h3>Drinnen und Kleines</h3>
+    <div class="zeilen">
+      <span class="k">Topiaires</span><span class="v">Parc des Topiaires, Buchsbaumfiguren über 10.000 m² · <a href="https://topiaires.be/en/" class="url">topiaires.be</a> · Rue Haie Himbe 1 · <span class="tel">+32 86 21 90 75</span></span>
+      <span class="k">Confiture</span><span class="v">Confiturerie Saint-Amour, Manufaktur mit Film und Laden, täglich 10–18 Uhr · <a href="https://www.confitureriesaintamour.be/" class="url">confitureriesaintamour.be</a> · Rue Saint-Amour 13</span>
+      <span class="k">Indoor</span><span class="v">Adventure Valley: Lasergame, Escape Room, Click &amp; Climb — siehe oben</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 4 · NÜTZLICHES ═══ -->
+<section>
+  <div class="kopf">
+    <span class="nr">04</span>
+    <h2>Nützliche Seiten</h2>
+  </div>
+  <ul class="kompakt">
+    <li><span class="name">Tourismusbüro Durbuy (offiziell)</span> — <a href="https://durbuytourisme.be/" class="url">durbuytourisme.be</a>
+      <span class="detail">· Place aux Foires 25, 6940 Durbuy · <span class="tel">+32 86 21 24 28</span> · tourisme@durbuy.be</span></li>
+    <li><span class="name">Maison du Tourisme Famenne Ardenne</span> — <a href="https://www.famenneardenne.be/" class="url">famenneardenne.be</a></li>
+    <li><span class="name">Ardenne belge</span> — <a href="https://www.ardennebelge.be/" class="url">ardennebelge.be</a> <span class="detail">· Unterkünfte, Restaurants, Veranstaltungen</span></li>
+    <li><span class="name">Durbuy Info</span> — <a href="http://www.durbuyinfo.be/" class="url">durbuyinfo.be</a> <span class="detail">· lokales Verzeichnis</span></li>
+    <li><span class="name">VISITWallonia</span> — <a href="https://visitwallonia.de/" class="url">visitwallonia.de</a> <span class="detail">· deutschsprachig</span></li>
+  </ul>
+</section>
+
+<!-- ═══ 5 · FRISTEN ═══ -->
+<section>
+  <div class="kopf">
+    <span class="nr">05</span>
+    <h2>Was wann buchen</h2>
+    <span class="lead">Reihenfolge für das Wochenende</span>
+  </div>
+  <table>
+    <tr><th>Wann</th><th>Was</th></tr>
+    <tr><td>Sobald der Termin steht</td><td>Campingplatz — im September noch entspannt, aber Le Vedeur hat nur 38 Plätze</td></tr>
+    <tr><td>2–3 Wochen vorher</td><td>Adventure Valley online: Kajak und Klettersteig, ausschließlich über booking.adventure-valley.be</td></tr>
+    <tr><td>2–3 Wochen vorher</td><td>Tisch am Samstagabend, vor allem bei Le Sanglier oder Le Fou du Roy</td></tr>
+    <tr><td>Bis Donnerstag vorher</td><td>Stadtführung am Samstag — telefonisch oder per Mail beim RSI</td></tr>
+    <tr><td>Mind. 48 Std vorher</td><td>Kutschfahrt mit Apéro beim Élevage de Durbuy</td></tr>
+    <tr><td>Am Morgen selbst</td><td>Wasserstand der Ourthe prüfen — die Freigabe steht ab ca. 8:15 Uhr online</td></tr>
+  </table>
+</section>
+
+<div class="fuss">
+  <span>Route 23 · Durbuy</span>
+  <span>Stand August 2026</span>
+  <span>Alle Angaben ohne Gewähr</span>
+</div>
+</html>
