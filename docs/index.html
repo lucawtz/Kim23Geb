@@ -3035,8 +3035,10 @@ const CAMPS = [
 
 const SLOTS = [
   { id:"sep", when:"Fr 11. – So 13. September", title:"Noch im Spätsommer", nights:"2 Nächte",
+    start:"2026-09-11T16:00:00",
     note:"Das Wasser hat um die 18 Grad, abends um acht steht die Sonne noch überm Tal. Alles hat offen." },
   { id:"okt", when:"Fr 16. – So 18. Oktober", title:"Mitten im goldenen Oktober", nights:"2 Nächte",
+    start:"2026-10-16T16:00:00",
     note:"Die Ardennen stehen dann in Gelb und Kupfer, abends röhren die Hirsche im Wald. Kühler – dafür die schönsten Farben des Jahres." },
   { id:"anders", when:"Passt beides nicht?", title:"Dann eben ein anderes Wochenende", nights:"sag mir wann",
     other:true,
@@ -3320,7 +3322,16 @@ const cdEl = { d: $('[data-cd="bd-d"]'), h: $('[data-cd="bd-h"]'), m: $('[data-c
 function tickCountdown() {
   const now = Date.now();
   const bd = new Date(CFG.birthday).getTime();
-  const tr = new Date(CFG.tripStart).getTime();
+  /* Nach dem Geburtstag zaehlt die Seite auf die Abfahrt. Welche das
+     ist, haengt davon ab, welches Wochenende sie gewaehlt hat — sonst
+     laeuft die Uhr auf ein Datum, das gar nicht mehr gilt. */
+  const gewaehlt = SLOTS.find(x => x.id === state.slot);
+  if (now >= bd && gewaehlt && gewaehlt.other) {
+    cdLabel.textContent = "Sobald du mir sagst, wann.";
+    Object.values(cdEl).forEach(e => e.textContent = "–");
+    return;
+  }
+  const tr = new Date((gewaehlt && gewaehlt.start) || CFG.tripStart).getTime();
   let target = bd, label = "bis du 23 wirst";
   if (now >= bd) { target = tr; label = "bis wir losfahren"; }
   if (now >= tr) { cdLabel.textContent = "Wir sind unterwegs."; Object.values(cdEl).forEach(e => e.textContent = "0"); return; }
