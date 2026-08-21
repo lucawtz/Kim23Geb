@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#12241F"/>
+  <!-- Kanu auf dem Dach -->
+  <path d="M13 21q19-5 38 0-19 4-38 0z" fill="#2E7D74"/>
+  <!-- Aufbau -->
+  <path d="M11 44V29q0-4 4-4h30q3 0 5 2l6 6q2 2 2 4v7q0 2-2 2H13q-2 0-2-2z" fill="#E2542E"/>
+  <path d="M11 33V29q0-4 4-4h30q3 0 5 2l4 4H11z" fill="#F3EBDA"/>
+  <!-- Fenster -->
+  <rect x="16" y="27" width="12" height="5" rx="1.4" fill="#12241F"/>
+  <rect x="31" y="27" width="11" height="5" rx="1.4" fill="#12241F"/>
+  <!-- Räder -->
+  <circle cx="21" cy="46" r="7" fill="#12241F"/><circle cx="21" cy="46" r="3.4" fill="#F3EBDA"/>
+  <circle cx="45" cy="46" r="7" fill="#12241F"/><circle cx="45" cy="46" r="3.4" fill="#F3EBDA"/>
+</svg>

@@ -1,7 +1,27 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Route 23 nach Durbuy</title>
+<title>Route 23 · Durbuy</title>
+<meta name="description" content="Ein Wochenende im Camper in den belgischen Ardennen – für Kim zum Dreiundzwanzigsten. Such dir aus, wann wir fahren und was wir machen.">
+
+<!-- Symbol im Tab und auf dem Homescreen -->
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMxMjI0MUYiLz4KICA8IS0tIEthbnUgYXVmIGRlbSBEYWNoIC0tPgogIDxwYXRoIGQ9Ik0xMyAyMXExOS01IDM4IDAtMTkgNC0zOCAweiIgZmlsbD0iIzJFN0Q3NCIvPgogIDwhLS0gQXVmYmF1IC0tPgogIDxwYXRoIGQ9Ik0xMSA0NFYyOXEwLTQgNC00aDMwcTMgMCA1IDJsNiA2cTIgMiAyIDR2N3EwIDItMiAySDEzcS0yIDAtMi0yeiIgZmlsbD0iI0UyNTQyRSIvPgogIDxwYXRoIGQ9Ik0xMSAzM1YyOXEwLTQgNC00aDMwcTMgMCA1IDJsNCA0SDExeiIgZmlsbD0iI0YzRUJEQSIvPgogIDwhLS0gRmVuc3RlciAtLT4KICA8cmVjdCB4PSIxNiIgeT0iMjciIHdpZHRoPSIxMiIgaGVpZ2h0PSI1IiByeD0iMS40IiBmaWxsPSIjMTIyNDFGIi8+CiAgPHJlY3QgeD0iMzEiIHk9IjI3IiB3aWR0aD0iMTEiIGhlaWdodD0iNSIgcng9IjEuNCIgZmlsbD0iIzEyMjQxRiIvPgogIDwhLS0gUsOkZGVyIC0tPgogIDxjaXJjbGUgY3g9IjIxIiBjeT0iNDYiIHI9IjciIGZpbGw9IiMxMjI0MUYiLz48Y2lyY2xlIGN4PSIyMSIgY3k9IjQ2IiByPSIzLjQiIGZpbGw9IiNGM0VCREEiLz4KICA8Y2lyY2xlIGN4PSI0NSIgY3k9IjQ2IiByPSI3IiBmaWxsPSIjMTIyNDFGIi8+PGNpcmNsZSBjeD0iNDUiIGN5PSI0NiIgcj0iMy40IiBmaWxsPSIjRjNFQkRBIi8+Cjwvc3ZnPgo=" type="image/svg+xml">
+<link rel="icon" href="icon/icon-32.png" sizes="32x32" type="image/png">
+<link rel="alternate icon" href="icon/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="icon/icon-180.png">
+<meta name="apple-mobile-web-app-title" content="Route 23">
+<meta name="theme-color" content="#0A1714">
+
+<!-- Vorschau, wenn der Link verschickt wird -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Route 23 · Durbuy">
+<meta property="og:description" content="Ein Wochenende im Camper in den belgischen Ardennen – für Kim zum Dreiundzwanzigsten.">
+<meta property="og:url" content="https://lucawtz.github.io/Kim23Geb/">
+<meta property="og:image" content="https://lucawtz.github.io/Kim23Geb/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..800;1,62..125,400..700&family=Instrument+Serif:ital@0;1&family=Martian+Mono:wght@300;400;600&display=swap">
@@ -2872,10 +2892,11 @@ sky.dataset.key = "night";
 skyNext.classList.add("fade");
 let skyT = 0;
 
-const themeMeta = document.createElement("meta");
-themeMeta.name = "theme-color";
+/* Die Angabe steht schon im Kopf der Seite – eine zweite würde
+   ignoriert, dann bliebe die Adressleiste auf der Startfarbe stehen. */
+const themeMeta = document.querySelector('meta[name="theme-color"]')
+  || document.head.appendChild(Object.assign(document.createElement("meta"), { name: "theme-color" }));
 themeMeta.content = SKIES.night.a;
-document.head.appendChild(themeMeta);
 
 function setSky(key) {
   const s = SKIES[key];
