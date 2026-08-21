@@ -1182,6 +1182,7 @@ html.angehalten html.angehalten{overscroll-behavior:none}
             <div class="fact"><dt>Stadtrechte</dt><dd>seit 1331<em>Johann von Böhmen</em></dd></div>
             <div class="fact"><dt>Altstadtkern</dt><dd>ca. 400<em>Einwohner</em></dd></div>
             <div class="fact"><dt>Fluss</dt><dd>Ourthe<em>legt eine Schleife um den Burgfelsen</em></dd></div>
+            <div class="fact" id="wetterZeile" hidden><dt>Gerade dort</dt><dd id="wetterWert">–</dd></div>
           </dl>
         </div>
       </div>
@@ -3520,6 +3521,56 @@ if (mapRoute) {
 const mapSkip = $("#mapSkip");
 if (mapSkip) mapSkip.addEventListener("click", () => { setMap(1); laeuft = false; gelaufen = true; loesen(); });
 
+
+/* ════════════════════════════════════════════════════════════
+   LIVE-WETTER — wie es in Durbuy in diesem Moment aussieht
+   Quelle: open-meteo.com, kein Zugangsschluessel noetig.
+   Schlaegt der Abruf fehl (offline, gesperrt), bleibt die Zeile
+   verborgen — die Seite darf davon nicht abhaengen.
+   ════════════════════════════════════════════════════════════ */
+const WMO = {
+  0:"klar", 1:"überwiegend klar", 2:"teils bewölkt", 3:"bedeckt",
+  45:"neblig", 48:"Nebel mit Raureif",
+  51:"leichter Niesel", 53:"Niesel", 55:"dichter Niesel",
+  56:"gefrierender Niesel", 57:"gefrierender Niesel",
+  61:"leichter Regen", 63:"Regen", 65:"starker Regen",
+  66:"gefrierender Regen", 67:"gefrierender Regen",
+  71:"leichter Schnee", 73:"Schnee", 75:"starker Schnee", 77:"Schneegriesel",
+  80:"Regenschauer", 81:"Regenschauer", 82:"kräftige Schauer",
+  85:"Schneeschauer", 86:"Schneeschauer",
+  95:"Gewitter", 96:"Gewitter mit Hagel", 99:"Gewitter mit Hagel"
+};
+
+function wetterHolen() {
+  const zeile = $("#wetterZeile"), wert = $("#wetterWert");
+  if (!zeile || !wert) return;
+  const url = "https://api.open-meteo.com/v1/forecast"
+    + "?latitude=50.3533&longitude=5.4564"
+    + "&current=temperature_2m,weather_code,is_day"
+    + "&timezone=Europe%2FBrussels";
+  fetch(url, { cache: "no-store" })
+    .then(r => r.ok ? r.json() : Promise.reject(new Error(r.status)))
+    .then(d => {
+      const c = d && d.current;
+      if (!c || typeof c.temperature_2m !== "number") throw new Error("keine Daten");
+      const grad = Math.round(c.temperature_2m);
+      const lage = WMO[c.weather_code] || "";
+      const zeit = c.is_day ? "" : ", nachts";
+      wert.innerHTML = grad + " °C" + (lage ? "<em>" + lage + zeit + "</em>" : "");
+      zeile.hidden = false;
+    })
+    .catch(() => { /* still bleiben, die Zeile bleibt verborgen */ });
+}
+
+/* Erst abrufen, wenn die Ankunftsszene naeher kommt — wer nie
+   dorthin scrollt, loest auch keine Anfrage aus. */
+const ankunftSzene = $("#s-durbuy");
+if (ankunftSzene) {
+  const wetterObs = new IntersectionObserver((es, obs) => {
+    if (es.some(e => e.isIntersecting)) { obs.disconnect(); wetterHolen(); }
+  }, { rootMargin: "300px" });
+  wetterObs.observe(ankunftSzene);
+}
 
 /* ════════════════════════════════════════════════════════════
    PARTIKEL — Sterne, eine Sternschnuppe, treibende Blätter
