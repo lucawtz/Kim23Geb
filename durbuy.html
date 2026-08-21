@@ -956,6 +956,32 @@ html.angehalten html.angehalten{overscroll-behavior:none}
 }
 .portrait.gross{width:clamp(230px,74vw,420px);margin-top:clamp(1.4rem,4vw,2rem)}
 .portrait img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+
+/* Die Wetterzeile ist die einzige lebendige Angabe auf der Seite —
+   ein Punkt, der leise pulst, macht das erkennbar, ohne zu schreien. */
+#wetterZeile{
+  border-top:1px solid rgba(226,163,46,.32);
+  background:linear-gradient(90deg,transparent 20%,rgba(226,163,46,.075));
+  padding-left:.7rem;padding-right:.7rem;border-radius:2px;
+}
+#wetterZeile dt{
+  display:flex;align-items:center;gap:.55em;
+  color:var(--sun);padding-top:.3em;
+}
+#wetterZeile dt::before{
+  content:"";width:7px;height:7px;border-radius:50%;flex:none;
+  background:var(--sun);box-shadow:0 0 0 0 rgba(226,163,46,.55);
+}
+@media (prefers-reduced-motion:no-preference){
+  #wetterZeile dt::before{animation:wetterPuls 2.6s ease-out infinite}
+}
+@keyframes wetterPuls{
+  0%{box-shadow:0 0 0 0 rgba(226,163,46,.5)}
+  70%{box-shadow:0 0 0 9px rgba(226,163,46,0)}
+  100%{box-shadow:0 0 0 0 rgba(226,163,46,0)}
+}
+#wetterZeile dd{color:var(--sun);font-size:1.2em}
+#wetterZeile dd em{color:var(--mist);font-size:.82rem;letter-spacing:.02em}
 </style>
 
 <div class="sky" id="sky"></div>
@@ -1195,7 +1221,7 @@ html.angehalten html.angehalten{overscroll-behavior:none}
             <div class="fact"><dt>Stadtrechte</dt><dd>seit 1331<em>Johann von Böhmen</em></dd></div>
             <div class="fact"><dt>Altstadtkern</dt><dd>ca. 400<em>Einwohner</em></dd></div>
             <div class="fact"><dt>Fluss</dt><dd>Ourthe<em>legt eine Schleife um den Burgfelsen</em></dd></div>
-            <div class="fact" id="wetterZeile" hidden><dt>Gerade dort</dt><dd id="wetterWert">–</dd></div>
+            <div class="fact" id="wetterZeile" hidden><dt>Jetzt in Durbuy</dt><dd id="wetterWert">–</dd></div>
           </dl>
         </div>
       </div>
