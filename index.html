@@ -1161,7 +1161,7 @@ html.angehalten html.angehalten{overscroll-behavior:none}
           <dl class="facts reveal d3" style="margin-top:1.6rem">
             <div class="fact"><dt>Stadtrechte</dt><dd>seit 1331<em>Johann von Böhmen</em></dd></div>
             <div class="fact"><dt>Altstadtkern</dt><dd>ca. 400<em>Einwohner</em></dd></div>
-            <div class="fact"><dt>Sonnenuntergang</dt><dd>20:01 Uhr<em>Samstag, 12.09.</em></dd></div>
+            <div class="fact"><dt>Fluss</dt><dd>Ourthe<em>legt eine Schleife um den Burgfelsen</em></dd></div>
           </dl>
         </div>
       </div>
@@ -1188,7 +1188,7 @@ html.angehalten html.angehalten{overscroll-behavior:none}
           <div class="reveal d3">
           <dl class="facts">
             <div class="fact"><dt>Strecken</dt><dd>4 · 8 · 12 · 23 km<em>Transfer inklusive</em></dd></div>
-            <div class="fact"><dt>Saison</dt><dd>April – Oktober<em>September passt</em></dd></div>
+            <div class="fact"><dt>Saison</dt><dd>April – Oktober<em>beide Termine liegen drin</em></dd></div>
             <div class="fact"><dt>Wasser</dt><dd>ca. 17–19 °C<em>kurz laut werden, dann herrlich</em></dd></div>
             <div class="fact"><dt>Einzige Bedingung</dt><dd>genug Wasser<em>Freigabe täglich 8:15 Uhr</em></dd></div>
           </dl>
@@ -1272,8 +1272,8 @@ html.angehalten html.angehalten{overscroll-behavior:none}
             <span class="plate-cap">Am Place aux Foires sitzt man draußen, solange es geht</span>
           </div>
         <p class="lead reveal d2">
-          Der 11. bis 13. September ist geblockt. Wie viel davon wir uns nehmen, entscheidest du –
-          und wenn du an dem Wochenende nicht kannst, sagst du das einfach.
+          Zwei Wochenenden habe ich mir freigehalten. Such dir eins aus –
+          und wenn dir beide nicht passen, sagst du das einfach.
         </p>
       </div>
       <div class="slots reveal d3" id="slots" style="margin-top:clamp(1.8rem,5vw,2.6rem)"></div>
@@ -1480,7 +1480,7 @@ html.angehalten html.angehalten{overscroll-behavior:none}
       <p class="eyebrow reveal">Letzter Stopp</p>
       <h2 class="reveal d1" style="font-size:clamp(1.9rem,7vw,4rem)">Alles Gute<br>zum Dreiundzwanzigsten</h2>
       <p class="lead reveal d2" style="margin-top:1.4rem;max-width:34ch">
-        Um acht geht in Durbuy die Sonne unter, danach ist es richtig dunkel –
+        Wenn die Sonne hinterm Kamm verschwindet, wird es hier richtig dunkel –
         <span class="emo">so dunkel, dass man wieder Sterne sieht.</span>
       </p>
       <p class="reveal d3" style="max-width:34ch">Und irgendwo hinten im Wald röhrt zum ersten Mal
@@ -2972,15 +2972,15 @@ const ACTS = [
     short:"Kanu auf der Ourthe" },
   { id:"klettern", flag:"Mein Favorit", title:"Klettersteig & Baumwipfel",
     text:"Vier Parcours an einer Wand, die seit 300 Millionen Jahren dort steht. Bis 35 Meter hoch, Gurt und Helm gibt’s vor Ort. Bei Regen geht auch drinnen was.",
-    meta:["bis 35 m", "ca. 1,5–2 Std", "So geschlossen"],
+    meta:["bis 35 m", "ca. 1,5–2 Std", "sonntags oft zu"],
     short:"Klettersteig & Baumwipfel" },
   { id:"essen", flag:"", title:"Einmal richtig schön essen",
     text:"Crêpes bei einer Familie, die das seit 1971 macht, eine Brasserie am Place aux Foires oder eine Terrasse direkt überm Fluss mit Blick aufs Schloss. Du sagst, worauf du Lust hast.",
-    meta:["ab 15 € bis Sterneküche", "Terrasse überm Fluss", "Fr–So offen"],
+    meta:["15–40 € p.P.", "Terrasse überm Fluss", "Fr–So offen"],
     short:"Schön essen gehen" },
   { id:"aussicht", flag:"", title:"Sonnenuntergang überm Tal",
-    text:"Fünf Minuten von der Altstadt steht ein Felsen, der 300 Millionen Jahre alt und zu einem Bogen gefaltet ist. Am Samstag sinkt die Sonne dort um 20:01 Uhr direkt neben dem Schloss weg.",
-    meta:["20:01 Uhr", "5 Min zu Fuß", "kostet nichts"],
+    text:"Fünf Minuten von der Altstadt steht ein Felsen, der 300 Millionen Jahre alt und zu einem Bogen gefaltet ist. Die Sonne geht dort direkt neben dem Schloss unter – im September gegen acht, im Oktober rund anderthalb Stunden früher.",
+    meta:["zur blauen Stunde", "5 Min zu Fuß", "kostet nichts"],
     short:"Sonnenuntergang am Felsen" },
   { id:"altstadt", flag:"", title:"Durbuy erkunden",
     text:"Gassen aus runden Flusskieseln, 400 Einwohner, Stadtrechte seit 1331. Samstags gibt es eine Führung mit zwei Bieren, Ziegenkäse und Pralinen unterwegs – oder wir laufen einfach los.",
@@ -3008,15 +3008,13 @@ const CAMPS = [
 ];
 
 const SLOTS = [
-  { id:"fr-so", when:"Fr 11.09. – So 13.09.", title:"Das ganze Wochenende", nights:"2 Nächte",
-    note:"Freitagnachmittag los, Sonntagabend zurück. Am meisten Zeit für alles – und für gar nichts." },
-  { id:"fr-sa", when:"Fr 11.09. – Sa 12.09.", title:"Kurz und intensiv", nights:"1 Nacht",
-    note:"Freitag anreisen, Samstag der große Tag, abends zurück. Kompakt, aber vollgepackt." },
-  { id:"sa-so", when:"Sa 12.09. – So 13.09.", title:"Ausschlafen am Freitag", nights:"1 Nacht",
-    note:"Samstagmorgen entspannt starten, eine Nacht an der Ourthe, Sonntag gemütlich heim." },
-  { id:"anders", when:"Passt nicht?", title:"Dann eben ein anderes Wochenende", nights:"sag mir wann",
+  { id:"sep", when:"Fr 11. – So 13. September", title:"Noch im Spätsommer", nights:"2 Nächte",
+    note:"Das Wasser hat um die 18 Grad, abends um acht steht die Sonne noch überm Tal. Alles hat offen." },
+  { id:"okt", when:"Fr 16. – So 18. Oktober", title:"Mitten im goldenen Oktober", nights:"2 Nächte",
+    note:"Die Ardennen stehen dann in Gelb und Kupfer, abends röhren die Hirsche im Wald. Kühler – dafür die schönsten Farben des Jahres." },
+  { id:"anders", when:"Passt beides nicht?", title:"Dann eben ein anderes Wochenende", nights:"sag mir wann",
     other:true,
-    note:"Wenn du an dem Wochenende nicht kannst, ist das überhaupt kein Problem. Sag mir einfach, wann es dir besser passt – Durbuy läuft nicht weg." }
+    note:"Wenn dir keins von beiden passt, ist das überhaupt kein Problem. Sag mir einfach, wann es dir besser passt – Durbuy läuft nicht weg." }
 ];
 
 /* ════════════════════════════════════════════════════════════
@@ -3162,7 +3160,7 @@ function paint() {
   tWhen.classList.toggle("ticket-empty", !slot);
 
   actHint.textContent = state.acts.some(a => a === "klettern")
-    ? "Klettern legen wir auf Freitag oder Samstag – sonntags hat der Park zu."
+    ? "Klettern legen wir auf Freitag oder Samstag – sonntags kann der Park zu sein."
     : "Der Rest fällt deswegen nicht weg – wir haben ein ganzes Wochenende.";
 
   const ready = !!slot && chosen.length === 2;
@@ -3199,7 +3197,7 @@ function message() {
   const camp = CAMPS.find(c => c.id === state.camp);
   return `Ich hab gewählt! 🚐\n\n` +
     (slot.other
-      ? `Wann: Am 11.–13.09. kann ich leider nicht – lass uns ein anderes Wochenende suchen.\n`
+      ? `Wann: Beide Wochenenden passen mir leider nicht – lass uns ein anderes suchen.\n`
       : `Wann: ${slot.when} (${slot.nights})\n`) +
     `Was: ${chosen[0]} + ${chosen[1]}\n` +
     `Basislager: ${camp ? camp.short : "such du aus"}\n\n` +
