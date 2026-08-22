@@ -982,6 +982,15 @@ html.angehalten html.angehalten{overscroll-behavior:none}
 }
 #wetterZeile dd{color:var(--sun);font-size:1.2em}
 #wetterZeile dd em{color:var(--mist);font-size:.82rem;letter-spacing:.02em}
+
+/* Die vierte Kachel ist kein Platz, sondern ein Angebot */
+.camp.camp-offen{border-style:dashed;background:linear-gradient(168deg,#14231F,#0B1815)}
+.camp.camp-offen .camp-tag{color:var(--stone)}
+.camp.camp-offen[aria-pressed="true"]{
+  border-style:solid;border-color:var(--river);
+  background:linear-gradient(168deg,#12403B,#0B1815);
+}
+.camp.camp-offen[aria-pressed="true"] .camp-tag{color:var(--paper)}
 </style>
 
 <div class="sky" id="sky"></div>
@@ -3074,6 +3083,11 @@ const CAMPS = [
     note:"Ein kleiner Platz unter Felsen, auf dem wirklich jeder Stellplatz am Wasser liegt. Bar am Platz, neues Sanitär, und ein Uferweg nach Durbuy.",
     meta:["ab 32 € / Nacht","35 Min am Fluss","Bar am Platz"],
     short:"Rochers du Glawan" },
+  { id:"zusammen", tag:"Keine Ahnung?", name:"Schauen wir zusammen",
+    zusammen:true,
+    note:"Du musst das nicht allein entscheiden. Wenn dir keiner der drei ins Auge springt, gehen wir sie zu zweit durch – dann buche ich.",
+    meta:["kein Muss","entscheiden wir gemeinsam"],
+    short:"schauen wir zusammen" },
 ];
 
 const SLOTS = [
@@ -3134,7 +3148,7 @@ const campsHost = $("#camps");
 CAMPS.forEach(c => {
   const b = document.createElement("button");
   b.type = "button";
-  b.className = "camp";
+  b.className = "camp" + (c.zusammen ? " camp-offen" : "");
   b.setAttribute("aria-pressed", "false");
   b.dataset.id = c.id;
   b.innerHTML =
@@ -3198,7 +3212,7 @@ function paint() {
   const campHint = document.getElementById("campHint");
   if (campHint) campHint.textContent = camp
     ? "Gute Wahl. Ich kümmere mich ums Buchen."
-    : "Alle drei liegen direkt an der Ourthe. Wenn du dich nicht entscheiden magst, entscheide ich.";
+    : "Alle drei liegen direkt an der Ourthe.";
 
   counter.innerHTML = `<b>${state.acts.length}</b> von 2 Favoriten`;
   counter.classList.toggle("full", state.acts.length === 2);
