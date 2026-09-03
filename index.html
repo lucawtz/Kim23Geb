@@ -678,6 +678,19 @@ body.parked .band-far{opacity:.18}
 .card-art{aspect-ratio:4/3}
 @media (max-width:520px){.card-art{aspect-ratio:3/2}}
 
+/* Der groesste Speicherposten der Seite: die sechs Karten-
+   Illustrationen sind zusammen 355 Vektorpfade, und der Browser
+   rastert sie in dreifacher Punktdichte — auch die fuenf, die gerade
+   niemand sieht. Gemessen auf einem iPhone-Profil kostete das beim
+   Durchscrollen ueber 100 MB.
+
+   content-visibility ueberspringt den Inhalt, solange die Kachel
+   ausserhalb des Bildes liegt. Am Layout aendert das nichts: die
+   Hoehe steht schon durch aspect-ratio fest, unabhaengig davon, was
+   drin ist. Deshalb hier und nicht auf .card — bei einer Kachel mit
+   Text wuerde die Seite beim Scrollen ihre Hoehe aendern. */
+.card-art{content-visibility:auto}
+
 /* Gerahmtes Szenenbild */
 .plate{
   position:relative;overflow:hidden;line-height:0;border-radius:2px;
