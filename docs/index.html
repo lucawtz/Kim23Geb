@@ -1,5 +1,24 @@
+<!doctype html>
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
+
+<!-- Dieses Stueck muss ganz oben stehen, vor allem anderen.
+     Das grosse Skript sitzt am Fuss der Seite, hinter 300 kB HTML.
+     Ueber Mobilfunk trifft dieser Fuss erst nach etlichen Sekunden
+     ein — die Besucherin liest und wischt da laengst. Wer erst dort
+     unten anfaengt zu merken, dass jemand gescrollt hat, merkt es zu
+     spaet. Also hier oben, wo es zaehlt. -->
+<script>
+(function(){
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  window.__selbstGescrollt = false;
+  var merken = function(){ window.__selbstGescrollt = true; };
+  addEventListener("scroll", function(){ if (scrollY > 4) merken(); }, { passive: true });
+  ["touchstart","wheel","keydown","pointerdown"].forEach(function(t){
+    addEventListener(t, merken, { passive: true });
+  });
+})();
+</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Route 23 · Durbuy</title>
 <meta name="description" content="Ein Wochenende im Camper in den belgischen Ardennen – für Kim zum Dreiundzwanzigsten. Such dir aus, wann wir fahren und was wir machen.">
@@ -11,6 +30,13 @@
 <link rel="apple-touch-icon" href="icon/icon-180.png">
 <meta name="apple-mobile-web-app-title" content="Route 23">
 <meta name="theme-color" content="#0A1714">
+
+<!-- Auf dem Handy waehlt der Browser aus srcset nach CSS-Breite MAL
+     Pixeldichte. 92vw sind auf einem iPhone 361 Punkte, mal 3 macht
+     1084 — also griff er zur 1600er Fassung und hielt sie mit rund
+     7 MB entschluesselt im Speicher. Drei davon, und Safari entlaedt
+     den Tab. Die 260px in "sizes" sind kein Layoutmass, sondern die
+     Obergrenze fuer diese Wahl: auf dem Handy reicht die 800er. -->
 
 <!-- Vorschau, wenn der Link verschickt wird -->
 <meta property="og:type" content="website">
@@ -24,7 +50,14 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..800;1,62..125,400..700&family=Instrument+Serif:ital@0;1&family=Martian+Mono:wght@300;400;600&display=swap">
+<!-- Ein stylesheet-Link haelt das erste Bild auf, bis die Antwort da
+     ist. Haengt fonts.googleapis.com — im Zug, im fremden WLAN, hinter
+     einem Filter —, sieht man bis dahin nichts. Mit media="print" laedt
+     der Browser die Datei, wartet aber nicht darauf; onload stellt sie
+     scharf. display=swap steht ohnehin drin, die Schrift tauscht sich
+     also so oder so nach. -->
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..800;1,62..125,400..700&family=Instrument+Serif:ital@0;1&family=Martian+Mono:wght@300;400;600&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..800;1,62..125,400..700&family=Instrument+Serif:ital@0;1&family=Martian+Mono:wght@300;400;600&display=swap"></noscript>
 
 <style>
 /* ============================================================
@@ -617,6 +650,12 @@ body.parked .band-far{opacity:.18}
    Jetzt knapp über Bildgröße, ohne Blend-Modus. */
 .grain{inset:-8%;opacity:.045;mix-blend-mode:normal}
 @media (prefers-reduced-motion:no-preference){.grain{animation:grainshift 1.2s steps(6,end) infinite}}
+/* Auf dem Handy faellt das Korn weg. Es kostet eine bildschirmgrosse
+   Compositing-Ebene plus viermal Neuzeichnen pro Sekunde — dauerhaft,
+   fuer einen Effekt bei 4,5 % Deckkraft, den dort ohnehin niemand
+   sieht. Genau solche Ebenen summieren sich zu dem Speicherdruck,
+   nach dem Safari den Tab neu laedt. */
+@media (max-width:760px){ .grain{display:none} }
 
 /* backdrop-filter über der parallaxierenden Landschaft ist die teuerste
    Anweisung im ganzen Stylesheet – ersatzlos raus. */
@@ -1212,11 +1251,11 @@ html.angehalten html.angehalten{overscroll-behavior:none}
       <div class="shot" style="margin-top:clamp(1.4rem,4vw,2.2rem)">
         <div class="plate-stapel">
           <div class="plate reveal d2">
-            <img src="img/blick-800.webp" sizes="(max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Durbuy im Abendlicht, vom Hang gegenüber">
+            <img src="img/blick-800.webp" sizes="(max-width:760px) 260px, (max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Durbuy im Abendlicht, vom Hang gegenüber">
             <span class="plate-cap">Durbuy im Abendlicht, vom Hang gegenüber</span>
           </div>
           <div class="plate plate-zweit reveal d3">
-            <img src="img/gasse-800.webp" srcset="img/gasse-800.webp 800w, img/gasse-1600.webp 1600w" sizes="(max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Gassen, Läden und Terrassen">
+            <img src="img/gasse-800.webp" srcset="img/gasse-800.webp 800w, img/gasse-1600.webp 1600w" sizes="(max-width:760px) 260px, (max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Gassen, Läden und Terrassen">
             <span class="plate-cap">Gassen, Läden und Terrassen</span>
           </div>
         </div>
@@ -1245,7 +1284,7 @@ html.angehalten html.angehalten{overscroll-behavior:none}
       <h2 class="reveal d1">Einmal die<br>Ourthe runter</h2>
       <div class="shot" style="margin-top:clamp(1.6rem,5vw,2.6rem)">
         <div class="plate reveal d2" id="plate-ourthe">
-          <img src="img/kanu-800.webp" srcset="img/kanu-800.webp 800w, img/kanu-1600.webp 1600w" sizes="(max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Kanus auf der Ourthe, direkt unter dem Burgfelsen von Durbuy">
+          <img src="img/kanu-800.webp" srcset="img/kanu-800.webp 800w, img/kanu-1600.webp 1600w" sizes="(max-width:760px) 260px, (max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Kanus auf der Ourthe, direkt unter dem Burgfelsen von Durbuy">
           <span class="plate-cap">Kanus auf der Ourthe, direkt unter dem Burgfelsen von Durbuy</span>
         </div>
         <div>
@@ -1277,11 +1316,11 @@ html.angehalten html.angehalten{overscroll-behavior:none}
       <div class="shot" style="margin-top:clamp(1.6rem,5vw,2.6rem)">
         <div class="plate-stapel">
           <div class="plate reveal d2" id="plate-wand">
-          <img src="img/ferrata-800.webp" sizes="(max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Der Klettersteig oberhalb von Durbuy · Eisenbügel im Kalkstein">
+          <img src="img/ferrata-800.webp" sizes="(max-width:760px) 260px, (max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Der Klettersteig oberhalb von Durbuy · Eisenbügel im Kalkstein">
           <span class="plate-cap">Der Klettersteig oberhalb von Durbuy · Eisenbügel im Kalkstein</span>
         </div>
           <div class="plate plate-zweit reveal d3">
-            <img src="img/zipline-800.webp" sizes="(max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Die Zipline über dem Wasser">
+            <img src="img/zipline-800.webp" sizes="(max-width:760px) 260px, (max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Die Zipline über dem Wasser">
             <span class="plate-cap">Die Zipline über dem Wasser</span>
           </div>
         </div>
@@ -1337,7 +1376,7 @@ html.angehalten html.angehalten{overscroll-behavior:none}
       <h2 class="reveal d1">Such dir das<br>Wochenende aus</h2>
       <div class="shot" style="margin-top:clamp(1.4rem,4vw,2.2rem)">
         <div class="plate reveal d2">
-            <img src="img/platz-800.webp" srcset="img/platz-800.webp 800w, img/platz-1600.webp 1600w" sizes="(max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Am Place aux Foires sitzt man draußen, solange es geht">
+            <img src="img/platz-800.webp" srcset="img/platz-800.webp 800w, img/platz-1600.webp 1600w" sizes="(max-width:760px) 260px, (max-width:939px) 92vw, 58vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Am Place aux Foires sitzt man draußen, solange es geht">
             <span class="plate-cap">Am Place aux Foires sitzt man draußen, solange es geht</span>
           </div>
         <p class="lead reveal d2">
@@ -1555,7 +1594,7 @@ html.angehalten html.angehalten{overscroll-behavior:none}
       <p class="reveal d3" style="max-width:34ch">Und irgendwo hinten im Wald röhrt zum ersten Mal
         in diesem Jahr ein Hirsch. Ich freu mich drauf. Sehr.</p>
       <div class="portrait gross reveal d3">
-        <img src="img/wir-berge-800.webp" srcset="img/wir-berge-800.webp 800w, img/wir-berge-1600.webp 1600w" sizes="(max-width:760px) 78vw, 420px" width="1600" height="1200" loading="lazy" decoding="async" alt="Wir beide in den Bergen">
+        <img src="img/wir-berge-800.webp" srcset="img/wir-berge-800.webp 800w, img/wir-berge-1600.webp 1600w" sizes="(max-width:760px) 260px, 420px" width="1600" height="1200" loading="lazy" decoding="async" alt="Wir beide in den Bergen">
       </div>
       <hr class="rule reveal d3">
       <p class="data reveal d4" style="white-space:nowrap">50°21′N · 5°27′E</p>
@@ -2881,28 +2920,52 @@ function measure() {
 let lastY = scrollY, vel = 0, curSky = { ...SKIES.night }, tgtSky = { ...SKIES.night };
 let dist = 0, lastDrive = 0, tilt = 0, tiltVel = 0;
 
-function frame() {
+/* Eine Custom Property auf <html> zu setzen macht die Stilrechnung
+   fuer jedes der ~1800 Elemente darunter ungueltig. Viermal je Bild
+   ist das der teuerste Posten der ganzen Schleife — also nur noch
+   schreiben, wenn sich der Wert wirklich geaendert hat. */
+const varCache = new Map();
+function setzeVar(ziel, name, wert) {
+  const schluessel = ziel === root ? name : name + "\u0000" + (ziel.dataset.vk || (ziel.dataset.vk = ++cvSeq));
+  if (varCache.get(schluessel) === wert) return;
+  varCache.set(schluessel, wert);
+  ziel.style.setProperty(name, wert);
+}
+
+/* Der Wert von scrollHeight zwingt den Browser zu einer sofortigen
+   Layoutrechnung. Bei content-visibility:auto heisst das, noch nicht
+   gezeichnete Abschnitte durchzumessen — jedes Bild aufs Neue.
+   Einmal je Sekunde reicht, dazwischen aendert er sich nicht. */
+let docHoehe = 1, docT = 0;
+function docMessen(jetzt) {
+  if (jetzt - docT < 500 && docHoehe > 1) return docHoehe;
+  docT = jetzt;
+  return docHoehe = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+}
+
+function frame(zeit) {
+  const now = zeit || performance.now();
   const y   = scrollY;
-  const doc = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+  const doc = docMessen(now);
   const p   = clamp(y / doc, 0, 1);
   const dy  = y - lastY; lastY = y;
   vel = lerp(vel, dy, .18);
 
-  root.style.setProperty("--p", p.toFixed(5));
+  setzeVar(root, "--p", p.toFixed(4));
 
   /* Parallax mit Modulo, damit die Kacheln endlos laufen */
-  const drive = y + (RM ? 0 : performance.now() * 0.012);   // leichte Eigenfahrt im Stand
+  const drive = y + (RM ? 0 : now * 0.012);   // leichte Eigenfahrt im Stand
   bands.forEach(b => {
     if (!b.tile) return;
-    b.el.style.setProperty("--off", ((drive * b.speed) % b.tile).toFixed(2));
+    setzeVar(b.el, "--off", ((drive * b.speed) % b.tile).toFixed(1));
   });
-  if (roadLine) roadLine.style.setProperty("--roadoff", ((drive * 1.6) % 96).toFixed(2));
+  if (roadLine) setzeVar(roadLine, "--roadoff", ((drive * 1.6) % 96).toFixed(1));
 
   /* Räder aus echter Weltdistanz – hört sie auf zu scrollen, rollt nur
      noch die Eigenfahrt weiter, und beides bleibt synchron. */
   const dd = drive - lastDrive; lastDrive = drive;
   dist += dd;
-  root.style.setProperty("--wr", (dist * 1.15).toFixed(1));
+  setzeVar(root, "--wr", (dist * 1.15).toFixed(0));
 
   if (!RM) {
     /* Gefederte Neigung: Ziel anfedern, Geschwindigkeit dämpfen */
@@ -2918,13 +2981,20 @@ function frame() {
   /* Partikeldichte weich nachziehen */
   const ease = RM ? 1 : .06;
   ["stars","beam","leaves"].forEach(k => { curSky[k] = lerp(curSky[k] ?? 0, tgtSky[k] ?? 0, ease); });
-  root.style.setProperty("--stars", curSky.stars.toFixed(3));
-  root.style.setProperty("--beam", curSky.beam.toFixed(3));
+  setzeVar(root, "--stars", curSky.stars.toFixed(2));
+  setzeVar(root, "--beam", curSky.beam.toFixed(2));
 
+  /* Vorher wurde das Attribut in jedem Bild neu gesetzt, auch wenn es
+     denselben Wert trug — vierzehn Stilrechnungen je Bild fuer nichts. */
   scenes.forEach((sec, i) => {
-    const done = p >= (parseFloat(stopEls[i].dataset.t) || 0) - .01;
-    stopEls[i].dataset.done = done ? "1" : "0";
+    const done = p >= (parseFloat(stopEls[i].dataset.t) || 0) - .01 ? "1" : "0";
+    if (stopEls[i].dataset.done !== done) stopEls[i].dataset.done = done;
   });
+
+  /* Die Partikel liefen bisher in einer zweiten, eigenen Schleife.
+     Zwei Rueckrufe je Bild heisst zweimal anhalten und aufraeumen —
+     dieselbe Arbeit geht in einem Durchgang. */
+  drawParticles(now);
 
   requestAnimationFrame(frame);
 }
@@ -2989,7 +3059,27 @@ const revObs = new IntersectionObserver(entries => {
 }, { rootMargin: "0px 0px -12% 0px", threshold: .05 });
 $$(".reveal").forEach(el => revObs.observe(el));
 
-addEventListener("resize", measure, { passive: true });
+/* Auf dem iPhone faehrt beim Scrollen die Adressleiste ein und aus.
+   Jedes Mal feuert ein resize — nur die Hoehe aendert sich, die Seite
+   ist dieselbe. Wer daran ein Neuvermessen haengt, laesst das Handy
+   waehrend des Scrollens dauerhaft rechnen. Deshalb: sammeln und nur
+   auf echte Aenderungen reagieren. */
+let vpB = innerWidth, vpH = innerHeight;
+const groessenHoerer = [];
+let groesseT = 0;
+function groesseGeaendert() {
+  clearTimeout(groesseT);
+  groesseT = setTimeout(() => {
+    const b = innerWidth, h = innerHeight;
+    const echt = b !== vpB || Math.abs(h - vpH) > 140;   /* 140px ≈ mehr als die Adressleiste */
+    vpB = b; vpH = h;
+    groessenHoerer.forEach(fn => fn(echt));
+  }, 160);
+}
+addEventListener("resize", groesseGeaendert, { passive: true });
+addEventListener("orientationchange", groesseGeaendert, { passive: true });
+
+groessenHoerer.push(() => measure());
 addEventListener("load", measure);
 measure();
 requestAnimationFrame(frame);
@@ -3364,10 +3454,25 @@ function load() {}
 
 /* Der Browser merkt sich beim Neuladen die Scrollposition und springt
    mitten in die Seite. Dann läuft die Karte unbemerkt ab, und man steht
-   vor einer Strecke, die schon gefahren ist. Also: immer von vorn. */
-if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-addEventListener("load", () => { if (!location.hash) scrollTo(0, 0); });
-scrollTo(0, 0);
+   vor einer Strecke, die schon gefahren ist. Also: immer von vorn.
+
+   Genau das war aber der Fehler, ueber den Kim gestolpert ist:
+   Dieses Skript steht am Fuss der Seite. Der Browser zeigt aber schon
+   den Anfang, waehrend die restlichen 300 kB HTML noch eintrudeln —
+   ueber Mobilfunk dauert das gut zehn Sekunden. In dieser Zeit liest
+   und wischt sie. Dann kommt der Fuss an, das Skript laeuft los, und
+   dieses scrollTo riss sie ohne Vorwarnung zurueck an den Anfang.
+   Zweimal, dreimal, so lange bis sie aufgibt.
+
+   Der Sprung nach oben ist trotzdem richtig — solange sie noch nicht
+   selbst gescrollt hat. Wer schon unterwegs ist, bleibt, wo er ist.
+
+   scrollRestoration steht bereits im Kopf der Seite auf "manual";
+   von dort weiss auch __selbstGescrollt Bescheid. */
+const vonSelbstGescrollt = () => window.__selbstGescrollt || scrollY > 4;
+const anDenAnfang = () => { if (!location.hash && !vonSelbstGescrollt()) scrollTo(0, 0); };
+anDenAnfang();
+addEventListener("load", anDenAnfang);
 
 load(); paint();
 
@@ -3566,10 +3671,20 @@ if (mapRoute) {
   }, { threshold: [.3, .5, .7, .9, 1] });
   kartenObs.observe(mapWrap);
   /* Beim Scrollen erneut prüfen, weil der Beobachter nur bei
-     Schwellenwechseln feuert. */
+     Schwellenwechseln feuert. Allerdings zwingt getBoundingClientRect
+     den Browser, das Layout auf der Stelle auszurechnen — bei jedem
+     einzelnen Scroll-Ereignis ist das auf einer Seite mit
+     content-visibility der sichere Weg ins Ruckeln. Also hoechstens
+     einmal je Bild nachsehen. */
+  let pruefAn = false;
   const nachpruefen = () => {
-    if (gelaufen || laeuft || angehalten) { removeEventListener("scroll", nachpruefen); return; }
-    if (!RM && gutImBild()) { removeEventListener("scroll", nachpruefen); kartenObs.disconnect(); anhalten(); }
+    if (pruefAn) return;
+    pruefAn = true;
+    requestAnimationFrame(() => {
+      pruefAn = false;
+      if (gelaufen || laeuft || angehalten) { removeEventListener("scroll", nachpruefen); return; }
+      if (!RM && gutImBild()) { removeEventListener("scroll", nachpruefen); kartenObs.disconnect(); anhalten(); }
+    });
   };
   addEventListener("scroll", nachpruefen, { passive: true });
 }
@@ -3636,7 +3751,10 @@ const ctx = cv.getContext("2d", { alpha: true });
 let stars = [], leaves = [], shoot = null, W = 0, H = 0, dpr = 1;
 
 function initCanvas() {
-  dpr = Math.min(2, devicePixelRatio || 1);
+  /* Bei dreifacher Punktdichte belegt eine bildschirmfuellende Leinwand
+     auf einem iPhone ueber 20 MB. Sterne sind weiche Punkte — ihnen
+     sieht man den Unterschied zu 1,5 nicht an. */
+  dpr = Math.min(innerWidth <= 760 ? 1.5 : 2, devicePixelRatio || 1);
   W = innerWidth; H = innerHeight;
   cv.width = W * dpr; cv.height = H * dpr;
   cv.style.width = W + "px"; cv.style.height = H + "px";
@@ -3652,9 +3770,19 @@ function newLeaf() {
            vy: .12 + Math.random() * .35, r: Math.random() * 6.28, vr: (Math.random() - .5) * .05,
            s: 4 + Math.random() * 5, hue: Math.random() < .5 ? "#B4632C" : "#E2A32E" };
 }
+let leinwandLeer = true;
 function drawParticles(t) {
-  ctx.clearRect(0, 0, W, H);
   const sa = curSky.stars ?? 0, la = curSky.leaves ?? 0;
+
+  /* Zwischen Morgen und Abend sind weder Sterne noch Blaetter zu sehen.
+     Trotzdem wurde die bildschirmfuellende Leinwand sechzigmal je
+     Sekunde geleert. Einmal loeschen genuegt, danach Ruhe. */
+  if (sa <= .02 && la <= .04 && !leaves.length && !shoot) {
+    if (!leinwandLeer) { ctx.clearRect(0, 0, W, H); leinwandLeer = true; }
+    return;
+  }
+  ctx.clearRect(0, 0, W, H);
+  leinwandLeer = false;
 
   if (sa > .02) {
     for (const s of stars) {
@@ -3698,9 +3826,17 @@ function drawParticles(t) {
 
   ctx.globalAlpha = 1;
 }
-function particleLoop(t) { drawParticles(t); requestAnimationFrame(particleLoop); }
-addEventListener("resize", initCanvas, { passive: true });
-initCanvas(); requestAnimationFrame(particleLoop);
+/* Gezeichnet wird jetzt aus frame() heraus. Eine zweite
+   requestAnimationFrame-Schleife heisst zweimal je Bild anhalten,
+   Stile rechnen und aufraeumen — dieselbe Arbeit in einem Durchgang
+   ist schlicht billiger.
+
+   Eine bildschirmfuellende Leinwand in doppelter Punktdichte belegt
+   auf einem iPhone ueber 20 MB. Sie bei jedem resize neu anzulegen
+   ist genau das, woran Safari den Tab entlaedt — also nur bei einer
+   echten Groessenaenderung, nicht bei der Adressleiste. */
+groessenHoerer.push(echt => { if (echt) initCanvas(); });
+initCanvas();
 
 /* Belohnung beim Abschicken */
 function celebrate(meldung) {
